@@ -13,7 +13,8 @@ describe('Article', function() {
 expect(res.body.article_id).to.not.equal(null);
 expect(res.body).to.have.property("author");
 expect(res.body.author).to.not.equal(null);
-expect(res.body).to.have.property("article_title"); expect(res.body.article_title).to.not.equal(null);
+expect(res.body).to.have.property("article_title"); 
+expect(res.body.article_title).to.not.equal(null);
 expect(res.body).to.have.property("picture");
 expect(res.body).to.have.property("content");
 expect(res.body.content).to.not.equal(null);
