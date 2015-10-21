@@ -1,22 +1,19 @@
 package com.williamhenry.insantani;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.app.Activity;
-import android.widget.AdapterView;
-import android.widget.Toast;
-
-
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TabHost;
 
-
+import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
@@ -39,6 +36,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        final TabHost tabHost = (TabHost) rootView.findViewById(R.id.tabhost);
+        tabHost.setup();
+
+        TabHost.TabSpec spec1 = tabHost.newTabSpec("feed");
+        spec1.setContent(R.id.tab1);
+        spec1.setIndicator("Feed", null);
+        tabHost.addTab(spec1);
+
+        TabHost.TabSpec spec2 = tabHost.newTabSpec("shop");
+        spec2.setContent(R.id.tab2);
+        spec2.setIndicator("Shop", null);
+        tabHost.addTab(spec2);
         mRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
 
@@ -47,6 +56,27 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new GridAdapter(getContext());
+        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+
+        ArrayList<Article> articles = new ArrayList<Article>();
+
+        for (int i = 0; i < 20 ; i++){
+            articles.add(new Article(
+                    "Author" + i, "Title" + i, "This is about desc "+ i, R.drawable.sample_4 ));
+        }
+        mAdapter = new MyAdapter(articles);
         mRecyclerView.setAdapter(mAdapter);
 
 
