@@ -26,6 +26,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.util.Log;
+import android.content.Intent;
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -81,10 +82,10 @@ public class MainActivity extends FragmentActivity
 
         }
 
-            FragmentManager fragmentManager=getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container,fragment);
-            fragmentTransaction.commit();
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container,fragment);
+        fragmentTransaction.commit();
 
 
         // set the toolbar title
@@ -141,6 +142,12 @@ public class MainActivity extends FragmentActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+//    public void onClickHandler(View v){
+//
+//
+//
+//    }
 
     /**
      * A placeholder fragment containing a simple view.
