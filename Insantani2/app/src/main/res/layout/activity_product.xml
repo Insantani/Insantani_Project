@@ -7,17 +7,10 @@
     tools:context="com.williamhenry.insantani.ProductActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="13dp" />
-
+        android:id="@+id/img_thumbnail1"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>

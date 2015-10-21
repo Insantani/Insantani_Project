@@ -1,13 +1,16 @@
 package com.williamhenry.insantani;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.app.Activity;
 import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 
-public class ProductActivity extends Activity {
+public class ProductActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,11 @@ public class ProductActivity extends Activity {
         Bundle item=(Bundle)extras.get("nature");
         Log.d("item_name",item.getString("title"));
         Log.d("thumbnail",Integer.toString(item.getInt("thumbnail")));
+
+        ImageView image= (ImageView)findViewById(R.id.img_thumbnail1);
+        int x=item.getInt("thumbnail");
+        Drawable draw=getResources().getDrawable(x);
+        image.setImageDrawable(draw);
 
 
     }
