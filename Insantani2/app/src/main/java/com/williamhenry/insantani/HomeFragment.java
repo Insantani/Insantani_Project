@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
 
         ArrayList<Article> articles = new ArrayList<Article>();
         articles.add(new Article(
-                "by Agung Wirayogi", "Chili for your healt",
+                "by Agung Wirayogi", "Chili for your health",
                 "Chilies are excellent source of Vitamin, A, B, C and E with minerals like molybdenum, manganese, folate, potassium, thiamin, and copper. Chili contains seven times more vitamin C than orange.\n" +
                         "\n" +
                         "Ever since its introduction to India in 1498, chilies have been included in Ayurvedic medicines and used as " +
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
 
         ));
         articles.add(new Article(
-                "by William Henry", "What is potato",
+                "by William Henry", "Cabbage not only grean",
                 "According to the USDA National Nutrient Database, one half cup of shredded cabbage" +
                         " (75 grams) contains 17 calories, 4 grams of carbohydrate (including 1 gram " +
                         "of fiber and 2 grams of sugar) and 1 gram of protein. ", R.mipmap.col
