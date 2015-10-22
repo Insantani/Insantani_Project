@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
             articles.add(new Article(
                     "Author" + i, "Title" + i, "This is about desc "+ i, R.drawable.sample_4 ));
         }
-        mAdapter = new MyAdapter(articles);
+        mAdapter = new MyAdapter(articles,getContext());
         mRecyclerView.setAdapter(mAdapter);
 
 

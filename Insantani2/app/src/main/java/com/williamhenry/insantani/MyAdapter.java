@@ -1,11 +1,14 @@
 package com.williamhenry.insantani;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -14,6 +17,7 @@ import java.util.ArrayList;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<Article> articles;
+    private Context context;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -28,8 +32,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(ArrayList<Article> articles) {
+    public MyAdapter(ArrayList<Article> articles,Context context) {
         this.articles = articles;
+        this.context=context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -60,6 +65,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         desc.setText(articles.get(position).getDescription());
 
         imageView.setImageResource(articles.get(position).getImage());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+//                Intent intent= new Intent(getAc,ProductActivity.class);
+//                startActivtiy(intent);
+
+                Intent intent= new Intent(context,ArticleActivity.class);
+                context.startActivity(intent);
+
+            }
+        });
+;
+
 
     }
 
