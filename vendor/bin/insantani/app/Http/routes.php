@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('api/products',['uses'=>'ProductController@products','middleware'=>'products']);
-Route::get('api/products/{id}', array('uses' => 'ProductController@productDetail','middleware'=>'products'))->where('id', '.+');
+Route::get('api/products/{id}', array('uses' => 'ProductController@productDetail','middleware'=>'products'))->where('id', '[0-9]+');
 Route::get('api/feed',['uses'=>'ArticleController@articles','middleware'=>'articles']);
-
-Route::get('api/feed/article/{id}', array('uses' => 'ArticleController@articleDetail','middleware'=>'articles'))->where('id', '.+');
+Route::get('api/search/{query}', array('uses' => 'SearchController@search','middleware'=>'products'))->where('query', '.+');
+Route::get('api/feed/article/{id}', array('uses' => 'ArticleController@articleDetail','middleware'=>'articles'))->where('id', '[0-9]+');
