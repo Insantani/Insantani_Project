@@ -33,7 +33,7 @@ class ProductController extends Controller
         $limit=$request->input('limit');
         $page=$request->input('page');
 //        echo($limit.$page);
-        $todos=ProductModel::all();
+        $todos=ProductModel::paginate($limit);
         
 
         

@@ -22,7 +22,7 @@ class SearchController extends Controller
     public function search($query){
         
         $segments = explode('/', $query);
-        $todos=ProductModel::where('product_name','=',$segments)->get();
+        $todos=ProductModel::where('product_name','Like','%'.$segments[0].'%')->get();
         return $todos;
         
         

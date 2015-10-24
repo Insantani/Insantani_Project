@@ -25,7 +25,7 @@ class ArticleController extends Controller
         $page=$request->input('page');
         $limit=$request->input('limit');
 //        echo($page.$limit);
-        $todos= ArticleModel::all();
+        $todos= ArticleModel::paginate($limit);
         return $todos;
     }
     public function articleDetail($id){
