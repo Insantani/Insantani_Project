@@ -13,14 +13,15 @@ class CreateProductTodos extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
+        
             $table->increments('product_id');
-            $table->tinyInteger('product_id')
-            $table->string('farmer_name');
+            $table->tinyInteger('product_id');
             $table->string('product_name');
             $table->string('prod_desc');
 //            $table->string('nutri_facts');
             $table->integer('stock_num');
             $table->integer('prod_price');
+            $table->unique('farmer_id');
         });
     }
 

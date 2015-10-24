@@ -3,17 +3,31 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\NutritionFactsModel;
+use App\Farmer;
+
+
+
 
 class ProductModel extends Model
+    
 {
+
     protected $table="product";
-    protected $fillable=["product_name","farmer_name","prod_price","stock_name","prod_desc","nutri_facts"];
-    public function index(){
+   
+    public function nutritionFacts(){
+        
+        return $this->hasMany('App\NutritionFactsModel','product_id');
  
-        return $this->belongsTo('App\ProductController');
+       
  
     }
+    public function index(){
+        
+        return $this->belongsTo('App\Farmer','farmer_id');
+    }
+
     
-    
+   
     
 }

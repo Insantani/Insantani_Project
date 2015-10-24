@@ -1,74 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\ProductModel;
-use App\NutritionFactsModel;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\ArticleModel;
 use App\Http\Controllers\Controller;
-//use Illuminate\Routing\Controller;
 
-
-class ProductController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-
-    
     public function index()
     {
+        
+    }
+    
+    public function articles(Request $request){
+        
         //
-    
-       
-    }
-    
-    public function products(Request $request){
-        
-        
-        
-        $limit=$request->input('limit');
         $page=$request->input('page');
-//        echo($limit.$page);
-        $todos=ProductModel::all();
-        
-
-        
-
-        
-      
-        
-        
-
-
+        $limit=$request->input('limit');
+//        echo($page.$limit);
+        $todos= ArticleModel::all();
         return $todos;
-        
-        
     }
-    
-
-    
-    public function productDetail($id){
+    public function articleDetail($id){
         
         $segments = explode('/', $id);
-        $todos=ProductModel::find($segments);
-        
-
-        
-//        print_r($todos);
-        
-        
-        foreach ($todos as $todo){
-            $x=$todo->nutritionFacts;
-           
-        }
-        
-        
-
-
+//        print_r($segments);
+        $todos=ArticleModel::find($segments);
         return $todos;
         
     }
