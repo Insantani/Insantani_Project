@@ -18,13 +18,14 @@ public class ProductActivity extends ActionBarActivity {
         setContentView(R.layout.activity_product);
         Bundle extras= getIntent().getExtras();
         Bundle item=(Bundle)extras.get("nature");
-        Log.d("item_name",item.getString("title"));
-        Log.d("thumbnail",Integer.toString(item.getInt("thumbnail")));
+        Log.d("item_name: ",item.getString("title"));
+        Log.d("thumbnail: ",Integer.toString(item.getInt("thumbnail")));
 
         ImageView image= (ImageView)findViewById(R.id.img_thumbnail1);
         int x=item.getInt("thumbnail");
         Drawable draw=getResources().getDrawable(x);
         image.setImageDrawable(draw);
+        //hi
 
 
     }
