@@ -22,8 +22,12 @@ class SearchController extends Controller
     public function search($query){
         
         $segments = explode('/', $query);
-        $todos=ProductModel::where('product_name','Like','%'.$segments[0].'%')->get();
-        return $todos;
+        $todos=ProductModel::where('product_name','like','%'.$segments[0].'%')->get();
+        return [
+           'message'=>'success returning search result',
+            'state'=>'search results',
+            'result'=>$todos 
+        ];
         
         
     }

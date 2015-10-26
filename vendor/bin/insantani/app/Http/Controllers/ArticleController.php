@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Response;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ArticleModel;
@@ -25,15 +26,28 @@ class ArticleController extends Controller
         $page=$request->input('page');
         $limit=$request->input('limit');
 //        echo($page.$limit);
-        $todos= ArticleModel::paginate($limit);
-        return $todos;
+        if($page!=null && $limit!=null){
+            $todos= ArticleModel::paginate($limit);
+//          print_r()
+            return [
+                'message'=>'success returning pagination object',
+                'state'=>'list of all articles',
+                'result'=>$todos->toArray()  
+            ];
+        }else{
+            return response('Not found',404);
+        }
     }
     public function articleDetail($id){
         
         $segments = explode('/', $id);
 //        print_r($segments);
         $todos=ArticleModel::find($segments);
-        return $todos;
+        return[
+            'message'=>'success returning article detail',
+            'state'=>'article detail',
+            'result'=>$todos
+        ];
         
     }
 
