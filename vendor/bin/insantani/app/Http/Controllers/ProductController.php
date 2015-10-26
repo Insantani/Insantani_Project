@@ -33,21 +33,23 @@ class ProductController extends Controller
         $limit=$request->input('limit');
         $page=$request->input('page');
 //        echo($limit.$page);
-        $todos=ProductModel::paginate($limit);
+        if($limit!=null && $page!=null){
+            $todos=ProductModel::paginate($limit);
+//          print_r ($todos);
         
-
-        
-
-        
-      
-        
-        
-
-
-        return $todos;
-        
+            
+            return [
+                'message'=>'success returning pagination object',
+                'state'=>'list of all products',
+                'result'=>$todos->toArray()
+            ];
+        }else{
+            return response('Not Found',404);
+        }
         
     }
+    
+   
     
 
     
@@ -65,11 +67,11 @@ class ProductController extends Controller
             $x=$todo->nutritionFacts;
            
         }
-        
-        
-
-
-        return $todos;
+        return [
+            'message'=>'success returning product detail',
+            'state'=>'product detail',
+            'result'=>$todos
+        ];
         
     }
 
