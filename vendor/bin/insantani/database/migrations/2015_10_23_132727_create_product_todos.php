@@ -21,7 +21,7 @@ class CreateProductTodos extends Migration
 //            $table->string('nutri_facts');
             $table->integer('stock_num');
             $table->integer('prod_price');
-            $table->unique('farmer_id');
+//            $table->unique('farmer_username');
         });
     }
 

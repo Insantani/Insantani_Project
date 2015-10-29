@@ -24,7 +24,7 @@ class ProductModel extends Model
     }
     public function index(){
         
-        return $this->belongsTo('App\Farmer','farmer_id');
+        return $this->belongsTo('App\Farmer','farmer_username');
     }
 
     

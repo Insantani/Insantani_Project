@@ -16,3 +16,4 @@ class Farmer extends Model
         return $this->hasMany('App\ProductModel');
     }
 }
+

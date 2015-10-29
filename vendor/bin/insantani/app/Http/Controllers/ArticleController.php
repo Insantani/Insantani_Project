@@ -35,7 +35,7 @@ class ArticleController extends Controller
                 'result'=>$todos->toArray()  
             ];
         }else{
-            return response('Not found',404);
+            return response('Not Found',404);
         }
     }
     public function articleDetail($id){
@@ -43,6 +43,12 @@ class ArticleController extends Controller
         $segments = explode('/', $id);
 //        print_r($segments);
         $todos=ArticleModel::find($segments);
+        
+        foreach ($todos as $todo){
+            $x=$todo->article_tags;
+           
+        }
+        
         return[
             'message'=>'success returning article detail',
             'state'=>'article detail',
@@ -50,6 +56,7 @@ class ArticleController extends Controller
         ];
         
     }
+    
 
     /**
      * Show the form for creating a new resource.
