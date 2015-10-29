@@ -1,0 +1,17 @@
+{
+    "require": {
+        "laravel/installer": "~1.1"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/Insantani/Insantani_Project/"
+        }
+    ],
+    "extra":{
+        "branch-alias":{
+            "dev-master-william":"0.1"
+        
+        }
+    }
+}
