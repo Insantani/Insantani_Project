@@ -37,7 +37,7 @@ class TagController extends Controller
 
 
                 return [
-                    "message"=>"success returning articles based on ".$segments[0]." tag",
+                    "message"=>"OK",
                     "state"=>$segments[0]." tag results",
                     "result"=>array_unique($array)
                     ];

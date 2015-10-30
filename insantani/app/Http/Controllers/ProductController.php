@@ -33,13 +33,13 @@ class ProductController extends Controller
         $limit=$request->input('limit');
         $page=$request->input('page');
 //        echo($limit.$page);
-        if($limit!=null && $page!=null){
+        if($limit!=null && $page!=null&& count($request->input())==2){
             $todos=ProductModel::paginate($limit);
 //          print_r ($todos);
         
             
             return [
-                'message'=>'success returning pagination object',
+                'message'=>'OK',
                 'state'=>'list of all products',
                 'result'=>$todos->toArray()
             ];
@@ -62,16 +62,22 @@ class ProductController extends Controller
         
 //        print_r($todos);
         
-        
-        foreach ($todos as $todo){
-            $x=$todo->nutritionFacts;
-           
+        if(count($todos)>0){
+            foreach ($todos as $todo){
+                $x=$todo->nutritionFacts;
+
+            }
+            return [
+                'message'=>'OK',
+                'state'=>'product detail',
+                'result'=>$todos
+            ];
+        }else{
+            return [
+                'message'=>"NOT FOUND",
+                'state'=>'product detail'
+            ];
         }
-        return [
-            'message'=>'success returning product detail',
-            'state'=>'product detail',
-            'result'=>$todos
-        ];
         
     }
     
@@ -80,13 +86,19 @@ class ProductController extends Controller
     public function relatedItems($id){
         
         $segments = explode('/', $id);
-        $todos=ProductModel::where('farmer_id','=',$segments)->get();
-        return [
-           'message'=>'success returning related items',
-            'state'=>'related items',
-            'result'=>$todos 
-        ];
-        
+        $todos=ProductModel::where('farmer_username','=',$segments)->get();
+        if(count($todos)>0){
+            return [
+                'message'=>'OK',
+                'state'=>'related items',
+                'result'=>$todos 
+            ];
+        }else{
+            return [
+                'message'=>'NOT FOUND',
+                'state'=>'related items'
+            ];
+        }
         
     }
 
