@@ -26,13 +26,13 @@ class SearchController extends Controller
         $todos=ProductModel::where('product_name','like','%'.$segments[0].'%')->get();
         if(count($todos)>0){
             return [
-                'message'=>'success returning search result',
+                'message'=>'FOUND',
                 'state'=>'search results',
                 'result'=>$todos 
             ];
         }else{
              return [
-                'message'=>'failed to return search result',
+                'message'=>'NOT FOUND',
                 'state'=>'search results'
             ];
         }
@@ -57,13 +57,13 @@ class SearchController extends Controller
         }
         if (count($todos)>0){
             return [
-                'message'=>'success returning search result',
+                'message'=>'FOUND',
                 'state'=>'search results',
                 'result'=>$todos
             ];
     } else{
             return [
-                'message'=>'failed to return search result',
+                'message'=>'NOT FOUND',
                 'state'=>'search results'
             ];
         }

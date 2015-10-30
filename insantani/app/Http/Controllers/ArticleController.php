@@ -23,14 +23,15 @@ class ArticleController extends Controller
     public function articles(Request $request){
         
         //
+//        print_r(count($request->input()));
         $page=$request->input('page');
         $limit=$request->input('limit');
 //        echo($page.$limit);
-        if($page!=null && $limit!=null){
+        if($page!=null && $limit!=null && count($request->input())==2){
             $todos= ArticleModel::paginate($limit);
 //          print_r()
             return [
-                'message'=>'success returning pagination object',
+                'message'=>'OK',
                 'state'=>'list of all articles',
                 'result'=>$todos->toArray()  
             ];
@@ -42,18 +43,27 @@ class ArticleController extends Controller
         
         $segments = explode('/', $id);
 //        print_r($segments);
+        
         $todos=ArticleModel::find($segments);
         
-        foreach ($todos as $todo){
-            $x=$todo->article_tags;
-           
+        if(count($todos)>0){
+            foreach ($todos as $todo){
+                $x=$todo->article_tags;
+
+            }
+
+            return[
+                'message'=>'OK',
+                'state'=>'article detail',
+                'result'=>$todos
+            ];
+        }else{
+            return[
+                'message'=>'NOT FOUND',
+                'state'=>'article detail'
+                
+            ];
         }
-        
-        return[
-            'message'=>'success returning article detail',
-            'state'=>'article detail',
-            'result'=>$todos
-        ];
         
     }
     

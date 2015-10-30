@@ -18,5 +18,11 @@ Route::get('/', function () {
 Route::get('api/products',['uses'=>'ProductController@products','middleware'=>'products']);
 Route::get('api/products/{id}', array('uses' => 'ProductController@productDetail','middleware'=>'products'))->where('id', '[0-9]+');
 Route::get('api/feed',['uses'=>'ArticleController@articles','middleware'=>'articles']);
-Route::get('api/search/{query}', array('uses' => 'SearchController@search','middleware'=>'products'))->where('query', '.+');
+Route::get('api/search/product/{query}', array('uses' => 'SearchController@searchProduct','middleware'=>'products'))->where('query', '.+');
+Route::get('api/search/tag/{query}', array('uses' => 'SearchController@searchTags','middleware'=>'articles'))->where('query', '.+');
+
 Route::get('api/feed/article/{id}', array('uses' => 'ArticleController@articleDetail','middleware'=>'articles'))->where('id', '[0-9]+');
+
+Route::get('api/farmer/{id}/products',array('uses'=>'ProductController@relatedItems','middleware'=>'products'))->where('id','.+');
+
+Route::get('api/tag/{query}/results',array('uses'=>'TagController@tagResultDetail','middleware'=>'articles'))->where('query','.+');
