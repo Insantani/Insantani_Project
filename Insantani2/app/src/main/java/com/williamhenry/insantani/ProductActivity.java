@@ -1,22 +1,22 @@
 package com.williamhenry.insantani;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.app.Activity;
-import android.util.Log;
-import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
 public class ProductActivity extends ActionBarActivity {
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
         Bundle extras= getIntent().getExtras();
         Bundle item=(Bundle)extras.get("nature");
         Log.d("item_name",item.getString("title"));
@@ -41,6 +41,14 @@ public class ProductActivity extends ActionBarActivity {
 
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
+
+//        Button add_to_shopping_cart = (Button) findViewById(R.id.shoppingcart_button);
+//        add_to_shopping_cart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),)
+//            }
+//        };
 
 
     }

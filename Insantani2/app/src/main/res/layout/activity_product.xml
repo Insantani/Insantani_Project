@@ -21,6 +21,7 @@
             android:scaleType="fitXY"
             android:layout_alignParentTop="true" />
 
+
         <TextView
             android:id="@+id/productname"
             android:layout_width="wrap_content"
@@ -30,6 +31,7 @@
             android:padding="2dp"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
 
         <TextView
             android:id="@+id/farmername"
@@ -52,6 +54,17 @@
             android:padding="2dp"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:background="@color/isantaniGreen"
+            android:textAlignment="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/insantaniWhite"
+            android:text="Add to Shopping Cart"
+            android:id="@+id/shoppingcart_button"/>
 
         <TextView
             android:id="@+id/stock"
