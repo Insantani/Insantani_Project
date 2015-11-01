@@ -32,12 +32,14 @@ class ProductController extends Controller
         
         $limit=$request->input('limit');
         $page=$request->input('page');
+//        print_r($request->input());
+//        echo(is_numeric($limit)==false);
 //        echo($limit.$page);
-        if($limit!=null && $page!=null&& count($request->input())==2){
-            $todos=ProductModel::paginate($limit);
-//          print_r ($todos);
-        
-            
+        if($limit!=null && $page!=null&& count($request->input())==2
+          && is_numeric($limit)==true && is_numeric($page)==true){
+
+                $todos=ProductModel::paginate($limit);
+
             return [
                 'message'=>'OK',
                 'state'=>'list of all products',
@@ -46,8 +48,10 @@ class ProductController extends Controller
         }else{
             return response('Not Found',404);
         }
-        
     }
+
+        
+   
     
    
     
