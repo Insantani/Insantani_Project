@@ -26,3 +26,4 @@ Route::get('api/feed/article/{id}', array('uses' => 'ArticleController@articleDe
 Route::get('api/farmer/{id}/products',array('uses'=>'ProductController@relatedItems','middleware'=>'products'))->where('id','.+');
 
 Route::get('api/tag/{query}/results',array('uses'=>'TagController@tagResultDetail','middleware'=>'articles'))->where('query','.+');
+Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']);

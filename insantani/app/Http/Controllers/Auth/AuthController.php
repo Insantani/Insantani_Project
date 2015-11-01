@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+//use App\Http\Requests;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+//use Illuminate\Foundation\Auth\RegistersUsers;
 
 class AuthController extends Controller
 {
@@ -28,6 +31,7 @@ class AuthController extends Controller
      *
      * @return void
      */
+//    protected $redirectTo='/';
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
@@ -42,9 +46,11 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'name' => 'required|max:50',
+            'email' => 'required|email|max:50|unique:users',
+            'password' => 'required|confirmed|min:10',
+            'address'=>'required|max:40',
+            'phone_number'=>'required|max:15'
         ]);
     }
 
@@ -56,10 +62,31 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+//        print_r ($data);
+        return $todo= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone_number'=>$data['phone_number'],
+            'address'=>$data['address']
         ]);
+       
     }
+    
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            echo($validator->messages());
+        }
+
+        $this->create($request->all());
+
+        return response()->json([ 'message' => 'Registration Complete!' ], 201);
+    }
+
+
+    
+
 }

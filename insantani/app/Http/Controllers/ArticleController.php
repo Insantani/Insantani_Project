@@ -27,7 +27,8 @@ class ArticleController extends Controller
         $page=$request->input('page');
         $limit=$request->input('limit');
 //        echo($page.$limit);
-        if($page!=null && $limit!=null && count($request->input())==2){
+        if($page!=null && $limit!=null && count($request->input())==2
+          && is_numeric($limit)==true && is_numeric($page)==true){
             $todos= ArticleModel::paginate($limit);
 //          print_r()
             return [

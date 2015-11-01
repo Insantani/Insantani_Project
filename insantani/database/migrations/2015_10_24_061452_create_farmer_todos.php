@@ -13,7 +13,7 @@ class CreateFarmerTodos extends Migration
     public function up()
     {
         Schema::create('farmer', function (Blueprint $table) {
-            $tabe->primary('farmer_username');
+            $table->primary('farmer_username');
 //            $table->increments('farmer_');
             $table->timestamps('created_at');
             $table->string('farmer_name');
