@@ -10,6 +10,7 @@ public class Cart {
     float price;
     int image;
 
+
     public Cart(String productName, int qty, String farmer, float price, int image) {
         this.productName = productName;
         this.qty = qty;
