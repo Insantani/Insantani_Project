@@ -43,7 +43,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         TextView productName = (TextView) holder.view.findViewById(R.id.productName);
         TextView qty = (TextView) holder.view.findViewById(R.id.Qty);
         TextView farmer = (TextView) holder.view.findViewById(R.id.Farmer);
-        TextView price = (TextView) holder.view.findViewById(R.id.Price)
+        TextView price = (TextView) holder.view.findViewById(R.id.Price);
         ImageView imageView = (ImageView) holder.view.findViewById(R.id.imageView);
 
         productName.setText(carts.get(position).getProductName());
