@@ -37,7 +37,7 @@ class ArticleController extends Controller
                 'result'=>$todos->toArray()  
             ];
         }else{
-            return response('Not Found',404);
+            return response('Invalid Argument',400);
         }
     }
     public function articleDetail($id){
@@ -66,6 +66,23 @@ class ArticleController extends Controller
             ];
         }
         
+    }
+    
+    public function showPicture($id){
+        $segments = explode('/', $id);
+        $todos=ArticleModel::find($segments);
+        if(count($todos)>0){
+            $path=$todos->pluck('article_filepath');
+            $filename=$todos->pluck('article_filename');
+            ob_end_clean();
+
+            return  response()->download(public_path().$path[0], $filename[0], ['Content-Type'=>'image/png']);
+        }else{
+            return [
+                'message'=>'NOT FOUND',
+                'state'=>'article picture'
+            ];
+        }
     }
     
 

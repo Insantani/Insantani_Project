@@ -6,10 +6,9 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//use App\Http\Requests;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-//use Illuminate\Foundation\Auth\RegistersUsers;
+
 
 class AuthController extends Controller
 {
@@ -34,7 +33,7 @@ class AuthController extends Controller
 //    protected $redirectTo='/';
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+//        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -46,10 +45,10 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:50',
-            'email' => 'required|email|max:50|unique:users',
-            'password' => 'required|confirmed|min:10',
-            'address'=>'required|max:40',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|max:50',
+            'address'=>'required|max:100',
             'phone_number'=>'required|max:15'
         ]);
     }
@@ -62,15 +61,18 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-//        print_r ($data);
-        return $todo= User::create([
+        
+//        print ($data);
+        $todo= User::create([
+            'user_id'=>uniqid($data['email'],true),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'phone_number'=>$data['phone_number'],
             'address'=>$data['address']
         ]);
-       
+        $todo->save();
+        return $todo;
     }
     
     public function postRegister(Request $request)
@@ -85,7 +87,6 @@ class AuthController extends Controller
 
         return response()->json([ 'message' => 'Registration Complete!' ], 201);
     }
-
 
     
 
