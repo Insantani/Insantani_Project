@@ -2,46 +2,25 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-142f0828625e04b46ebab92851642be5b7828c28.jar" />
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-bd52feb2cbf47dd12194c683e1678f9200dc8b04.jar" />
     </item>
     <item
-        jar="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\jars\classes.jar"
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\pre-dexed\debug\classes-97c475055be4445d9a160cdced4fd2cad0cb2e08.jar" />
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-8a985de601cf3a183100e82e4eacdf947284f56a.jar" />
     </item>
     <item
-        jar="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\jars\classes.jar"
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\pre-dexed\debug\classes-ccb4c02114aa04359e992edb24a42c77d6f5b446.jar" />
-    </item>
-    <item
-        jar="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\pre-dexed\debug\classes-ece197fb74af62136ddb35e53e684da5aea86de7.jar" />
-    </item>
-    <item
-        jar="C:\Users\william\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-27614148b11b32da02bbe7be1e88bce277ee7092.jar" />
-    </item>
-    <item
-        jar="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="C:\Users\william\AndroidStudioProjects\Project_insantani\Insantani2\app\build\intermediates\pre-dexed\debug\classes-0b2fbb348a4bd1bf2eb411632efc9e6a32060908.jar" />
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-14efdf1aec2cb06e22d663281db2eb1ca544e34b.jar" />
     </item>
 
 </items>

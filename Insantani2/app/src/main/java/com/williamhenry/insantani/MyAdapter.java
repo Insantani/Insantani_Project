@@ -1,5 +1,6 @@
 package com.williamhenry.insantani;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -19,22 +19,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<Article> articles;
     private Context context;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public View view;
-        public ViewHolder(View v) {
-            super(v);
-            view = v;
-        }
-    }
-
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(ArrayList<Article> articles,Context context) {
+    public MyAdapter(ArrayList<Article> articles, Context context) {
         this.articles = articles;
-        this.context=context;
+        this.context = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -52,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         TextView title = (TextView) holder.view.findViewById(R.id.title);
@@ -74,6 +62,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 //                startActivtiy(intent);
 
                 Intent intent= new Intent(context,ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", articles.get(position).getTitle());
+                bundle.putString("author", articles.get(position).getAuthor());
+                bundle.putString("desc", articles.get(position).getDescription());
+                bundle.putInt("image", articles.get(position).getImage());
+                intent.putExtra("article", bundle);
                 context.startActivity(intent);
 
             }
@@ -87,5 +81,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return articles.size();
+    }
+
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public View view;
+
+        public ViewHolder(View v) {
+            super(v);
+            view = v;
+        }
     }
 }

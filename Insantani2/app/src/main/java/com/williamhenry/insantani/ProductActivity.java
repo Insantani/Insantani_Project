@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.app.Activity;
 import android.util.Log;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.TextView;
 
 public class ProductActivity extends ActionBarActivity {
 
@@ -25,6 +26,21 @@ public class ProductActivity extends ActionBarActivity {
         int x=item.getInt("thumbnail");
         Drawable draw=getResources().getDrawable(x);
         image.setImageDrawable(draw);
+
+        TextView text1 = (TextView)findViewById(R.id.productname);
+        text1.setText(item.getString("title"));
+
+        TextView text2 = (TextView)findViewById(R.id.description);
+        text2.setText(item.getString("description"));
+
+        TextView text3 = (TextView)findViewById(R.id.farmername);
+        text3.setText("By: " + item.getString("fname"));
+
+        TextView text4 = (TextView)findViewById(R.id.price);
+        text4.setText("$" + Integer.toString(item.getInt("price")));
+
+        TextView text5 = (TextView)findViewById(R.id.stock);
+        text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
 
 
     }
