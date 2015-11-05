@@ -21,19 +21,26 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'users';
-
+    protected $table = 'oauth_users';
+    protected $primaryKey='user_id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','phone_number','address'];
+    protected $fillable = ['user_id','name', 'email', 'password','phone_number','address'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password'];
+                                        
+    public function checkOut(){
+        return $this->hasMany('App\CheckoutModel','user_id');
+    }
+    public function shoppingCart(){
+        return $this->hasMany('App\ShoppingCartModel','user_id');
+    }
 }
