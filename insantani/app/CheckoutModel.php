@@ -9,7 +9,7 @@ class CheckoutModel extends Model
 {
     //
     protected $table="checkingout";
-    protected $primaryKey="checkout_id";
+    protected $primaryKey="checkingout_id";
     protected $fillable=['address','user_id','product_id','productQty'];
     
     public function user(){

@@ -21,6 +21,8 @@ App::singleton('oauth2', function() {
 	
 	$server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
 	$server->addGrantType(new OAuth2\GrantType\UserCredentials($storage));
+    $server->addGrantType(new OAuth2\GrantType\RefreshToken($storage));
+    $server->setScopeUtil(new OAuth2\Scope(array('supported_scopes' => array('read', 'write'))));
 	
 	return $server;
 });
@@ -43,12 +45,14 @@ Route::get('api/farmer/{id}/products',array('uses'=>'ProductController@relatedIt
 
 Route::get('api/tag/{query}/results',array('uses'=>'TagController@tagResultDetail','middleware'=>'articles'))->where('query','.+');
 Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']);
+//Route::post('api/login',['uses'=>'Auth\AuthController@postLogin']);
 Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'checkout']);
+Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'checkout'])->where('id','[0-9]+');
 
 Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=>'cart']);
 Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'cart']);
-Route::post('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'cart']);
-Route::post('api/cart/update',['uses'=>'ShoppingCartController@update',"middleware"=>'cart']);
+Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'cart']);
+Route::put('api/cart/update',['uses'=>'ShoppingCartController@update',"middleware"=>'cart']);
 
 Route::post('oauth/token', function()
 {

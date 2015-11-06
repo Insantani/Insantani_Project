@@ -28,9 +28,12 @@ class CheckoutMiddleware
             $verifyRefresh=UserRefreshTokenModel::find($refresh_token);
             $current_time=time();
 //            echo((strtotime($verifyAccess->expires)-$current_time)<3600);
-            if(count($verifyAccess)>0 && count($verifyRefresh)>0 && (strtotime($verifyAccess->expires)-$current_time)<3600 &&
-              $current_time<strtotime($verifyRefresh->expires)){
-                return $next($request);
+            if(count($verifyAccess)>0){
+                if((strtotime($verifyAccess->expires)>$current_time)){
+                    return $next($request);
+                }else{
+                    return response()->json(['message'=>'Token expired'],403);
+                }
             }else{
                 return response()->json(['message'=>'Invalid token'],403);
             }
