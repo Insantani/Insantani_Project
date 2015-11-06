@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -87,6 +88,20 @@ class AuthController extends Controller
 
         return response()->json([ 'message' => 'Registration Complete!' ], 201);
     }
+//    public function postLogin(Request $request)
+//    {
+//
+//        $data = $request->all();
+//        $todo = User::where('email', '=', $data['email']);
+//        if(count($todo) > 0 && Hash::check($data['password'], $todo -> pluck('password'))){
+//            return response()->json(['message' => 'Login complete!'], 201);
+//        } else {
+//            return response()->json(['message' => 'Login failed!'], 403);
+//        }
+//
+//
+//        
+//    }
 
     
 

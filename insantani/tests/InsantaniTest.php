@@ -21,21 +21,21 @@ class InsantaniTest extends TestCase
     public function test2()
     {
         $this->call('GET','api/feed?page=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test3()
     {
         $this->call('GET','api/feed?limit=1');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test4()
     {
         $this->call('GET','api/feed');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
@@ -49,21 +49,21 @@ class InsantaniTest extends TestCase
     public function test6()
     {
         $this->call('GET','api/products');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test7()
     {
         $this->call('GET','api/products?limit=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test8()
     {
         $this->call('GET','api/products?page=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
@@ -92,14 +92,14 @@ class InsantaniTest extends TestCase
     public function test12()
     {
         $this->call('GET','api/products?a=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test13()
     {
         $this->call('GET','api/feed?a=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }

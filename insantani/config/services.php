@@ -15,12 +15,12 @@ return [
     */
 
     'mailgun' => [
-        'domain' => 'sandbox3299c258ce57407aa5d25ce8d838682e.mailgun.org',
-        'secret' => 'key-a4c96b70b1793d9bbe5e67ec5b557233',
+        'domain' => 'sandboxf43f2cb91ed94cc4aa12c9a7551d0252.mailgun.org',
+        'secret' => 'key-4b0cbe2c326d52151ba9e71974a41913',
     ],
 
     'mandrill' => [
-        'secret' => env('MANDRILL_SECRET'),
+        'secret' => '6GsAIiXnxPeLKdzQR-fUfg',
     ],
 
     'ses' => [
