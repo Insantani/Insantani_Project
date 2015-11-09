@@ -33,5 +33,6 @@ class Kernel extends HttpKernel
         'articles'=>\App\Http\Middleware\ArticleMiddleware::class,
         'checkout'=>\App\Http\Middleware\CheckoutMiddleware::class,
         'cart'=>\App\Http\Middleware\ShoppingCartMiddleware::class,
+        'oauth'=>\App\Http\Middleware\OAuthMiddleware::class,
     ];
 }

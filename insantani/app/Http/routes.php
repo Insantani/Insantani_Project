@@ -46,13 +46,13 @@ Route::get('api/farmer/{id}/products',array('uses'=>'ProductController@relatedIt
 Route::get('api/tag/{query}/results',array('uses'=>'TagController@tagResultDetail','middleware'=>'articles'))->where('query','.+');
 Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']);
 //Route::post('api/login',['uses'=>'Auth\AuthController@postLogin']);
-Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'checkout']);
-Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'checkout'])->where('id','[0-9]+');
+Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'oauth']);
+Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'oauth'])->where('id','[0-9]+');
 Route::get('api/user/{id}',['uses'=>'Auth\AuthController@userInfo','middleware'=>'oauth']);
-Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=>'cart']);
-Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'cart']);
-Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'cart']);
-Route::put('api/cart/update',['uses'=>'ShoppingCartController@update',"middleware"=>'cart']);
+Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=>'oauth']);
+Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'oauth']);
+Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'oauth']);
+Route::put('api/cart/update',['uses'=>'ShoppingCartController@update',"middleware"=>'oauth']);
 
 Route::post('oauth/token', function()
 {
@@ -74,7 +74,7 @@ Route::get('private', function()
 
 	$bridgedResponse = new OAuth2\HttpFoundationBridge\Response();
 
-	
+//	print_r(App);
 	if (App::make('oauth2')->verifyResourceRequest($bridgedRequest, $bridgedResponse)) {
 		
 		$token = App::make('oauth2')->getAccessTokenData($bridgedRequest);
