@@ -42,13 +42,26 @@ class ShoppingCartController extends Controller
         //
         
         $data=$request->all();
-        $todo=ShoppingCartModel::create([
-            "product_id"=>$data['product_id'],
-            "product_quantity"=>$data['product_quantity'],
-            "user_id"=>$data['user_id']
-        ]);
-        $todo->save();
-        return response()->json(['message'=>'OK'],201);
+        $checkItems=ShoppingCartModel::where('user_id','=',$data['user_id'])
+                                     ->where('product_id','=',$data['product_id'])
+                                     ->get();
+        if(count($checkItems)==0){
+            $todo=ShoppingCartModel::create([
+                "product_id"=>$data['product_id'],
+                "product_quantity"=>$data['product_quantity'],
+                "user_id"=>$data['user_id']
+            ]);
+            $todo->save();
+            return response()->json(['message'=>'OK'],201);
+            
+        }else{
+            return response()->json([
+                'message'=>"You have a similar item in your cart",
+                'state'=>'add item to cart'
+                ],400);
+        }
+        
+        
     }
 
     /**
@@ -63,16 +76,16 @@ class ShoppingCartController extends Controller
 //        $segments=explode('/',$id);
         $user_id=$request->input('user_id');
         $todo=ShoppingCartModel::where('user_id','=',$user_id)->get();
-        if (count($todo)>0){
+//        if (count($todo)>0){
             return [
                 "message"=>"OK",
                 "state"=>"Shopping Cart Items",
                 "data"=>$todo
             ];
-        }else{
-            return response("Not Found",404);
+//        }else{
+//            return response("Not Found",404);
         
-        }
+//        }
     }
 
     /**

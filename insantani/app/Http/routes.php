@@ -48,7 +48,7 @@ Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']);
 //Route::post('api/login',['uses'=>'Auth\AuthController@postLogin']);
 Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'checkout']);
 Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'checkout'])->where('id','[0-9]+');
-
+Route::get('api/user/{id}',['uses'=>'Auth\AuthController@userInfo','middleware'=>'oauth']);
 Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=>'cart']);
 Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'cart']);
 Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'cart']);
@@ -62,6 +62,37 @@ Route::post('oauth/token', function()
 	$bridgedResponse = App::make('oauth2')->handleTokenRequest($bridgedRequest, $bridgedResponse);
 	
 	return $bridgedResponse;
+});
+
+
+
+
+Route::get('private', function()
+{
+
+	$bridgedRequest  = OAuth2\HttpFoundationBridge\Request::createFromRequest(Request::instance());
+
+	$bridgedResponse = new OAuth2\HttpFoundationBridge\Response();
+
+	
+	if (App::make('oauth2')->verifyResourceRequest($bridgedRequest, $bridgedResponse)) {
+		
+		$token = App::make('oauth2')->getAccessTokenData($bridgedRequest);
+
+		
+		return response()->json(array(
+			'private' => 'stuff',
+			'user_id' => $token['user_id'],
+			'client'  => $token['client_id'],
+			'expires' => $token['expires'],
+		));
+	}
+	else {
+
+		return Response::json(array(
+			'error' => 'Unauthorized'
+		), $bridgedResponse->getStatusCode());
+	}
 });
 
 

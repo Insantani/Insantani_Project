@@ -175,4 +175,24 @@ class InsantaniTest extends TestCase
         $this->call('GET','api/tag/results');
         $this->assertResponseStatus(404); 
     }
+    public function test26()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","email"=>"yohana.kanisia@gmail.com","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"password"]);
+        $this->assertResponseStatus(201);
+    }
+    public function test27()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"password"]);
+        $this->assertResponseStatus(200);
+    }
+    public function test28()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","email"=>"yohana.kanisia@gmail.com","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"jo"]);
+        $this->assertResponseStatus(200);
+    }
+    public function test29()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","email"=>"yohana.kanisia@gmail.com","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"password"]);
+        $this->assertResponseStatus(500);
+    }
 }
