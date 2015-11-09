@@ -31,8 +31,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'products'=>\App\Http\Middleware\ProductMiddleware::class,
         'articles'=>\App\Http\Middleware\ArticleMiddleware::class,
-        'checkout'=>\App\Http\Middleware\CheckoutMiddleware::class,
-        'cart'=>\App\Http\Middleware\ShoppingCartMiddleware::class,
+//        'checkout'=>\App\Http\Middleware\CheckoutMiddleware::class,
+//        'cart'=>\App\Http\Middleware\ShoppingCartMiddleware::class,
         'oauth'=>\App\Http\Middleware\OAuthMiddleware::class,
     ];
 }

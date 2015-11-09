@@ -92,9 +92,9 @@ class AuthController extends Controller
         }
     }
     
-    public function userInfo($id){
-        $segments=explode('/',$id);
-        $todos=User::find($id);
+    public function userInfo(Request $request){
+        $user_id=$request->input('user_id');
+        $todos=User::find($user_id);
         if (count($todos)>0){
             return $todos;
         }else{
