@@ -51,6 +51,7 @@ class AuthController extends Controller
             'password' => 'required|confirmed|max:50',
             'address'=>'required|max:100',
             'phone_number'=>'required|max:15'
+//            'password_confirmation' => 'required_with:password|max:50'
         ]);
     }
 
@@ -71,6 +72,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             'phone_number'=>$data['phone_number'],
             'address'=>$data['address']
+            
         ]);
         $todo->save();
         return $todo;
@@ -82,11 +84,24 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             echo($validator->messages());
+        }else{
+
+            $this->create($request->all());
+
+            return response()->json([ 'message' => 'Registration Complete!' ], 201);
         }
-
-        $this->create($request->all());
-
-        return response()->json([ 'message' => 'Registration Complete!' ], 201);
+    }
+    
+    public function userInfo($id){
+        $segments=explode('/',$id);
+        $todos=User::find($id);
+        if (count($todos)>0){
+            return $todos;
+        }else{
+            return response("Not Found",404);
+        }
+        
+        
     }
 //    public function postLogin(Request $request)
 //    {

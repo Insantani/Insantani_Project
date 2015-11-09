@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CheckoutModel;
-use App\UserTokenModel;
+//use App\UserTokenModel;
+use App\ProductModel;
 use Mail;
 use App\User;
 use App\Http\Requests;
@@ -32,6 +33,7 @@ class CheckoutController extends Controller
         
                 
 //          
+            $failed=array();
             for ($i=0; $i<count($data);$i++){
                 $todo=CheckoutModel::create([
                     'address'=>$data[$i]['address'],
@@ -40,11 +42,26 @@ class CheckoutController extends Controller
                     'productQty'=>$data[$i]['productQty'],
                     'status'=>'pending'
                     ]);
-                $todo->save();
+                $todo2=ProductModel::find($data[$i]['product_id']);
+                if((($todo2->stock_num)-$data[$i]['productQty'])>=0){
+                    $todo2->stock_num=($todo2->stock_num)-$data[$i]['productQty'];
+                    $todo2->save();
+                    $todo->save();
+                }else{
+                    array_push($failed,$data[$i]);
+                }
+                
             
                 
             }
-            return response()->json(['message'=>'success','state'=>'check out'],201);
+            if(count($failed)==0){
+                return response()->json(['message'=>'success','state'=>'check out'],201);
+            }else{
+                return response()->json(['message'=>'out of stocks',
+                                         'state'=>'check out',
+                                         'data'=>$failed],400);
+            }
+            
 //            
     }
     public function changeStatus(Request $req,$id)
