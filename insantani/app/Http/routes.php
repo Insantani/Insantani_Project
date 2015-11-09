@@ -48,7 +48,7 @@ Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']);
 //Route::post('api/login',['uses'=>'Auth\AuthController@postLogin']);
 Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'oauth']);
 Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'oauth'])->where('id','[0-9]+');
-Route::get('api/user/{id}',['uses'=>'Auth\AuthController@userInfo','middleware'=>'oauth']);
+Route::get('api/user',['uses'=>'Auth\AuthController@userInfo','middleware'=>'oauth']);
 Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=>'oauth']);
 Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'oauth']);
 Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'oauth']);
