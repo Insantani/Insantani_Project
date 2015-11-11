@@ -40,10 +40,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        TextView productName = (TextView) holder.view.findViewById(R.id.productName);
-        TextView qty = (TextView) holder.view.findViewById(R.id.Qty);
-        TextView farmer = (TextView) holder.view.findViewById(R.id.Farmer);
-        TextView price = (TextView) holder.view.findViewById(R.id.Price);
+        TextView productName = (TextView) holder.view.findViewById(R.id.product_name);
+        TextView qty = (TextView) holder.view.findViewById(R.id.quantity);
+        TextView farmer = (TextView) holder.view.findViewById(R.id.farmer);
+        TextView price = (TextView) holder.view.findViewById(R.id.price);
         ImageView imageView = (ImageView) holder.view.findViewById(R.id.imageView);
 
         productName.setText(carts.get(position).getProductName());
