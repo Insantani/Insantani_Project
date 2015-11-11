@@ -1,22 +1,37 @@
 package com.williamhenry.insantani;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.app.Activity;
-import android.util.Log;
-import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
 public class ProductActivity extends ActionBarActivity {
-
+    private Context context;
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.Adapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
+        mRecyclerView.setHasFixedSize(true);
+
+        // The number of Columns
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RelativeItemAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+
         Bundle extras= getIntent().getExtras();
         Bundle item=(Bundle)extras.get("nature");
         Log.d("item_name",item.getString("title"));
@@ -41,6 +56,8 @@ public class ProductActivity extends ActionBarActivity {
 
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
+
+
 
 
     }

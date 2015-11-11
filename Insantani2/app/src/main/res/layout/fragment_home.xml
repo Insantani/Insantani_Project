@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.williamhenry.insantani.HomeFragment"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    tools:context="com.williamhenry.insantani.HomeFragment">
 
 
     <!-- As the main content view, the view below consumes the entire

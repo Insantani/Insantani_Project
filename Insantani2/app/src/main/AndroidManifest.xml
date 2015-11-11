@@ -25,6 +25,12 @@
             android:name=".ArticleActivity"
             android:label="@string/title_activity_article" >
         </activity>
+        <activity
+            android:name=".Registration"
+            android:label="@string/title_Register"
+
+            >
+        </activity>
     </application>
 
 </manifest>
