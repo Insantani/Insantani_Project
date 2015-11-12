@@ -18,7 +18,7 @@ public class ArticleActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         Bundle item = (Bundle) extras.get("article");
-        Log.d("article", item.getString("title"));
+        Log.d("title", item.getString("title"));
         Log.d("author", item.getString("author"));
         Log.d("desc", item.getString("desc"));
         Log.d("image", Integer.toString(item.getInt("image")));
@@ -48,12 +48,12 @@ public class ArticleActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+//        int id = item.getItemId();
+//        if (id == R.id.action_search) {
+//            return true;
+//        }
+//        //noinspection SimplifiableIfStatement
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

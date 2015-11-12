@@ -2,6 +2,7 @@ package com.williamhenry.insantani;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 //import android.support.v4.app.FragmentManager;
 //import android.support.v7.app.ActionBarActivity;
 public class MainActivity extends FragmentActivity
+
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -37,6 +39,8 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -120,7 +124,7 @@ public class MainActivity extends FragmentActivity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
+            getMenuInflater().inflate(R.menu.activity_main_actions, menu);
             restoreActionBar();
             return true;
         }
@@ -135,7 +139,10 @@ public class MainActivity extends FragmentActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
+            Intent intent= new Intent(this,SearchResultActivity.class);
+
+            this.startActivity(intent);
             return true;
         }
 

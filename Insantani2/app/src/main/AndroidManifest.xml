@@ -31,6 +31,15 @@
 
             >
         </activity>
+        <!-- Search results activity -->
+        <activity
+            android:theme="@style/AppTheme.Tab"
+            android:name=".SearchResultActivity"
+            android:label="SearchResult"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysVisible">
+
+        </activity>
     </application>
 
 </manifest>
