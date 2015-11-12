@@ -1,32 +1,25 @@
 package com.williamhenry.insantani;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
-//import android.app.Fragment;
-//import android.app.FragmentManager;
-//import android.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
-//import android.support.v4.app.FragmentManager;
+import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-//import android.support.v7.app.ActionBarActivity;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.SyncStateContract;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.util.Log;
-import android.content.Intent;
+
+//import android.app.Fragment;
+//import android.app.FragmentManager;
+//import android.app.FragmentTransaction;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v7.app.ActionBarActivity;
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -79,6 +72,9 @@ public class MainActivity extends FragmentActivity
             case 2:
                 fragment= new SettingsFragment();
                 break;
+            case 3:
+                fragment = new LoginFragment();
+                break;
 
         }
 
@@ -102,6 +98,9 @@ public class MainActivity extends FragmentActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }
