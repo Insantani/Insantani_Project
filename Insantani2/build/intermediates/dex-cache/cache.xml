@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\io.fabric.sdk.android\fabric\1.3.6\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="fc82596d7f7683c8b3a7e5715a2ed5295c586887">
+        <dex dex="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-7b5cc8fd7dc70bc3f2c66bd606097e27b80b2313.jar" />
+    </item>
+    <item
+        jar="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\beta\1.1.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b7a78990c10481f43cb4909f535ef4f11e60f1ab">
+        <dex dex="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-1e59f00c6b763cae0c12a062627a4c9f6dfc4b3b.jar" />
+    </item>
+    <item
+        jar="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics\2.5.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0c7f9fb9a729166c69fa585e01be2fe8fab4f45c">
+        <dex dex="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-e6ac5291a63fd724f5eb0c0cc23fd0af76da2cf7.jar" />
+    </item>
+    <item
+        jar="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.5\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d18ba1d0eff55680fdf9a35f70a6091e4bc1adcb">
+        <dex dex="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-a4fabce82ace5944114b5ada6454d486ca80ffc3.jar" />
+    </item>
+    <item
+        jar="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\answers\1.3.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e99413cdc93bd7b001d312a4a33d25ac21042f69">
+        <dex dex="C:\Users\william\Desktop\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-f5a9386a63090eb499933c8954df60f94fdf031b.jar" />
+    </item>
+
+</items>
