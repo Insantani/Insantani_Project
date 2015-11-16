@@ -33,7 +33,8 @@
                     android:layout_margin="16dp"
                     android:text="Baby Tomatoes"
                     android:textColor="@color/primary_text_default_material_light"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    />
 
                 <TableLayout
                     android:layout_width="match_parent"
