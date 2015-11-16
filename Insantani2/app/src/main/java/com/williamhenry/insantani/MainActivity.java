@@ -16,11 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-//import android.app.Fragment;
-//import android.app.FragmentManager;
-//import android.app.FragmentTransaction;
-//import android.support.v4.app.FragmentManager;
-//import android.support.v7.app.ActionBarActivity;
+
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -64,7 +60,7 @@ public class MainActivity extends FragmentActivity
         switch(position) {
             case 0:
                 fragment = new HomeFragment();
-//                ft.replace(R.id.container,HomeFragment, SyncStateContract.Constants)
+//                ft.replace(R.id.container,FeedTabFragment, SyncStateContract.Constants)
                 break;
 
             case 1:
