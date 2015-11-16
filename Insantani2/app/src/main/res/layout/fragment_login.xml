@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:layout_margin="15dp"
-        android:background="@color/isantaniGreen2"
+
         >
         <TextView
             android:layout_width="match_parent"

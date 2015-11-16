@@ -3,8 +3,9 @@
     <style name="AppTheme" parent="android:Theme.Material.Light">
         <item name="colorPrimaryDark">#689F38</item>
         <item name="colorPrimary">#8BC34A</item>
-        <item name="android:colorPrimary">@color/primary_material_light</item>
-        <item name="android:colorPrimaryDark">@color/primary_dark_material_light</item>
+        <item name="android:colorPrimary">@color/isantaniGreen</item>
+        <item name="android:colorPrimaryDark">@color/isantaniGreen2</item>
+        <item name="android:colorAccent">@color/isantaniGreen</item>
 
     </style>
     <style name="ProductTheme" parent="Theme.AppCompat.Light">

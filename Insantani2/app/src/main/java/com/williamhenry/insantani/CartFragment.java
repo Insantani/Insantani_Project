@@ -3,12 +3,21 @@ package com.williamhenry.insantani;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 
 public class CartFragment extends Fragment {
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.Adapter mAdapter;
 
     public CartFragment() {
         // Required empty public constructor
@@ -26,6 +35,35 @@ public class CartFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_cart, container, false);
 
 
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        ArrayList<Cart> cart = new ArrayList<Cart>();
+
+        Bundle extras = getArguments();
+        if (extras != null){
+            Bundle item = extras.getBundle("Cart");
+            String productName = item.getString("ProductName");
+            int qty = item.getInt("qty");
+            String farmerName = item.getString("FarmerName");
+            float totalPrice = qty * item.getFloat("price");
+            int image = item.getInt("image");
+            cart.add(new Cart(productName, qty, farmerName, totalPrice, image));
+
+        }
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+
+        mAdapter = new CartAdapter(cart);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -38,6 +76,20 @@ public class CartFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getActivity().getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        int id = item.getItemId();
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
