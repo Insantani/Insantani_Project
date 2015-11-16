@@ -2,7 +2,10 @@ package com.williamhenry.insantani;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -33,6 +36,11 @@ public class MainActivity extends FragmentActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private SharedPreferences pref;
+    private Editor editor;
+    private boolean checkToken;
+    private boolean checkRefreshToken;
+    private boolean tokenType;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -43,6 +51,11 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
+        pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor=pref.edit();
+        checkToken= pref.contains("access_token");
+        checkRefreshToken= pref.contains("refresh_token");
+        tokenType= pref.contains("token_type");
 //        Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
         setContentView(R.layout.activity_main);
 
@@ -81,6 +94,7 @@ public class MainActivity extends FragmentActivity
                 fragment= new SettingsFragment();
                 break;
             case 3:
+
                 fragment = new Login();
                 break;
 
@@ -111,6 +125,11 @@ public class MainActivity extends FragmentActivity
                 mTitle = getString(R.string.title_section4);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     public void restoreActionBar() {

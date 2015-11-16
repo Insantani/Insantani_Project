@@ -51,6 +51,7 @@ public class Login extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().getActionBar().hide();
 
 
 
@@ -97,19 +98,23 @@ public class Login extends Fragment {
                             JSONObject jsonObject= new JSONObject(response.toString());
                             editor.putString("access_token",jsonObject.getString("access_token"));
                             editor.putString("token_type",jsonObject.getString("token_type"));
-                            editor.putString("refresh_token",jsonObject.getString("refresh_token"));
+                            editor.putString("refresh_token", jsonObject.getString("refresh_token"));
+                            editor.commit();
                             Log.d("access_token", jsonObject.getString("access_token"));
                             Log.d("token_type",jsonObject.getString("token_type"));
                             Log.d("refresh_token",jsonObject.getString("refresh_token"));
 
-                            Snackbar snackbar = Snackbar.make(relativeLayout, "Login Success", Snackbar.LENGTH_LONG);
-                            snackbar.setActionTextColor(Color.WHITE);
+//                            Snackbar snackbar = Snackbar.make(relativeLayout, "Login Success", Snackbar.LENGTH_LONG);
+//                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                            View snackbarView= snackbar.getView();
+//                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                            textView.setTextColor(Color.WHITE);
+//
+//                            snackbar.show();
 
-                            View snackbarView= snackbar.getView();
-                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            textView.setTextColor(Color.WHITE);
-
-                            snackbar.show();
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
 
 
                         } catch(Exception e){

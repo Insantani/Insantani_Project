@@ -3,7 +3,7 @@
 
     <string name="title_section1">Home</string>
     <string name="title_section2">Shopping Cart</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section3">Settings</string>
     <string name="title_section4">Login </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

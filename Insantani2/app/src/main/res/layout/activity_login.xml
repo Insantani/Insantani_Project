@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:fitsSystemWindows="true">
+    android:id="@+id/scrollViewLogin"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
 <LinearLayout
     android:orientation="vertical"
@@ -54,13 +55,13 @@ android:fitsSystemWindows="true">
         android:text="Login"/>
 
 
-    <!--<TextView android:id="@+id/link_signup"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="24dp"-->
-        <!--android:text="No account yet? Create one"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="16dip"/>-->
+    <TextView android:id="@+id/link_signup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="No account yet? Create one"
+        android:gravity="center"
+        android:textSize="16dip"/>
 
 </LinearLayout>
 </ScrollView>
