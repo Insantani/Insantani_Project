@@ -3,7 +3,6 @@ package com.williamhenry.insantani;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,15 +47,17 @@ public class HomeFragment extends Fragment {
         spec2.setContent(R.id.tab2);
         spec2.setIndicator("Shop", null);
         tabHost.addTab(spec2);
-        mRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
 
-        // The number of Columns
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new GridAdapter(getContext());
-        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
+//        mRecyclerView.setHasFixedSize(true);
+//
+//        // The number of Columns
+//        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//
+//        mAdapter = new GridAdapter(getContext());
+//        mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -171,11 +172,11 @@ public class HomeFragment extends Fragment {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-            return true
-                    ;
-        }
+//        if (id == R.id.action_settings) {
+//
+//            return true
+//                    ;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

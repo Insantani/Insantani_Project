@@ -18,18 +18,27 @@
         </activity>
         <activity
             android:name=".ProductActivity"
+            android:parentActivityName=".MainActivity"
             android:label="@string/title_activity_product"
+
             android:theme="@style/ProductTheme" >
         </activity>
         <activity
             android:name=".ArticleActivity"
+            android:parentActivityName=".MainActivity"
             android:label="@string/title_activity_article" >
         </activity>
         <activity
             android:name=".Registration"
-            android:label="@string/title_Register"
+            android:label="@string/title_Register" >
+        </activity>
 
-            >
+        <activity
+            android:name=".SearchResultActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.Tab"
+            android:windowSoftInputMode="stateAlwaysVisible">
+
         </activity>
     </application>
 
