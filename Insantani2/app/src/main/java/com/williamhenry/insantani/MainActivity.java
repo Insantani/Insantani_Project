@@ -81,8 +81,7 @@ public class MainActivity extends FragmentActivity
         fragmentTransaction.commit();
 
 
-        // set the toolbar title
-//        getSupportActionBar().setTitle(mTitle);
+
     }
 
     public void onSectionAttached(int number) {

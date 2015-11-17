@@ -16,8 +16,6 @@ public class HomeFragment extends Fragment {
 
     private TabLayout tabLayout;
 
-
-
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -37,7 +35,7 @@ public class HomeFragment extends Fragment {
         feedTabFragment = new FeedTabFragment();
         shopTabFragment = new ShopTabFragment();
 
-        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager());
         adapter.addFragment(feedTabFragment, "Feed");
         adapter.addFragment(shopTabFragment, "Shop");
 
