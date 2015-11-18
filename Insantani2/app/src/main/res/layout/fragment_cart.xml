@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.williamhenry.insantani.CartFragment">
+    tools:context="com.williamhenry.insantani.CartFragment"
+    android:clipToPadding="false">
 
     <!--untuk floating layout nya gak scrollable-->
     <LinearLayout
         android:id="@+id/floating"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="90dp"
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
 
@@ -81,11 +82,15 @@
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:text="Next"/>
+            android:background="@color/isantaniGreen"
+            android:textColor="#ffffff"
+            android:text="Next"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="2dp"/>
 
     </LinearLayout>
 
