@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:background="#dddddd"
-                    android:text="200,00"
+                    android:text="20000000,00"
                     android:textColor="#f57f17"/>
 
             </LinearLayout>

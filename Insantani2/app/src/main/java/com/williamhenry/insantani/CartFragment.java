@@ -27,6 +27,8 @@ public class CartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActivity().getActionBar().setElevation(11);
+
     }
 
     @Override
@@ -54,7 +56,7 @@ public class CartFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         ArrayList<Cart> cart = new ArrayList<Cart>();
-        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
         cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
         cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
         cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));

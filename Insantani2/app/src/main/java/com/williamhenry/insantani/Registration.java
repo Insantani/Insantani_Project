@@ -14,6 +14,8 @@ public class Registration extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_page);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle extras = getIntent().getExtras();
         Bundle item = (Bundle) extras.get("User");
         TextView email = (TextView) findViewById(R.id.register_email);

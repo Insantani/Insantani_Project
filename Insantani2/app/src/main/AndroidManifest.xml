@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".Registration"
-            android:label="@string/title_Register" >
+            android:label="@string/title_Register"
+            android:parentActivityName=".MainActivity">
         </activity>
 
         <activity

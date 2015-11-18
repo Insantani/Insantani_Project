@@ -24,6 +24,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActivity().getActionBar().setElevation(0);
     }
 
     @Override

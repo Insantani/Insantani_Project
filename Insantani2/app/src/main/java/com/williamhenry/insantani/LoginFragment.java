@@ -23,6 +23,8 @@ public class LoginFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActivity().getActionBar().setElevation(11);
+
     }
 
     @Override
