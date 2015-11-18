@@ -47,6 +47,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="2dp"
                     android:text="Large Text"
+                    android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
@@ -54,10 +55,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView"
-
                     android:layout_marginLeft="15dp"
                     android:padding="2dp"
                     android:text="Small Text"
+                    android:textColor="#0A89A7"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     />
 
