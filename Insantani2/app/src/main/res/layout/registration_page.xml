@@ -20,7 +20,7 @@
             android:text="Registration"
             android:textSize="50dp"
             android:textStyle="bold"
-            android:textColor="@color/isantaniGreen"
+            android:textColor="@color/insantaniGreen"
             android:id="@+id/textView" />
 
         <EditText
@@ -93,7 +93,7 @@
             android:layout_width="@dimen/sign_in_button_width"
             android:layout_height="@dimen/sign_in_button_height"
             android:text="Register"
-            android:background="@color/isantaniGreen"
+            android:background="@color/insantaniGreen"
             android:textColor="@color/insantaniWhite"
             android:id="@+id/register_button"
             />

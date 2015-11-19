@@ -18,7 +18,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:gravity="center"
-            android:background="@color/isantaniGreen"
+            android:background="@color/insantaniGreen"
             android:textColor="@color/insantaniWhite"
             android:id="@+id/decrese_button" />
 
@@ -34,6 +34,7 @@
             android:textSize="40dp"
             android:textStyle="bold"
             android:layout_margin="20dp"
+            android:textColor="@color/primary_text_material_dark"
             android:id="@+id/confirmation_quantity" />
 
         <Button
@@ -45,7 +46,7 @@
             android:textColor="@color/insantaniWhite"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:background="@color/isantaniGreen"
+            android:background="@color/insantaniGreen"
             android:id="@+id/increse_button" />
     </LinearLayout>
 

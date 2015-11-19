@@ -38,6 +38,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="2dp"
                 android:padding="2dp"
+                android:textColor="@color/primary_text_material_dark"
                 android:text="Large Text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 

@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new GridAdapter(getContext());
+        mAdapter = new ProductAdapter(getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
@@ -136,7 +136,7 @@ public class HomeFragment extends Fragment {
 //            articles.add(new Article(
 //                    "Author" + i, "Title" + i, "This is about desc "+ i, R.drawable.sample_4 ));
 //        }
-        mAdapter = new MyAdapter(articles,getContext());
+        mAdapter = new ArticleAdapter(articles,getContext());
         mRecyclerView.setAdapter(mAdapter);
 
 

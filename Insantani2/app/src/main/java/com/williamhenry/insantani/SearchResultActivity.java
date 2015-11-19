@@ -58,7 +58,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
         searchView.setQueryHint("Search");
-
+//        searchView.setBackgroundColor(777777);
         searchView.setIconifiedByDefault(false);
         searchView.setFocusable(true);
         searchView.requestFocusFromTouch();

@@ -108,6 +108,7 @@ public class ProductActivity extends ActionBarActivity {
                 Button min = (Button) alertDialog.findViewById(R.id.decrese_button);
                 EditText qty = (EditText) alertDialog.findViewById(R.id.confirmation_quantity);
                 final TextView text = (TextView) alertDialog.findViewById(R.id.confirmation_quantity);
+
                 counter = Integer.parseInt(text.getText().toString());
 
                 qty.addTextChangedListener(new TextWatcher() {
@@ -167,6 +168,8 @@ public class ProductActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_product, menu);
+        TextView title = (TextView) findViewById(R.id.productname);
+        setTitle(title.getText());
         return true;
     }
 
@@ -177,10 +180,10 @@ public class ProductActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
-        }
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_search) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

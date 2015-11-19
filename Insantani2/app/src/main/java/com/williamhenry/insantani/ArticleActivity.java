@@ -16,6 +16,8 @@ public class ArticleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle extras = getIntent().getExtras();
         Bundle item = (Bundle) extras.get("article");
         Log.d("title", item.getString("title"));
@@ -40,6 +42,8 @@ public class ArticleActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_article, menu);
+        TextView title = (TextView) findViewById(R.id.titleArticle);
+        setTitle(title.getText());
         return true;
     }
 
