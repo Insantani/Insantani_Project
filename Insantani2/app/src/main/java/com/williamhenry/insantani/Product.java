@@ -17,6 +17,8 @@ public class Product {
     private String fname;
     private int price;
     private int stock;
+    private int id;
+    private String url;
 
     public String getName() {
         return mName;
@@ -64,6 +66,22 @@ public class Product {
 
     public int getStock(){
         return stock;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setUrl(String url){
+        this.url = url;
+    }
+
+    public String getUrl(){
+        return url;
     }
 }
 

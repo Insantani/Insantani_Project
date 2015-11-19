@@ -48,6 +48,8 @@ public class Registration extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_page);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         linearLayout= (LinearLayout) findViewById(R.id.linearLayoutRegistration);
         Bundle extras = getIntent().getExtras();
         Bundle item = (Bundle) extras.get("User");
@@ -195,10 +197,20 @@ public class Registration extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
+//        if (id == R.id.) {
 //            return true;
 //        }
 
-        return super.onOptionsItemSelected(item);
+        switch (id) {
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+//        return super.onOptionsItemSelected(item);
     }
 }

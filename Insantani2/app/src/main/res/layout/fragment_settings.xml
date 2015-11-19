@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/LogoutLayout"
-    tools:context="com.williamhenry.insantani.SettignsFragment">
+    tools:context="com.williamhenry.insantani.SettignsFragment"
+    android:background="@color/WhiteBackground">
 
     <Button
         android:layout_width="fill_parent"

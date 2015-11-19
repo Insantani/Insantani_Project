@@ -109,6 +109,8 @@ public class HomeFragment extends Fragment {
                                                     product.setName(dataDetailProduct.getString("product_name"));
                                                     product.setPrice(dataDetailProduct.getInt("prod_price"));
                                                     product.setStock(dataDetailProduct.getInt("stock_num"));
+                                                    product.setId(dataDetailProduct.getInt("id"));
+                                                    product.setUrl(dataDetailProduct.getString("product_picture_url"));
                                                     product.setThumbnail(bitmap);
 //
                                                     mItems.add(product);
@@ -193,7 +195,8 @@ public class HomeFragment extends Fragment {
                                                 try{
                                                     Log.d("bitmap",bitmap.toString());
                                                     Article article = new Article(dataDetail.getString("author"),
-                                                            dataDetail.getString("title"), dataDetail.getString("content"), bitmap);
+                                                            dataDetail.getString("title"), dataDetail.getString("content"), bitmap,
+                                                            dataDetail.getString("article_picture_url"));
 //
                                                     articles.add(article);
                                                     mAdapter = new MyAdapter(articles, getContext());

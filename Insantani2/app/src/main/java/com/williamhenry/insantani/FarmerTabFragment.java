@@ -29,7 +29,7 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_farmer_tab, container, false);
 
-        List<SearchItem> newsList = new ArrayList<>();
+        List<Product> newsList = new ArrayList<>();
         searchListViewAdapter = new SearchListViewAdapter(getActivity(), newsList);
         resultListView = (ListView) view.findViewById(R.id.itemList1);
         resultListView.setAdapter(searchListViewAdapter);
@@ -44,7 +44,7 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(),
-                        getString(R.string.clicked) + " " + searchListViewAdapter.getItem(position).getTitle().toLowerCase(),
+                        getString(R.string.clicked) + " " + searchListViewAdapter.getItem(position).getName().toLowerCase(),
                         Toast.LENGTH_SHORT).show();
             }
         });

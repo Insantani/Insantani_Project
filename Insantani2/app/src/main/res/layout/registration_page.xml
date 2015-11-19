@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayoutRegistration"
-    tools:context=".Registration">
+    tools:context=".Registration"
+    android:background="#FAFAFA">
 
     <LinearLayout
 

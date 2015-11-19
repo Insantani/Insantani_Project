@@ -30,11 +30,16 @@
         </activity>
         <activity
             android:name=".ArticleActivity"
-            android:label="@string/title_activity_article" >
+            android:label="@string/title_activity_article"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".Registration"
             android:label="@string/title_Register" >
+
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value="com.williamhenry.insantani.MainActivity" /> -->
         </activity>
         <activity
             android:name=".SearchResultActivity"
@@ -51,10 +56,14 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Login">
+            android:theme="@style/Login" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.williamhenry.insantani.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CheckoutActivity"
+            android:theme="@style/CheckoutTheme" >
         </activity>
     </application>
 

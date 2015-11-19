@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.williamhenry.insantani.CartFragment">
+    tools:context="com.williamhenry.insantani.CartFragment"
+    android:id="@+id/relativeLayoutCart"
+    android:background="#FAFAFA">
 
 
     <LinearLayout
@@ -12,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,6 +80,7 @@
 
 
         <Button
+            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -1,6 +1,7 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ingredients_tab, container, false);
 
-        final ArrayList<SearchItem>newsList = new ArrayList<>();
+        final ArrayList<Product>newsList = new ArrayList<>();
 
         mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
         Log.d("query",query);
@@ -77,9 +78,17 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
                                             @Override
                                             public void onResponse(Bitmap bitmap) {
                                                 try{
-                                                    Log.d("bitmap",bitmap.toString());
-                                SearchItem searchItem = new SearchItem(dataDetail.getString("product_name"),dataDetail.getString("farmer_username"),bitmap);
-                                newsList.add(searchItem);
+                                                    Log.d("bitmap", bitmap.toString());
+                                                    Product searchItem = new Product();
+                                                    searchItem.setPrice(dataDetail.getInt("prod_price"));
+                                                    searchItem.setStock(dataDetail.getInt("stock_num"));
+                                                    searchItem.setName(dataDetail.getString("product_name"));
+                                                    searchItem.setFarmerName(dataDetail.getString("farmer_username"));
+                                                    searchItem.setUrl(dataDetail.getString("product_picture_url"));
+                                                    searchItem.setId(dataDetail.getInt("id"));
+                                                    searchItem.setDescription(dataDetail.getString("prod_desc"));
+                                                    searchItem.setThumbnail(bitmap);
+                                                    newsList.add(searchItem);
 
 
 
@@ -90,9 +99,21 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
                                 resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        Toast.makeText(getActivity(),
-                                                getString(R.string.clicked) + " " + searchListViewAdapter.getItem(position).getTitle().toLowerCase(),
-                                                Toast.LENGTH_SHORT).show();
+                                        Bundle bundle= new Bundle();
+                                        Intent intent= new Intent(getContext(),ProductActivity.class);
+                                        bundle.putString("title",searchListViewAdapter.getItem(position).getName());
+                                        bundle.putString("description",searchListViewAdapter.getItem(position).getDescription());
+                                        bundle.putString("fname",searchListViewAdapter.getItem(position).getFarmerName());
+                                        bundle.putString("url",searchListViewAdapter.getItem(position).getUrl());
+                                        bundle.putInt("id", searchListViewAdapter.getItem(position).getId());
+                                        bundle.putInt("price", searchListViewAdapter.getItem(position).getPrice());
+                                        bundle.putInt("stock", searchListViewAdapter.getItem(position).getStock());
+                                        intent.putExtra("nature", bundle);
+                                        getContext().startActivity(intent);
+
+//                                        Toast.makeText(getActivity(),
+//                                                getString(R.string.clicked) + " " + searchListViewAdapter.getItem(position).getTitle().toLowerCase(),
+//                                                Toast.LENGTH_SHORT).show();
                                     }
                                 });
 //

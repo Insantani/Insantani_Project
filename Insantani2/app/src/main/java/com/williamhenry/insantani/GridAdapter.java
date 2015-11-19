@@ -103,6 +103,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         Log.d("mitems",nature.toString());
         Log.d("i", Integer.toString(i));
         viewHolder.tvspecies.setText(nature.getName());
+        viewHolder.grid_price.setText("Rp "+nature.getPrice());
         viewHolder.imgThumbnail.setImageBitmap(nature.getThumbnail());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
 
@@ -115,16 +116,19 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 Bundle bundle=new Bundle();
                 bundle.putString("title", nature.getName());
 //                bundle.putInt("thumbnail",nature.getThumbnail());
-                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-                nature.getThumbnail().compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+//                nature.getThumbnail().compress(Bitmap.CompressFormat.PNG, 100, baos);
 
-                byte [] b=baos.toByteArray();
-                String image= Base64.encodeToString(b, Base64.DEFAULT);
-                bundle.putString("thumbnail",image);
+//                byte [] b=baos.toByteArray();
+//                String image= Base64.encodeToString(b, Base64.DEFAULT);
+//                bundle.putString("thumbnail",image);
+
+                bundle.putString("url",nature.getUrl());
                 bundle.putString("description",nature.getDescription());
                 bundle.putString("fname",nature.getFarmerName());
                 bundle.putInt("price", nature.getPrice());
                 bundle.putInt("stock", nature.getStock());
+                bundle.putInt("id",nature.getId());
                 intent.putExtra("nature",bundle);
 //                intent.putExtra("nature_thumbnail",nature.getThumbnail());
                 context.startActivity(intent);
@@ -144,6 +148,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
         public ImageView imgThumbnail;
         public TextView tvspecies;
+        public TextView grid_price;
 //        public final Context context;
 
         public ViewHolder(View itemView) {
@@ -151,6 +156,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 //            itemView.setOnClickListener(this);
             imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
             tvspecies = (TextView)itemView.findViewById(R.id.tv_species);
+            grid_price= (TextView) itemView.findViewById(R.id.grid_price);
 
         }
 //        @Override

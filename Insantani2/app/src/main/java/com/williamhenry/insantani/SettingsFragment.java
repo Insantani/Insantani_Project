@@ -44,13 +44,14 @@ public class SettingsFragment extends Fragment {
         final boolean checkToken= pref.contains("access_token");
         final boolean checkRefreshToken= pref.contains("refresh_token");
         final boolean tokenType= pref.contains("token_type");
+        final boolean user_id=pref.contains("user_id");
         Button logout= (Button) rootView.findViewById(R.id.logoutButton);
         relativeLayout=(RelativeLayout) rootView.findViewById(R.id.LogoutLayout);
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.d("token", Boolean.toString(checkToken));
-                if(!checkToken && !tokenType && !checkRefreshToken ){
+                if(!checkToken && !tokenType && !checkRefreshToken && !user_id ){
 //                    logout.setEnabled(false);
 
                     Snackbar snackbar = Snackbar.make(relativeLayout, "Login First", Snackbar.LENGTH_LONG);

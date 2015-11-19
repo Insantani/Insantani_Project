@@ -11,12 +11,14 @@ public class Article {
     String title;
     String description;
     Bitmap image;
+    String url;
 
-    public Article(String author, String title, String description, Bitmap image) {
+    public Article(String author, String title, String description, Bitmap image,String url) {
         this.author = author;
         this.title = title;
         this.description = description;
         this.image = image;
+        this.url=url;
     }
 
     public String getTitle() {
@@ -33,5 +35,9 @@ public class Article {
 
     public Bitmap getImage() {
         return image;
+    }
+
+    public String getUrl(){
+        return url;
     }
 }

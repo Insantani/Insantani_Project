@@ -64,6 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean checkToken;
     private boolean checkRefreshToken;
     private boolean tokenType;
+    private boolean user_id;
 
     public NavigationDrawerFragment() {
     }
@@ -76,6 +77,7 @@ public class NavigationDrawerFragment extends Fragment {
         checkToken=pref.contains("access_token");
         checkRefreshToken=pref.contains("refresh_token");
         tokenType=pref.contains("token_type");
+        user_id=pref.contains("user_id");
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -109,7 +111,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        if(checkToken==false && checkRefreshToken==false && tokenType==false){
+        if(checkToken==false && checkRefreshToken==false && tokenType==false && user_id==false){
             mDrawerListView.setAdapter(new ArrayAdapter<String>(
                     getActionBar().getThemedContext(),
                     android.R.layout.simple_list_item_activated_1,

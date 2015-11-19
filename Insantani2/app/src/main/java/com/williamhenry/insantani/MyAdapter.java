@@ -69,11 +69,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 bundle.putString("title", articles.get(position).getTitle());
                 bundle.putString("author", articles.get(position).getAuthor());
                 bundle.putString("desc", articles.get(position).getDescription());
-                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-                articles.get(position).getImage().compress(Bitmap.CompressFormat.PNG, 100, baos);
-                byte [] b=baos.toByteArray();
-                String image= Base64.encodeToString(b, Base64.DEFAULT);
-                bundle.putString("image", image);
+                bundle.putString("url",articles.get(position).getUrl());
+//                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+//                articles.get(position).getImage().compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                byte [] b=baos.toByteArray();
+//                String image= Base64.encodeToString(b, Base64.DEFAULT);
+//                bundle.putString("image", image);
                 intent.putExtra("article", bundle);
                 context.startActivity(intent);
 
