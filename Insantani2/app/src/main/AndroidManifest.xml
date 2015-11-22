@@ -65,6 +65,12 @@
             android:name=".CheckoutActivity"
             android:theme="@style/CheckoutTheme" >
         </activity>
+        <activity
+            android:name=".Registration"
+            android:label="@string/title_Register"
+
+            >
+        </activity>
     </application>
 
 </manifest>

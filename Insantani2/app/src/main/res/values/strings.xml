@@ -3,7 +3,11 @@
 
     <string name="title_section1">Home</string>
     <string name="title_section2">Shopping Cart</string>
+<<<<<<< HEAD
     <string name="title_section3">Settings</string>
+=======
+    <string name="title_section3">Section 3</string>
+>>>>>>> Adding add to login and register front end
     <string name="title_section4">Login </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -15,8 +19,13 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
     <string name="title_activity_product">Product Detail</string>
     <string name="title_Register">Registration</string>
+=======
+    <string name="title_activity_product">ProductActivity</string>
+    <string name="title_Register">Register</string>
+>>>>>>> Adding add to login and register front end
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_article">Article Detail</string>
