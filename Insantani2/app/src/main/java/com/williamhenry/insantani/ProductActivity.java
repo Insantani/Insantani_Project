@@ -1,5 +1,6 @@
 package com.williamhenry.insantani;
 
+<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -19,12 +20,22 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+=======
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+>>>>>>> Adding add to shoping cart button in Product Page
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+<<<<<<< HEAD
 import android.widget.RelativeLayout;
+=======
+>>>>>>> Adding add to shoping cart button in Product Page
 import android.widget.TextView;
 import android.view.View;
 import android.content.SharedPreferences;
@@ -47,6 +58,7 @@ import java.util.Map;
 
 public class ProductActivity extends ActionBarActivity {
     private Context context;
+<<<<<<< HEAD
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
@@ -66,10 +78,13 @@ public class ProductActivity extends ActionBarActivity {
     public static final String REQUEST_TAG = "RelatedItems";
 
 
+=======
+>>>>>>> Adding add to shoping cart button in Product Page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+<<<<<<< HEAD
         pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         checkToken=pref.contains("access_token");
         checkRefreshToken=pref.contains("refresh_token");
@@ -86,6 +101,8 @@ public class ProductActivity extends ActionBarActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+=======
+>>>>>>> Adding add to shoping cart button in Product Page
 
         Bundle extras= getIntent().getExtras();
         final Bundle item=(Bundle)extras.get("nature");
@@ -217,6 +234,7 @@ public class ProductActivity extends ActionBarActivity {
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
 
+<<<<<<< HEAD
         Button shopping = (Button) findViewById(R.id.shoppingcart_button);
         shopping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -426,6 +444,15 @@ public class ProductActivity extends ActionBarActivity {
                 }
             }
         });
+=======
+//        Button add_to_shopping_cart = (Button) findViewById(R.id.shoppingcart_button);
+//        add_to_shopping_cart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),)
+//            }
+//        };
+>>>>>>> Adding add to shoping cart button in Product Page
 
 
     }
