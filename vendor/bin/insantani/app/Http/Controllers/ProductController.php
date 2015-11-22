@@ -74,6 +74,21 @@ class ProductController extends Controller
         ];
         
     }
+    
+    
+    
+    public function relatedItems($id){
+        
+        $segments = explode('/', $id);
+        $todos=ProductModel::where('farmer_id','=',$segments)->get();
+        return [
+           'message'=>'success returning related items',
+            'state'=>'related items',
+            'result'=>$todos 
+        ];
+        
+        
+    }
 
     /**
      * Show the form for creating a new resource.

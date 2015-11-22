@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\ProductModel;
-use App\TagsModel;
+use App\ArticleTagsModel;
 use App\Http\Controllers\Controller;
 
-class SearchController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,54 +19,39 @@ class SearchController extends Controller
         //
     }
     
-    public function searchProduct($query){
-        
+    public function tagResultDetail($query){
         $segments = explode('/', $query);
-        $todos=ProductModel::where('product_name','like','%'.$segments[0].'%')->get();
-        if(count($todos)>0){
-            return [
-                'message'=>'success returning search result',
-                'state'=>'search results',
-                'result'=>$todos 
-            ];
-        }else{
-             return [
-                'message'=>'failed to return search result',
-                'state'=>'search results'
-            ];
-        }
         
-        
-    }
+        if ($segments!=null){
+            $todos=ArticleTagsModel::where("tags","=",$segments)->get();
+
+
+            $array=array();
+            foreach ($todos as $todo){
+                $x=$todo->article;
+                array_push($array,$x);
+
+
+            }
+            if(count(array_unique($array))>0){
+
+
+                return [
+                    "message"=>"success returning articles based on ".$segments[0]." tag",
+                    "state"=>$segments[0]." tag results",
+                    "result"=>array_unique($array)
+                    ];
+
+                    }else{
+
+
+                        return response("Not Found",404);
+                    }
+            
     
-    public function searchTags($query){
-        
-        $segments = explode('/', $query);
-        $todos=TagsModel::where('tags','like','%'.$segments[0].'%')->get();
-        
-        $x2=array();
-        foreach ($todos as $todo){
-            $x=$todo->tagArticles;
-            
-//            foreach ($x as $x1){
-//                $x1->article;
-//                array_push($x2,$x);
-//            }
-            
+        }else{
+            return response ("Not Found",404);
         }
-        if (count($todos)>0){
-            return [
-                'message'=>'success returning search result',
-                'state'=>'search results',
-                'result'=>$todos
-            ];
-    } else{
-            return [
-                'message'=>'failed to return search result',
-                'state'=>'search results'
-            ];
-        }
-        
         
     }
 
