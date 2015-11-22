@@ -4,10 +4,12 @@ package com.williamhenry.insantani;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -44,6 +46,8 @@ public class NavigationDrawerFragment extends Fragment {
      * A pointer to the current callbacks instance (the Activity).
      */
     private NavigationDrawerCallbacks mCallbacks;
+    private SharedPreferences pref;
+    private Editor editor;
 
     /**
      * Helper component that ties the action bar to the navigation drawer.
@@ -57,6 +61,17 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private boolean checkToken;
+    private boolean checkRefreshToken;
+    private boolean tokenType;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    private boolean user_id;
+=======
+>>>>>>> New changes on the login and register
+=======
+    private boolean user_id;
+>>>>>>> commit all
 
     public NavigationDrawerFragment() {
     }
@@ -64,7 +79,19 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        pref= this.getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor= pref.edit();
+        checkToken=pref.contains("access_token");
+        checkRefreshToken=pref.contains("refresh_token");
+        tokenType=pref.contains("token_type");
+<<<<<<< HEAD
+<<<<<<< HEAD
+        user_id=pref.contains("user_id");
+=======
+>>>>>>> New changes on the login and register
+=======
+        user_id=pref.contains("user_id");
+>>>>>>> commit all
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -97,6 +124,45 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+        if(checkToken==false && checkRefreshToken==false && tokenType==false && user_id==false){
+=======
+
+<<<<<<< HEAD
+        if(checkToken==false && checkRefreshToken==false && tokenType==false){
+>>>>>>> New changes on the login and register
+=======
+        if(checkToken==false && checkRefreshToken==false && tokenType==false && user_id==false){
+>>>>>>> commit all
+            mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                    getActionBar().getThemedContext(),
+                    android.R.layout.simple_list_item_activated_1,
+                    android.R.id.text1,
+                    new String[]{
+                            getString(R.string.title_section1),
+                            getString(R.string.title_section2),
+<<<<<<< HEAD
+                            getString(R.string.title_section3),
+=======
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
+                            getString(R.string.title_section4),
+                    }));
+        }else{
+            mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                    getActionBar().getThemedContext(),
+                    android.R.layout.simple_list_item_activated_1,
+                    android.R.id.text1,
+                    new String[]{
+                            getString(R.string.title_section1),
+                            getString(R.string.title_section2),
+                            getString(R.string.title_section3),
+                    }));
+        }
+
+<<<<<<< HEAD
+=======
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
@@ -105,7 +171,12 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
                         getString(R.string.title_section3),
+                        getString(R.string.title_section4),
                 }));
+>>>>>>> Adding add to login and register front end
+=======
+>>>>>>> New changes on the login and register
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -247,10 +318,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+//        if (item.getItemId() == R.id.action_example) {
+//            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

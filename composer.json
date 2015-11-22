@@ -1,0 +1,16 @@
+{
+    "name": "insantani/insantani",
+    "description": "this is the back end program for insantani consumer app project",
+    "type": "project",
+    "license": "Copyright Insantani 2015",
+    "authors": [
+        {
+            "name": "williamhenry94",
+            "email": "william.hidayat@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {
+        "laravel/installer": "~1.1"
+    }
+}
