@@ -64,7 +64,14 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean checkToken;
     private boolean checkRefreshToken;
     private boolean tokenType;
+<<<<<<< HEAD
+<<<<<<< HEAD
     private boolean user_id;
+=======
+>>>>>>> New changes on the login and register
+=======
+    private boolean user_id;
+>>>>>>> commit all
 
     public NavigationDrawerFragment() {
     }
@@ -77,7 +84,14 @@ public class NavigationDrawerFragment extends Fragment {
         checkToken=pref.contains("access_token");
         checkRefreshToken=pref.contains("refresh_token");
         tokenType=pref.contains("token_type");
+<<<<<<< HEAD
+<<<<<<< HEAD
         user_id=pref.contains("user_id");
+=======
+>>>>>>> New changes on the login and register
+=======
+        user_id=pref.contains("user_id");
+>>>>>>> commit all
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -110,8 +124,18 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
+<<<<<<< HEAD
+<<<<<<< HEAD
 
         if(checkToken==false && checkRefreshToken==false && tokenType==false && user_id==false){
+=======
+
+<<<<<<< HEAD
+        if(checkToken==false && checkRefreshToken==false && tokenType==false){
+>>>>>>> New changes on the login and register
+=======
+        if(checkToken==false && checkRefreshToken==false && tokenType==false && user_id==false){
+>>>>>>> commit all
             mDrawerListView.setAdapter(new ArrayAdapter<String>(
                     getActionBar().getThemedContext(),
                     android.R.layout.simple_list_item_activated_1,
@@ -137,6 +161,21 @@ public class NavigationDrawerFragment extends Fragment {
                     }));
         }
 
+<<<<<<< HEAD
+=======
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                new String[]{
+                        getString(R.string.title_section1),
+                        getString(R.string.title_section2),
+                        getString(R.string.title_section3),
+                        getString(R.string.title_section4),
+                }));
+>>>>>>> Adding add to login and register front end
+=======
+>>>>>>> New changes on the login and register
 
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

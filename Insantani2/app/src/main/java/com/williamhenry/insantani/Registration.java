@@ -1,6 +1,7 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,11 +31,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import android.widget.Button;
+=======
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+>>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
 
 /**
  * Created by agungwy on 10/29/2015.
  */
 public class Registration extends Activity {
+<<<<<<< HEAD
     private String url;
     private RequestQueue mQueue;
     private Context context;
@@ -44,10 +51,13 @@ public class Registration extends Activity {
     public static final String REQUEST_TAG = "Registration";
     private TextView email,password, verifyPassword,name,phoneNumber, address;
 
+=======
+>>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_page);
+<<<<<<< HEAD
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         linearLayout= (LinearLayout) findViewById(R.id.linearLayoutRegistration);
@@ -181,6 +191,22 @@ public class Registration extends Activity {
 //                context.startActivity(intent);
             }
         });
+=======
+<<<<<<< HEAD
+
+=======
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        linearLayout= (LinearLayout) findViewById(R.id.linearLayoutRegistration);
+>>>>>>> commit all
+        Bundle extras = getIntent().getExtras();
+        Bundle item = (Bundle) extras.get("User");
+        TextView email = (TextView) findViewById(R.id.register_email);
+        TextView password = (TextView) findViewById(R.id.register_password);
+        email.setText(item.getString("Email"));
+        password.setText(item.getString("Password"));
+
+>>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
 
 
 
@@ -197,9 +223,21 @@ public class Registration extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
 //        if (id == R.id.) {
 //            return true;
 //        }
+=======
+<<<<<<< HEAD
+        if (id == R.id.action_settings) {
+            return true;
+        }
+=======
+//        if (id == R.id.) {
+//            return true;
+//        }
+>>>>>>> commit all
+>>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
 
         switch (id) {
             case android.R.id.home:

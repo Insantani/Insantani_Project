@@ -2,10 +2,19 @@ package com.williamhenry.insantani;
 
 import android.app.ActionBar;
 import android.app.Activity;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> New changes on the login and register
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+<<<<<<< HEAD
+=======
+>>>>>>> Adding add to login and register front end
+=======
+>>>>>>> New changes on the login and register
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,11 +27,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 //import com.crashlytics.android.Crashlytics;
 //import com.crashlytics.android.ndk.CrashlyticsNdk;
 //import io.fabric.sdk.android.Fabric;
+=======
+>>>>>>> Adding add to login and register front end
 
 //import android.app.Fragment;
 //import android.app.FragmentManager;
@@ -134,8 +146,15 @@ public class MainActivity extends FragmentActivity
                 fragment= new SettingsFragment();
                 break;
             case 3:
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> New changes on the login and register
 
                 fragment = new Login();
+=======
+                fragment = new LoginFragment();
+>>>>>>> Adding add to login and register front end
                 break;
 =======
             }

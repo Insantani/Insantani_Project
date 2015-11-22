@@ -26,6 +26,13 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
+<<<<<<< HEAD
     <string name="clicked">You\'ve clicked</string>
+=======
+>>>>>>> Fix Tab Search (Front End)
+=======
+    <string name="clicked">You\'ve clicked</string>
+>>>>>>> Fixed ListView (Search - front end)
 
 </resources>
