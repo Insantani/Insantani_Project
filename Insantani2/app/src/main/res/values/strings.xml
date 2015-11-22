@@ -24,12 +24,17 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <string name="title_activity_product">Product Detail</string>
     <string name="title_Register">Registration</string>
 =======
     <string name="title_activity_product">ProductActivity</string>
     <string name="title_Register">Register</string>
 >>>>>>> Adding add to login and register front end
+=======
+    <string name="title_activity_product">Product Detail</string>
+    <string name="title_Register">Registration</string>
+>>>>>>> commit all
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_article">Article Detail</string>

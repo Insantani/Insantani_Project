@@ -198,11 +198,19 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 //                bundle.putInt("thumbnail",nature.getThumbnail());
 //                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
 //                nature.getThumbnail().compress(Bitmap.CompressFormat.PNG, 100, baos);
+<<<<<<< HEAD
 
 //                byte [] b=baos.toByteArray();
 //                String image= Base64.encodeToString(b, Base64.DEFAULT);
 //                bundle.putString("thumbnail",image);
 
+=======
+
+//                byte [] b=baos.toByteArray();
+//                String image= Base64.encodeToString(b, Base64.DEFAULT);
+//                bundle.putString("thumbnail",image);
+
+>>>>>>> commit all
                 bundle.putString("url",nature.getUrl());
                 bundle.putString("description",nature.getDescription());
                 bundle.putString("fname",nature.getFarmerName());

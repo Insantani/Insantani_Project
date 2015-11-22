@@ -70,6 +70,7 @@ public class CartFragment extends Fragment {
 =======
 >>>>>>> New changes on the login and register
 
+
     }
 
     @Override

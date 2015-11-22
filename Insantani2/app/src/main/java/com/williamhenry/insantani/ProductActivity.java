@@ -1,6 +1,9 @@
 package com.williamhenry.insantani;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> commit all
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,6 +19,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> commit all
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
@@ -23,6 +29,7 @@ import android.util.Base64;
 >>>>>>> Cretate a new form for related item in product page
 import android.util.Log;
 import android.view.LayoutInflater;
+<<<<<<< HEAD
 =======
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -30,15 +37,21 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 >>>>>>> Adding add to shoping cart button in Product Page
+=======
+>>>>>>> commit all
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.widget.RelativeLayout;
 =======
 >>>>>>> Adding add to shoping cart button in Product Page
+=======
+import android.widget.RelativeLayout;
+>>>>>>> commit all
 import android.widget.TextView;
 import android.view.View;
 import android.content.SharedPreferences;
@@ -94,6 +107,9 @@ public class ProductActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> commit all
         pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         checkToken=pref.contains("access_token");
         checkRefreshToken=pref.contains("refresh_token");
@@ -102,6 +118,7 @@ public class ProductActivity extends ActionBarActivity {
         relativeLayout= (RelativeLayout) findViewById(R.id.relativeLayoutProduct);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+<<<<<<< HEAD
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
         mRecyclerView.setHasFixedSize(true);
@@ -112,6 +129,8 @@ public class ProductActivity extends ActionBarActivity {
 
 =======
 >>>>>>> Adding add to shoping cart button in Product Page
+=======
+>>>>>>> commit all
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
         mRecyclerView.setHasFixedSize(true);
@@ -255,6 +274,9 @@ public class ProductActivity extends ActionBarActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> commit all
         Button shopping = (Button) findViewById(R.id.shoppingcart_button);
         shopping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -388,6 +410,19 @@ public class ProductActivity extends ActionBarActivity {
 
 
                                     };
+<<<<<<< HEAD
+=======
+
+
+                                    stringRequestAddCart.setTag(REQUEST_TAG);
+                                    mQueue.add(stringRequestAddCart);
+
+
+
+
+
+
+>>>>>>> commit all
 
 
                                     stringRequestAddCart.setTag(REQUEST_TAG);
@@ -476,6 +511,71 @@ public class ProductActivity extends ActionBarActivity {
 =======
 
 >>>>>>> Cretate a new form for related item in product page
+
+
+
+
+
+
+                                }
+                            });
+                    alertDialog.show();
+                    Button plus = (Button) alertDialog.findViewById(R.id.increse_button);
+                    Button min = (Button) alertDialog.findViewById(R.id.decrese_button);
+                    EditText qty = (EditText) alertDialog.findViewById(R.id.confirmation_quantity);
+                    final TextView text = (TextView) alertDialog.findViewById(R.id.confirmation_quantity);
+                    counter = Integer.parseInt(text.getText().toString());
+
+                    qty.addTextChangedListener(new TextWatcher() {
+
+                        public void afterTextChanged(Editable s) {
+
+                            // you can call or do what you want with your EditText here
+                            if (!text.getText().toString().equals("")) {
+
+                                counter = Integer.parseInt(text.getText().toString());
+                            }
+
+
+                        }
+
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+                    });
+                    plus.setOnClickListener(new View.OnClickListener() {
+                                                public void onClick(View view) {
+                                                    counter += 1;
+                                                    text.setText("" + counter);
+
+                                                }
+                                            }
+
+                    );
+                    min.setOnClickListener(new View.OnClickListener()
+
+                                           {
+
+                                               public void onClick(View view) {
+                                                   if (counter <= 1) {
+                                                       text.setText("1");
+                                                   }
+                                                   if (counter > 1) {
+                                                       counter -= 1;
+                                                       text.setText("" + counter);
+                                                   }
+                                               }
+                                           }
+
+                    );
+
+                }
+            }
+        });
 
 
     }

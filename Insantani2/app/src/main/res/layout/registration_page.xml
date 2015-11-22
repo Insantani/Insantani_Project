@@ -3,7 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< HEAD
     tools:context=".Registration">
+=======
+    android:id="@+id/linearLayoutRegistration"
+    tools:context=".Registration"
+    android:background="#FAFAFA">
+>>>>>>> commit all
 
     <LinearLayout
 

@@ -57,10 +57,14 @@
             android:label="@string/title_activity_login"
             android:parentActivityName=".MainActivity"
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:theme="@style/Login" >
 =======
             android:theme="@style/Login">
 >>>>>>> New changes on the login and register
+=======
+            android:theme="@style/Login" >
+>>>>>>> commit all
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.williamhenry.insantani.MainActivity" />
@@ -69,12 +73,15 @@
             android:name=".CheckoutActivity"
             android:theme="@style/CheckoutTheme" >
         </activity>
+<<<<<<< HEAD
         <activity
             android:name=".Registration"
             android:label="@string/title_Register"
 
             >
         </activity>
+=======
+>>>>>>> commit all
     </application>
 
 </manifest>

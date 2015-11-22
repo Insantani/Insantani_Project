@@ -6,11 +6,16 @@
     android:orientation="vertical"
     android:id="@+id/LogoutLayout"
 <<<<<<< HEAD
+<<<<<<< HEAD
     tools:context="com.williamhenry.insantani.SettignsFragment"
     android:background="@color/WhiteBackground">
 =======
     tools:context="com.williamhenry.insantani.SettignsFragment">
 >>>>>>> New changes on the login and register
+=======
+    tools:context="com.williamhenry.insantani.SettignsFragment"
+    android:background="@color/WhiteBackground">
+>>>>>>> commit all
 
     <Button
         android:layout_width="fill_parent"

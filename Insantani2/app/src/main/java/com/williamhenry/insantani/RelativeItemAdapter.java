@@ -95,7 +95,12 @@ public class RelativeItemAdapter extends RecyclerView.Adapter<RelativeItemAdapte
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
         final Product nature = mItems.get(i);
         viewHolder.tvspecies.setText(nature.getName());
+<<<<<<< HEAD
         viewHolder.imgThumbnail.setImageResource(nature.getThumbnail());
+=======
+        viewHolder.price.setText("Rp "+nature.getPrice());
+        viewHolder.imgThumbnail.setImageBitmap(nature.getThumbnail());
+>>>>>>> commit all
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -106,11 +111,21 @@ public class RelativeItemAdapter extends RecyclerView.Adapter<RelativeItemAdapte
                 Intent intent = new Intent(context, ProductActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("title", nature.getName());
+<<<<<<< HEAD
                 bundle.putInt("thumbnail", nature.getThumbnail());
+=======
+//                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+//                nature.getThumbnail().compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                byte [] b=baos.toByteArray();
+//                String image= Base64.encodeToString(b, Base64.DEFAULT);
+//                bundle.putString("thumbnail",image);
+//                bundle.putString("thumbnail", nature.getThumbnail());
+>>>>>>> commit all
                 bundle.putString("description", nature.getDescription());
                 bundle.putString("fname", nature.getFarmerName());
                 bundle.putInt("price", nature.getPrice());
                 bundle.putInt("stock", nature.getStock());
+                bundle.putString("url",nature.getUrl());
                 intent.putExtra("nature", bundle);
 //                intent.putExtra("nature_thumbnail",nature.getThumbnail());
                 context.startActivity(intent);
@@ -131,13 +146,14 @@ public class RelativeItemAdapter extends RecyclerView.Adapter<RelativeItemAdapte
 
         public ImageView imgThumbnail;
         public TextView tvspecies;
-
+        public TextView price;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail_relative_item);
             tvspecies = (TextView)itemView.findViewById(R.id.product_name_relative_item);
+            price =(TextView) itemView.findViewById(R.id.product_price_relative_item);
 
         }
 

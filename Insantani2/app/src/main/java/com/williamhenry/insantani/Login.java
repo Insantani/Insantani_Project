@@ -42,6 +42,7 @@ public class Login extends Fragment {
     private Editor editor;
     private TextView email;
     private TextView password;
+    private String accessToken;
 
 
     public Login() {
@@ -85,6 +86,7 @@ public class Login extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
                 url="http://104.155.213.80/insantani/public/oauth/token";
                 final StringRequest stringRequest= new StringRequest(Request.Method.POST,
@@ -99,9 +101,10 @@ public class Login extends Fragment {
                             editor.putString("access_token",jsonObject.getString("access_token"));
                             editor.putString("token_type",jsonObject.getString("token_type"));
                             editor.putString("refresh_token", jsonObject.getString("refresh_token"));
+                            accessToken=jsonObject.getString("access_token");
                             editor.commit();
                             Log.d("access_token", jsonObject.getString("access_token"));
-                            Log.d("token_type",jsonObject.getString("token_type"));
+                            Log.d("token_type", jsonObject.getString("token_type"));
                             Log.d("refresh_token",jsonObject.getString("refresh_token"));
 
 //                            Snackbar snackbar = Snackbar.make(relativeLayout, "Login Success", Snackbar.LENGTH_LONG);
@@ -113,8 +116,85 @@ public class Login extends Fragment {
 //
 //                            snackbar.show();
 
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(getActivity(), MainActivity.class);
+//                            startActivity(intent);
+
+                            //private section here
+                            url="http://104.155.213.80/insantani/public/private";
+                            final StringRequest stringRequestPrivate= new StringRequest(Request.Method.GET,
+                                    url, new Response.Listener<String>(){
+                                //                    private ArrayList<Article> articles1=new ArrayList<Article>();
+                                @Override
+                                public void onResponse(String response){
+                                    Log.d("private", response.toString());
+                                    try {
+                                        Log.d("response_private", response.toString());
+                                        JSONObject jsonObject= new JSONObject(response.toString());
+                                        editor.putString("user_id",jsonObject.getString("user_id"));
+//                            editor.putString("token_type",jsonObject.getString("token_type"));
+//                            editor.putString("refresh_token", jsonObject.getString("refresh_token"));
+                                        editor.commit();
+                                        Log.d("user_id", jsonObject.getString("user_id"));
+//                            Log.d("token_type",jsonObject.getString("token_type"));
+//                            Log.d("refresh_token",jsonObject.getString("refresh_token"));
+
+//                            Snackbar snackbar = Snackbar.make(relativeLayout, "Login Success", Snackbar.LENGTH_LONG);
+//                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                            View snackbarView= snackbar.getView();
+//                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                            textView.setTextColor(Color.WHITE);
+//
+//                            snackbar.show();
+
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        startActivity(intent);
+
+
+                                    } catch(Exception e){
+                                        Log.d("JSON_error_private",e.toString());
+                                    }
+                                }
+                            },new Response.ErrorListener(){
+                                @Override
+                                public void onErrorResponse(VolleyError error){
+
+                                    Log.d("error_response_private",error.toString());
+                                    Snackbar snackbar = Snackbar.make(relativeLayout, "Invalid Token", Snackbar.LENGTH_LONG);
+                                    snackbar.setActionTextColor(Color.WHITE);
+
+                                    View snackbarView= snackbar.getView();
+                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    textView.setTextColor(Color.WHITE);
+
+                                    snackbar.show();
+                                }
+                            }){
+
+                                @Override
+                                public Map<String, String> getHeaders(){
+                                    Map<String, String> headers = new HashMap<String,String>();
+                                    // the POST parameters:
+                                    String auth="Bearer "+accessToken;
+                                    Log.d("Auth",auth);
+                                    headers.put("Authorization",auth);
+//                        params.put("email", email.getText().toString());
+//
+//                        params.put("password", password.getText().toString());
+//                        params.put("scope","read");
+//                        params.put("client_id", "testclient");
+//                        params.put("client_secret","testpass");
+                                    return headers;
+                                };
+
+
+                            };
+
+
+                            stringRequestPrivate.setTag(REQUEST_TAG);
+                            mQueue.add(stringRequestPrivate);
+
+
 
 
                         } catch(Exception e){
@@ -157,6 +237,12 @@ public class Login extends Fragment {
 
                 stringRequest.setTag(REQUEST_TAG);
                 mQueue.add(stringRequest);
+
+
+
+
+
+
 
 
 
