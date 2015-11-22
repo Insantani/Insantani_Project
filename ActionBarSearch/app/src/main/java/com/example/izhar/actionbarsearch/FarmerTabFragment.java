@@ -7,15 +7,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FarmerTabFragment extends Fragment {
 
     private ListView resultListView;
-    private String[] stringArray ;
-    private ArrayAdapter resultItemArrayAdapter;
+    private SearchListViewAdapter searchListViewAdapter;
 
     public FarmerTabFragment() {
         // Required empty public constructor
@@ -26,22 +30,31 @@ public class FarmerTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_farmer_tab, container, false);
 
-        stringArray = new String[20];
-        for(int i=0; i < stringArray.length; i++){
-            stringArray[i] = "String " + i;
+        List<SearchItem> newsList = new ArrayList<>();
+        searchListViewAdapter = new SearchListViewAdapter(getActivity(), newsList);
+        resultListView = (ListView) view.findViewById(R.id.itemList1);
+        resultListView.setAdapter(searchListViewAdapter);
 
-        }
-        resultItemArrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, stringArray);
-        resultListView = (ListView) view.findViewById(R.id.itemList);
-        resultListView.setAdapter(resultItemArrayAdapter);
+        // add items to the list
+        searchListViewAdapter.add(new SearchItem("News 1", "", 1));
+        searchListViewAdapter.add(new SearchItem("News 2", "", 2));
+        searchListViewAdapter.add(new SearchItem("News 3", "", 3));
+
+        // show toast on item click
+        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),
+                        getString(R.string.clicked) + " " + searchListViewAdapter.getItem(position).getTitle().toLowerCase(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
 
     public void search(String param) {
-
-        Log.d("FarmerTabFragment", "Searching: " + param);
-        resultItemArrayAdapter.getFilter().filter(param);
+        searchListViewAdapter.getFilter().filter(param);
     }
 
 }
