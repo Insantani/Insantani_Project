@@ -1,30 +1,75 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\ProductModel;
+use App\NutritionFactsModel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\ProductModel;
 use App\Http\Controllers\Controller;
+//use Illuminate\Routing\Controller;
 
-class SearchController extends Controller
+
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
+
+    
     public function index()
     {
         //
+    
+       
     }
     
-    public function search($query){
+    public function products(Request $request){
         
-        $segments = explode('/', $query);
-        $todos=ProductModel::where('product_name','Like','%'.$segments[0].'%')->get();
+        
+        
+        $limit=$request->input('limit');
+        $page=$request->input('page');
+//        echo($limit.$page);
+        $todos=ProductModel::paginate($limit);
+        
+
+        
+
+        
+      
+        
+        
+
+
         return $todos;
         
+        
+    }
+    
+
+    
+    public function productDetail($id){
+        
+        $segments = explode('/', $id);
+        $todos=ProductModel::find($segments);
+        
+
+        
+//        print_r($todos);
+        
+        
+        foreach ($todos as $todo){
+            $x=$todo->nutritionFacts;
+           
+        }
+        
+        
+
+
+        return $todos;
         
     }
 

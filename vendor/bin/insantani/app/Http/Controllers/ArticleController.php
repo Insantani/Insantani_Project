@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\ProductModel;
+use App\ArticleModel;
 use App\Http\Controllers\Controller;
 
-class SearchController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +16,24 @@ class SearchController extends Controller
      */
     public function index()
     {
-        //
+        
     }
     
-    public function search($query){
+    public function articles(Request $request){
         
-        $segments = explode('/', $query);
-        $todos=ProductModel::where('product_name','Like','%'.$segments[0].'%')->get();
+        //
+        $page=$request->input('page');
+        $limit=$request->input('limit');
+//        echo($page.$limit);
+        $todos= ArticleModel::paginate($limit);
         return $todos;
+    }
+    public function articleDetail($id){
         
+        $segments = explode('/', $id);
+//        print_r($segments);
+        $todos=ArticleModel::find($segments);
+        return $todos;
         
     }
 
