@@ -106,6 +106,26 @@
                     android:text="Small Text"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
+<<<<<<< HEAD
+=======
+
+                <TextView
+                    android:id="@+id/RelatedItemSeperator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView"
+                    android:layout_margin="2dp"
+                    android:padding="2dp"
+                    android:textColor="@color/insantaniButtonBlack"
+                    android:text="Related Items"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+
+
+
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="220dp"

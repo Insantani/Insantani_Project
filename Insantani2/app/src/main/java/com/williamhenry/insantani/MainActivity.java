@@ -41,6 +41,10 @@ public class MainActivity extends FragmentActivity
     private boolean checkToken;
     private boolean checkRefreshToken;
     private boolean tokenType;
+<<<<<<< HEAD
+=======
+    private boolean user_id;
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -56,6 +60,10 @@ public class MainActivity extends FragmentActivity
         checkToken= pref.contains("access_token");
         checkRefreshToken= pref.contains("refresh_token");
         tokenType= pref.contains("token_type");
+<<<<<<< HEAD
+=======
+        user_id=pref.contains("user_id");
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 //        Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
         setContentView(R.layout.activity_main);
 
@@ -81,12 +89,44 @@ public class MainActivity extends FragmentActivity
 //                .commit();
 //        FragmentTransaction ft=fragmentManager.beginTransaction();
         Log.d("position",Integer.toString(position));
-        switch(position) {
-            case 0:
-                fragment = new HomeFragment();
+        if (!checkToken && !checkRefreshToken && !tokenType && !user_id){
+            switch(position) {
+                case 0:
+                    fragment = new HomeFragment();
 //                ft.replace(R.id.container,HomeFragment, SyncStateContract.Constants)
-                break;
+                    break;
 
+                case 1:
+                    fragment= new CartFragment();
+                    break;
+//                case 2:
+//                    fragment= new SettingsFragment();
+//                    break;
+                case 2:
+
+                    fragment = new Login();
+                    break;
+
+            }
+        }else{
+            switch(position) {
+                case 0:
+                    fragment = new HomeFragment();
+//                ft.replace(R.id.container,HomeFragment, SyncStateContract.Constants)
+                    break;
+
+                case 1:
+                    fragment= new CartFragment();
+                    break;
+                case 2:
+                    fragment= new SettingsFragment();
+                    break;
+//                case 2:
+//
+//                    fragment = new Login();
+//                    break;
+
+<<<<<<< HEAD
             case 1:
                 fragment= new CartFragment();
                 break;
@@ -97,8 +137,12 @@ public class MainActivity extends FragmentActivity
 
                 fragment = new Login();
                 break;
+=======
+            }
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
         }
+
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();

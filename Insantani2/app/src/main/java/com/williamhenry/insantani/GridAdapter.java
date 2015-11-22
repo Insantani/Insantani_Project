@@ -103,7 +103,11 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         Log.d("mitems",nature.toString());
         Log.d("i", Integer.toString(i));
         viewHolder.tvspecies.setText(nature.getName());
+<<<<<<< HEAD
         viewHolder.grid_price.setText("Rp "+nature.getPrice());
+=======
+        viewHolder.grid_price.setText("Rp "+nature.getPrice() + " / "+ nature.getUom());
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
         viewHolder.imgThumbnail.setImageBitmap(nature.getThumbnail());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
 
@@ -129,6 +133,10 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 bundle.putInt("price", nature.getPrice());
                 bundle.putInt("stock", nature.getStock());
                 bundle.putInt("id",nature.getId());
+<<<<<<< HEAD
+=======
+                bundle.putString("uom",nature.getUom());
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
                 intent.putExtra("nature",bundle);
 //                intent.putExtra("nature_thumbnail",nature.getThumbnail());
                 context.startActivity(intent);

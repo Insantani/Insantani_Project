@@ -1,20 +1,27 @@
 package com.williamhenry.insantani;
 
+<<<<<<< HEAD
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
+=======
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+<<<<<<< HEAD
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+=======
+import android.support.v4.view.ViewPager;
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.TabHost;
 
 import java.util.ArrayList;
@@ -42,6 +49,16 @@ public class HomeFragment extends Fragment {
     public static final String REQUEST_TAG = "HomeFragment";
     private SharedPreferences pref;
     private Editor editor;
+=======
+
+
+public class HomeFragment extends Fragment {
+
+    private FeedTabFragment feedTabFragment;
+    private ShopTabFragment shopTabFragment;
+
+    private TabLayout tabLayout;
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
     public HomeFragment() {
         // Required empty public constructor
@@ -51,12 +68,17 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getActionBar().show();
+<<<<<<< HEAD
 
+=======
+        getActivity().getActionBar().setElevation(0);
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         final View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TabHost tabHost = (TabHost) rootView.findViewById(R.id.tabhost);
@@ -242,40 +264,34 @@ public class HomeFragment extends Fragment {
         mQueue.add(jsonRequest);
 
 
+=======
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
         // Inflate the layout for this fragment
-        return rootView;
-    }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
+        feedTabFragment = new FeedTabFragment();
+        shopTabFragment = new ShopTabFragment();
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-//    @Override
+        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(feedTabFragment, "Feed");
+        adapter.addFragment(shopTabFragment, "Shop");
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getActivity().getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        int id = item.getItemId();
-
+<<<<<<< HEAD
         //noinspection SimplifiableIfStatement
 //        if (id == R.id.action_settings) {
 //
 //            return true
 //                    ;
 //        }
+=======
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+        viewPager.setAdapter(adapter);
 
-        return super.onOptionsItemSelected(item);
+        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
+
+        return view;
     }
 
 

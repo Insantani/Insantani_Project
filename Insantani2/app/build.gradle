@@ -46,7 +46,11 @@ dependencies {
     compile 'com.android.support:support-v13:23.1.0'
     compile 'com.android.support:design:23.0.1'
     compile project (':Volley')
+<<<<<<< HEAD
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
+=======
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
         transitive = true;
     }
 

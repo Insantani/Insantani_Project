@@ -32,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
 
 
 public class CartFragment extends Fragment {
@@ -56,6 +57,33 @@ public class CartFragment extends Fragment {
     private CartFragment cartFragment;
 
 
+=======
+
+
+public class CartFragment extends android.support.v4.app.Fragment {
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    CartAdapter mAdapter;
+
+    private RelativeLayout relativeLayout;
+    private String url;
+    private RequestQueue mQueue;
+    private ArrayList<Cart> cart;
+    public static final String REQUEST_TAG = "ShoppingCart";
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private boolean checkToken;
+    private boolean checkRefreshToken;
+    private boolean tokenType;
+    private boolean userId;
+    private int totalPrice;
+    private int totalItem;
+    private TextView totalprice;
+    private TextView totalitem;
+    private CartFragment cartFragment;
+
+
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
     public CartFragment() {
         // Required empty public constructor
@@ -95,6 +123,11 @@ public class CartFragment extends Fragment {
         totalitem= (TextView) rootView.findViewById(R.id.totalitem);
         cart = new ArrayList<Cart>();
 
+<<<<<<< HEAD
+=======
+        final CartFragment thisObj = this;
+
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
         mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
         url="http://104.155.213.80/insantani/public/api/cart?user_id="+pref.getString("user_id",null);
         final StringRequest stringRequestCart= new StringRequest(Request.Method.GET,
@@ -140,7 +173,11 @@ public class CartFragment extends Fragment {
                                                                     Log.d("bitmap",bitmap.toString());
                                                                     Cart cartItem = new Cart(dataDetailProduct.getString("product_name"),jsonObject.getInt("product_quantity"),
                                                                             dataDetailProduct.getString("farmer_username"), (float)dataDetailProduct.getInt("prod_price"),bitmap,
+<<<<<<< HEAD
                                                                             dataDetailProduct.getInt("id"));
+=======
+                                                                            dataDetailProduct.getInt("id"),dataDetailProduct.getString("uom"), dataDetailProduct.getInt("stock_num"));
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
 
                                                                     totalPrice+=(jsonObject.getInt("product_quantity") * dataDetailProduct.getInt("prod_price"));
@@ -155,11 +192,16 @@ public class CartFragment extends Fragment {
 //
                                                                     cart.add(cartItem);
 
+<<<<<<< HEAD
                                                                     mAdapter = new CartAdapter(cart,getContext(),mQueue);
+=======
+                                                                    mAdapter = new CartAdapter(cart,getContext(),mQueue,getActivity().getSupportFragmentManager(),thisObj);
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
                                                                     mRecyclerView.setAdapter(mAdapter);
 
                                                                     totalprice.setText(Integer.toString(totalPrice));
                                                                     totalitem.setText(Integer.toString(cart.size()));
+<<<<<<< HEAD
 
                                                                     Button next= (Button) rootView.findViewById(R.id.next);
                                                                     next.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +220,34 @@ public class CartFragment extends Fragment {
                                                                             getContext().startActivity(intent);
                                                                         }
                                                                     });
+=======
+                                                                    totalItem=cart.size();
+
+
+
+                                                                        Button next = (Button) rootView.findViewById(R.id.next);
+                                                                        next.setOnClickListener(new View.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(View view) {
+                                                                                if(totalItem>0) {
+                                                                                    Intent intent = new Intent(getContext(), CheckoutActivity.class);
+                                                                                    Bundle bundle = new Bundle();
+//                                                                            ListBridge listBridge= new ListBridge(cart);
+//
+                                                                                    bundle.putString("totalPrice", Integer.toString(totalPrice));
+                                                                                    bundle.putString("totalItem", Integer.toString(cart.size()));
+                                                                                    intent.putExtra("information", bundle);
+                                                                                    Log.d("totalPrice", Integer.toString(totalPrice));
+                                                                                    Log.d("totalItem", Integer.toString(totalItem));
+//////                                                                            Log.d("cart",cart.);
+//                                                                            intent.putExtra(bundle);
+
+                                                                                    getContext().startActivity(intent);
+                                                                                }
+                                                                            }
+                                                                        });
+
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
 
 
@@ -337,4 +407,21 @@ public class CartFragment extends Fragment {
 
     }
 
+<<<<<<< HEAD
+=======
+    public void refresh() {
+        Log.d("apasih", "koklama");
+        totalitem.setText(Integer.toString(mAdapter.getItemCount()));
+        int newTotal = 0;
+
+        for (int i = 0; i < mAdapter.getItemCount(); i++) {
+            Cart c = mAdapter.getItem(i);
+            newTotal += c.getQty() * c.getPrice();
+            System.out.println("HAHAHA" + c.getProductName());
+        }
+        totalprice.setText(Integer.toString(newTotal));
+        totalPrice=newTotal;
+        totalItem=mAdapter.getItemCount();
+    }
+>>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 }
