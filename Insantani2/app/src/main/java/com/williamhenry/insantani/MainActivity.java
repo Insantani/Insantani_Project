@@ -3,12 +3,18 @@ package com.williamhenry.insantani;
 import android.app.ActionBar;
 import android.app.Activity;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> New changes on the login and register
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+<<<<<<< HEAD
 =======
 >>>>>>> Adding add to login and register front end
+=======
+>>>>>>> New changes on the login and register
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -101,6 +107,9 @@ public class MainActivity extends FragmentActivity
                 break;
             case 3:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> New changes on the login and register
 
                 fragment = new Login();
 =======

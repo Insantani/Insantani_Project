@@ -16,12 +16,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Registration"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:textColor="@color/isantaniGreen"
+            android:layout_marginTop="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Basic Information"
+            android:textSize="20dp"
+            android:gravity="left"
             android:id="@+id/textView" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/insantaniButtonBlack" />
 
         <EditText
             android:layout_marginTop="50dp"

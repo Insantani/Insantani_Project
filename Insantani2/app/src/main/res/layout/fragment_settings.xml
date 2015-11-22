@@ -5,8 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/LogoutLayout"
+<<<<<<< HEAD
     tools:context="com.williamhenry.insantani.SettignsFragment"
     android:background="@color/WhiteBackground">
+=======
+    tools:context="com.williamhenry.insantani.SettignsFragment">
+>>>>>>> New changes on the login and register
 
     <Button
         android:layout_width="fill_parent"

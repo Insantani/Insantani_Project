@@ -56,7 +56,11 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:parentActivityName=".MainActivity"
+<<<<<<< HEAD
             android:theme="@style/Login" >
+=======
+            android:theme="@style/Login">
+>>>>>>> New changes on the login and register
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.williamhenry.insantani.MainActivity" />

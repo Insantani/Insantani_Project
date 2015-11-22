@@ -65,7 +65,10 @@ public class CartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getActionBar().show();
+<<<<<<< HEAD
 
+=======
+>>>>>>> New changes on the login and register
 
     }
 
