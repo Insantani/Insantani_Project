@@ -15,9 +15,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
+=======
+>>>>>>> Cretate a new form for related item in product page
 import android.util.Log;
 import android.view.LayoutInflater;
 =======
@@ -59,6 +62,7 @@ import java.util.Map;
 public class ProductActivity extends ActionBarActivity {
     private Context context;
 <<<<<<< HEAD
+<<<<<<< HEAD
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
@@ -80,6 +84,11 @@ public class ProductActivity extends ActionBarActivity {
 
 =======
 >>>>>>> Adding add to shoping cart button in Product Page
+=======
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.Adapter mAdapter;
+>>>>>>> Cretate a new form for related item in product page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +112,16 @@ public class ProductActivity extends ActionBarActivity {
 
 =======
 >>>>>>> Adding add to shoping cart button in Product Page
+
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
+        mRecyclerView.setHasFixedSize(true);
+
+        // The number of Columns
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RelativeItemAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
 
         Bundle extras= getIntent().getExtras();
         final Bundle item=(Bundle)extras.get("nature");
@@ -234,6 +253,7 @@ public class ProductActivity extends ActionBarActivity {
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         Button shopping = (Button) findViewById(R.id.shoppingcart_button);
         shopping.setOnClickListener(new View.OnClickListener() {
@@ -453,6 +473,9 @@ public class ProductActivity extends ActionBarActivity {
 //            }
 //        };
 >>>>>>> Adding add to shoping cart button in Product Page
+=======
+
+>>>>>>> Cretate a new form for related item in product page
 
 
     }
