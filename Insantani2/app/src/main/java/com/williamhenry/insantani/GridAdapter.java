@@ -22,64 +22,66 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     List<Product> mItems;
     private Context context;
-    public GridAdapter(Context context) {
+    public GridAdapter(ArrayList mItems,Context context) {
         super();
         this.context=context;
-        mItems = new ArrayList<Product>();
+        this.mItems = mItems;
 
-        Product species = new Product();
-        species.setName("Red Chilli");
-        species.setThumbnail(R.mipmap.cabe);
-        species.setDescription("Apart from its uses in cooking, it has medicinal uses as well. It helps in digestion, it develops blood and is a very rich source of vitamin C, which helps in developing the immune system. It is used as spray weapon also for keeping away attackers and mobsters.");
-        species.setFarmerName("Izhar Almizan");
-        species.setPrice(100);
-        species.setStock(5);
-        mItems.add(species);
 
-        species = new Product();
-        species.setName("Jatim Carrots");
-        species.setThumbnail(R.mipmap.carrot);
-        species.setDescription("Carrot roots are eaten as a vegetable and can be consumed fresh or cooked. Carrot juice is consumed as a beverage. The leaves of the plant can be used as feed for animals.");
-        species.setFarmerName("Diovi Azalia");
-        species.setPrice(200);
-        species.setStock(2);
-        mItems.add(species);
 
-        species = new Product();
-        species.setName("Fresh Cauliflower");
-        species.setThumbnail(R.mipmap.col);
-        species.setDescription("Enjoyed cooked or raw, cauliflower is a great addition to your Healthiest Way of Eating, and now it's available year-round. While green vegetables may contain more chlorophyll, cauliflower is also rich in nutrients and, like its cousins, cabbage, kale, and broccoli, provides health-promoting compounds not found in many other vegetables.");
-        species.setFarmerName("Yohana Fransiska");
-        species.setPrice(150);
-        species.setStock(10);
-        mItems.add(species);
-
-        species = new Product();
-        species.setName("Potatoes");
-        species.setThumbnail(R.mipmap.kentang);
-        species.setDescription("Potatoes also contain a variety of phytonutrients that have antioxidant activity. Among these important health-promoting compounds are carotenoids, flavonoids, and caffeic acid, as well as unique tuber storage proteins, such as patatin, which exhibit activity against free radicals.");
-        species.setFarmerName("William Henry");
-        species.setPrice(250);
-        species.setStock(1);
-        mItems.add(species);
-
-        species = new Product();
-        species.setName("Java Cucumber");
-        species.setThumbnail(R.mipmap.timun);
-        species.setDescription("Cucumbers are good sources of phytonutrients (plant chemicals that have protective or disease preventive properties) such flavonoids, lignans and triterpenes, which have antioxidant, anti-inflammatory and anti-cancer benefits, according to World’s Healthiest Foods. The peel and seeds are the most nutrient-dense parts of the cucumber.");
-        species.setFarmerName("Agung Wirayogi");
-        species.setPrice(220);
-        species.setStock(4);
-        mItems.add(species);
-
-        species = new Product();
-        species.setName("Baby Tomatoes");
-        species.setThumbnail(R.mipmap.tomat);
-        species.setDescription("Tomatoes are widely known for their outstanding antioxidant content, including, of course, their oftentimes-rich concentration of lycopene. Did you know that tomatoes do not have to be a deep red color to be an outstanding source of lycopene?");
-        species.setFarmerName("Cantya Sophie");
-        species.setPrice(230);
-        species.setStock(2);
-        mItems.add(species);
+//        Product species = new Product();
+//        species.setName("Red Chilli");
+//        species.setThumbnail(R.mipmap.cabe);
+//        species.setDescription("Apart from its uses in cooking, it has medicinal uses as well. It helps in digestion, it develops blood and is a very rich source of vitamin C, which helps in developing the immune system. It is used as spray weapon also for keeping away attackers and mobsters.");
+//        species.setFarmerName("Izhar Almizan");
+//        species.setPrice(100);
+//        species.setStock(5);
+//        mItems.add(species);
+//
+//        species = new Product();
+//        species.setName("Jatim Carrots");
+//        species.setThumbnail(R.mipmap.carrot);
+//        species.setDescription("Carrot roots are eaten as a vegetable and can be consumed fresh or cooked. Carrot juice is consumed as a beverage. The leaves of the plant can be used as feed for animals.");
+//        species.setFarmerName("Diovi Azalia");
+//        species.setPrice(200);
+//        species.setStock(2);
+//        mItems.add(species);
+//
+//        species = new Product();
+//        species.setName("Fresh Cauliflower");
+//        species.setThumbnail(R.mipmap.col);
+//        species.setDescription("Enjoyed cooked or raw, cauliflower is a great addition to your Healthiest Way of Eating, and now it's available year-round. While green vegetables may contain more chlorophyll, cauliflower is also rich in nutrients and, like its cousins, cabbage, kale, and broccoli, provides health-promoting compounds not found in many other vegetables.");
+//        species.setFarmerName("Yohana Fransiska");
+//        species.setPrice(150);
+//        species.setStock(10);
+//        mItems.add(species);
+//
+//        species = new Product();
+//        species.setName("Potatoes");
+//        species.setThumbnail(R.mipmap.kentang);
+//        species.setDescription("Potatoes also contain a variety of phytonutrients that have antioxidant activity. Among these important health-promoting compounds are carotenoids, flavonoids, and caffeic acid, as well as unique tuber storage proteins, such as patatin, which exhibit activity against free radicals.");
+//        species.setFarmerName("William Henry");
+//        species.setPrice(250);
+//        species.setStock(1);
+//        mItems.add(species);
+//
+//        species = new Product();
+//        species.setName("Java Cucumber");
+//        species.setThumbnail(R.mipmap.timun);
+//        species.setDescription("Cucumbers are good sources of phytonutrients (plant chemicals that have protective or disease preventive properties) such flavonoids, lignans and triterpenes, which have antioxidant, anti-inflammatory and anti-cancer benefits, according to World’s Healthiest Foods. The peel and seeds are the most nutrient-dense parts of the cucumber.");
+//        species.setFarmerName("Agung Wirayogi");
+//        species.setPrice(220);
+//        species.setStock(4);
+//        mItems.add(species);
+//
+//        species = new Product();
+//        species.setName("Baby Tomatoes");
+//        species.setThumbnail(R.mipmap.tomat);
+//        species.setDescription("Tomatoes are widely known for their outstanding antioxidant content, including, of course, their oftentimes-rich concentration of lycopene. Did you know that tomatoes do not have to be a deep red color to be an outstanding source of lycopene?");
+//        species.setFarmerName("Cantya Sophie");
+//        species.setPrice(230);
+//        species.setStock(2);
+//        mItems.add(species);
 
 //        species = new Product();
 //        species.setName("sample 6");
