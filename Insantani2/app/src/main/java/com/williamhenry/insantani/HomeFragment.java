@@ -1,13 +1,11 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,24 +14,12 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class HomeFragment extends Fragment {
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
-    private ArrayList<Product> mItems;
-    public static final String REQUEST_TAG = "HomeFragment";
-    private RequestQueue mQueue;
-    private String url;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -68,80 +54,8 @@ public class HomeFragment extends Fragment {
         // The number of Columns
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mItems=new ArrayList<Product>();
-        mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
-        url="http://104.155.213.80/insantani/public/api/feed?page=1&limit=3";
-        final CustomJSONObjectRequest jsonRequest= new CustomJSONObjectRequest(Request.Method.GET,
-                url,new JSONObject(),
-                new Response.Listener<JSONObject>(){
-                    //                    private ArrayList<Article> articles1=new ArrayList<Article>();
-                    @Override
-                    public void onResponse(JSONObject response){
-                        try {
-                            JSONObject result=response.getJSONObject("result");
-//                        if(result.getString("next_page_url"))
 
-                            JSONArray data=result.getJSONArray("data");
-                            Log.d("response1", data.get(0).toString());
-                            for (int i=0;i<data.length();i++){
-                                final JSONObject dataDetail=(JSONObject)data.get(i);
-                                url="http://104.155.213.80/insantani/public/"+dataDetail.getString("article_picture_url");
-                                Log.d("url",url);
-                                final ImageRequest imageRequest= new ImageRequest(url,
-                                        new Response.Listener<Bitmap>() {
-                                            @Override
-                                            public void onResponse(Bitmap bitmap) {
-                                                try{
-                                                    Log.d("bitmap",bitmap.toString());
-                                                    Product item = new Product(dataDetail.getString("product_name"),
-                                                            bitmap, dataDetail.getString("content"), dataDetail.getString("prod_desc"),
-                                                            dataDetail.getString("farmer_username"), dataDetail.getInt("prod_price"),
-                                                            dataDetail.getInt("stock_num"));
-//
-                                                    mItems.add(item);
-                                                    mAdapter = new GridAdapter(mItems, getContext());
-                                                    mRecyclerView.setAdapter(mAdapter);
-                                                }catch(Exception e){
-                                                    Log.d("error_picture",e.toString());
-
-                                                }
-
-                                            }
-                                        },0,0,null,new Response.ErrorListener() {
-                                    public void onErrorResponse(VolleyError error) {
-                                        Log.d("error_response", error.toString());
-                                    }
-                                });
-                                imageRequest.setTag(REQUEST_TAG);
-                                mQueue.add(imageRequest);
-
-                            }
-//                                @Override
-//                                public void onResponse(Bitmap bitmap) {
-//                                    mImageView.setImageBitmap(bitmap);
-//                                }
-//                            }, 0, 0, null,
-//                                    new Response.ErrorListener() {
-//                                        public void onErrorResponse(VolleyError error) {
-//                                            mImageView.setImageResource(R.drawable.image_load_error);
-//                                        }
-//                                    });
-
-//                            Log.d("articles",articles.toString());
-                        } catch(Exception e){
-                            Log.d("JSON_err",e.toString());
-                        }
-                    }
-                },new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                Log.d("error_response",error.toString());
-            }
-        });
-        jsonRequest.setTag(REQUEST_TAG);
-        mQueue.add(jsonRequest);
-
-        mAdapter = new GridAdapter(mItems,getContext());
+        mAdapter = new GridAdapter(getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);

@@ -8,10 +8,9 @@ package com.williamhenry.insantani;
 /**
  * Created by william on 10/17/2015.
  */
-import android.graphics.Bitmap;
 public class Product {
     private String mName;
-    private Bitmap mThumbnail;
+    private int mThumbnail;
     private String desc;
     private String fname;
     private int price;
@@ -25,11 +24,11 @@ public class Product {
         this.mName = name;
     }
 
-    public Bitmap getThumbnail() {
+    public int getThumbnail() {
         return mThumbnail;
     }
 
-    public void setThumbnail(Bitmap thumbnail) {
+    public void setThumbnail(int thumbnail) {
         this.mThumbnail = thumbnail;
     }
 
