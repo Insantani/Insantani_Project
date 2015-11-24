@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\CheckoutModel;
-use App\UserTokenModel;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -19,27 +18,25 @@ class CheckoutController extends Controller
     {
         //
     }
+
     public function createCheckOut(Request $req)
     {
         //
-//     
-            $data=$req->all();
-        
-                
-//          
-            for ($i=0; $i<count($data);$i++){
-                $todo=CheckoutModel::create([
-                    'address'=>$data[$i]['address'],
-                    'user_id'=>$data[$i]['user_id'],
-                    'product_id'=>$data[$i]['product_id'],
-                    'productQty'=>$data[$i]['productQty']
-                    ]);
-                $todo->save();
-            
-                
-            }
+        $token=$req->input('token');
+        $data=$req->all();
+        if($token!=null){
+            $todo=CheckoutModel::create([
+
+                'address'=>$data['address'],
+                'zipcode'=>$data['zipcode'],
+                'email'=>$data['email'],
+                'product_id'=>$data['product_id'],
+                'productQty'=>$data['productQty']
+
+                ]);
+            $todo->save();
             return response()->json(['message'=>'success','state'=>'check out'],201);
-//            
+        }
     }
 
     /**
