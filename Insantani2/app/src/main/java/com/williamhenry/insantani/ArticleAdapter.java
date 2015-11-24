@@ -2,14 +2,17 @@ package com.williamhenry.insantani;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -52,7 +55,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         author.setText(articles.get(position).getAuthor());
         desc.setText(articles.get(position).getDescription());
 
-        imageView.setImageResource(articles.get(position).getImage());
+        imageView.setImageBitmap(articles.get(position).getImage());
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
 
@@ -66,7 +69,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
                 bundle.putString("title", articles.get(position).getTitle());
                 bundle.putString("author", articles.get(position).getAuthor());
                 bundle.putString("desc", articles.get(position).getDescription());
-                bundle.putInt("image", articles.get(position).getImage());
+                bundle.putString("url",articles.get(position).getUrl());
+//                ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+//                articles.get(position).getImage().compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                byte [] b=baos.toByteArray();
+//                String image= Base64.encodeToString(b, Base64.DEFAULT);
+//                bundle.putString("image", image);
                 intent.putExtra("article", bundle);
                 context.startActivity(intent);
 
