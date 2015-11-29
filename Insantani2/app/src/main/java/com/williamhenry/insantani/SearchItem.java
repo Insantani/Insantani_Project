@@ -1,16 +1,17 @@
 package com.williamhenry.insantani;
 
+import android.graphics.Bitmap;
 
 public class SearchItem {
 
     private String title;
     private String content;
-    private int picture;
+    private Bitmap picture;
 
     public SearchItem() {
     }
 
-    public SearchItem(String title, String content, int picture) {
+    public SearchItem(String title, String content, Bitmap picture) {
         this.title = title;
         this.content = content;
         this.picture = picture;
@@ -32,11 +33,11 @@ public class SearchItem {
         this.content = content;
     }
 
-    public int getPicture(){
+    public Bitmap getPicture(){
         return picture;
     }
 
-    public void setPicture(int picture) {
+    public void setPicture(Bitmap picture) {
         this.picture = picture;
     }
 
