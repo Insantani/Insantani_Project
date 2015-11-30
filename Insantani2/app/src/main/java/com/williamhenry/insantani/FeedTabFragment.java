@@ -86,7 +86,7 @@ public class FeedTabFragment extends Fragment {
                                                             dataDetail.getString("article_picture_url"));
 //
                                                     articles.add(article);
-                                                    mAdapter = new MyAdapter(articles, getContext());
+                                                    mAdapter = new ArticleAdapter(articles, getContext());
                                                     mRecyclerView.setAdapter(mAdapter);
                                                 }catch(Exception e){
                                                     Log.d("error_picture",e.toString());

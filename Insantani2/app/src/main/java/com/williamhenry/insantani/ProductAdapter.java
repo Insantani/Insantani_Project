@@ -22,11 +22,11 @@ import java.util.List;
 
 //import android.app.Activity;
 
-public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
+public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     ArrayList<Product> mItems;
     private Context context;
-    public GridAdapter(ArrayList<Product>mItems,Context context) {
+    public ProductAdapter(ArrayList<Product>mItems,Context context) {
         super();
         this.context=context;
         this.mItems=mItems;
