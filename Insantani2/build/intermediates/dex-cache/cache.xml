@@ -2,55 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-08d7507f7451fb64ecd1a242190320bd7382b2df.jar" />
-    </item>
-    <item
-        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-fac5e53d0fa25fdcb255704a3637f659dce8bd41.jar" />
-    </item>
-    <item
-        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/support-v13/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1a57337a520bf40b9ad1e074cb780527dffa1aac">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-b68849afa08bf2502cca42ffb05bc9d8724774b0.jar" />
-    </item>
-    <item
-        jar="/Users/Izhar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-7b1770a8b89a446c1a253a1c1924d59f0bd27997.jar" />
-    </item>
-    <item
-        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-5facd292e96b931ad4333d6660d70b5bdcf04657.jar" />
-    </item>
-    <item
-        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-f2f9ea942666a41f71db328c9ab1c76ff3b0c793.jar" />
-    </item>
-    <item
-        jar="/Users/Izhar/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/library-1.0.19-d2acb34f8e2be456ecfe138ee1be4edf632cd565.jar" />
-    </item>
-    <item
         jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -65,11 +16,60 @@
         <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-803250ecbbc527c208780380f21d70179b4f447d.jar" />
     </item>
     <item
+        jar="/Users/Izhar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-7b1770a8b89a446c1a253a1c1924d59f0bd27997.jar" />
+    </item>
+    <item
+        jar="/Users/Izhar/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/library-1.0.19-d2acb34f8e2be456ecfe138ee1be4edf632cd565.jar" />
+    </item>
+    <item
+        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-08d7507f7451fb64ecd1a242190320bd7382b2df.jar" />
+    </item>
+    <item
         jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
         <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-a404cfb45884a561ea50ec09e465af7b17da1064.jar" />
+    </item>
+    <item
+        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-5facd292e96b931ad4333d6660d70b5bdcf04657.jar" />
+    </item>
+    <item
+        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/support-v13/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1a57337a520bf40b9ad1e074cb780527dffa1aac">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-b68849afa08bf2502cca42ffb05bc9d8724774b0.jar" />
+    </item>
+    <item
+        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-fac5e53d0fa25fdcb255704a3637f659dce8bd41.jar" />
+    </item>
+    <item
+        jar="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/Users/Izhar/Desktop/Insantani_Project/Insantani2/app/build/intermediates/pre-dexed/debug/classes-f2f9ea942666a41f71db328c9ab1c76ff3b0c793.jar" />
     </item>
 
 </items>
