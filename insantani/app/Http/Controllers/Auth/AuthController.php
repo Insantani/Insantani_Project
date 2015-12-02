@@ -103,6 +103,49 @@ class AuthController extends Controller
             
     }
 
+public function changePassword(Request $request){
+    $data = $request->all();
+    $id = $data['user_id'];
+    $todos=User::find($id);
+
+    $todos->password=$data['password'];
+
+    $validator = $this->validatorReset($request->all());
+    if ($validator->fails()){
+        echo($validator->messages());
+    } else{
+        return response()->json(['message' => 'Success!'], 201);
+    }
+}
+
+public function changeProfile(){
+    $data = $request->all();
+    $name = $data['user_id'];
+    $address = $data['address'];
+    $phone_number = $data['phone_number'];
+
+    
+    
+    if(array_key_exists ('name', $data )){
+        $todos=User::find($data['user_id']);
+        $todos->name=$data['name'];
+    } 
+    else if (array_key_exists('address', $data)){
+        $todos=User::find($data['user_id']);
+        $todos->address=$data['address'];
+    }
+    else if (array_key_exists('phone_numer', $data)){
+        $todos=User::find($data['user_id']);
+        $todos->address=$data['phone_number'];
+    }
+    else {
+        return response()->json(['message' => 'Error'], 404);
+
+    }
+}
+
+
+
 public function resetPassword(Request $request){
         $data = $request->all();
         $email = $data['email'];
