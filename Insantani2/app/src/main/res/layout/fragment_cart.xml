@@ -5,6 +5,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.williamhenry.insantani.CartFragment"
+<<<<<<< HEAD
+=======
+    android:id="@+id/relativeLayoutCart"
+    android:background="#FAFAFA"
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     android:clipToPadding="false">
 
     <!--untuk floating layout nya gak scrollable-->
@@ -37,7 +42,11 @@
                     android:id="@+id/totalitem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:text="1"
+=======
+                    android:text="0"
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
                     android:padding="10dp"/>
                 <TextView
                     android:id="@+id/item"
@@ -71,7 +80,11 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:background="#dddddd"
+<<<<<<< HEAD
                     android:text="20000000,00"
+=======
+                    android:text="0"
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
                     android:textColor="#f57f17"/>
 
             </LinearLayout>
@@ -88,6 +101,10 @@
             android:background="@color/isantaniGreen"
             android:textColor="#ffffff"
             android:text="Next"
+<<<<<<< HEAD
+=======
+            android:id="@+id/next"
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>

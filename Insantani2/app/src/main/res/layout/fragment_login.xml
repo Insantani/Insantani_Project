@@ -1,10 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context="com.williamhenry.insantani.LoginFragment"
     android:background="@color/isantaniGreen">
 
 
+=======
+    tools:context="com.williamhenry.insantani.Login"
+    android:id="@+id/relativeLayoutLogin"
+    android:background="@color/isantaniGreen">
+
+
+
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,7 +27,11 @@
             <ImageView
                 android:layout_width="400dp"
                 android:layout_height="300dp"
+<<<<<<< HEAD
                 android:src="@mipmap/insantani_logo_putih" />
+=======
+                android:src="@drawable/insantani" />
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
             <LinearLayout
                 android:layout_width="match_parent"

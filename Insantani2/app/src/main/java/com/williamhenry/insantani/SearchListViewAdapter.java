@@ -10,8 +10,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+<<<<<<< HEAD
 public class SearchListViewAdapter extends ArrayAdapter<SearchItem> {
     public SearchListViewAdapter(Context context, List<SearchItem> newsList) {
+=======
+public class SearchListViewAdapter extends ArrayAdapter<Product> {
+    public SearchListViewAdapter(Context context, List<Product> newsList) {
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
         super(context, 0, newsList);
     }
 
@@ -22,9 +27,15 @@ public class SearchListViewAdapter extends ArrayAdapter<SearchItem> {
         TextView contentTextView = (TextView) view.findViewById(R.id.content_text_view);
         ImageView picture = (ImageView) view.findViewById(R.id.icon);
 
+<<<<<<< HEAD
         titleTextView.setText(getItem(position).getTitle());
         contentTextView.setText(getItem(position).getContent());
         picture.setImageResource(getItem(position).getPicture());
+=======
+        titleTextView.setText(getItem(position).getName());
+        contentTextView.setText(getItem(position).getFarmerName());
+        picture.setImageBitmap(getItem(position).getThumbnail());
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         return view;
     }
