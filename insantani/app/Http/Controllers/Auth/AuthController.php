@@ -106,40 +106,48 @@ class AuthController extends Controller
 public function changePassword(Request $request){
     $data = $request->all();
     $id = $data['user_id'];
-    $todos=User::find($id);
+    $validator = $this->validatorChangePassword($request->all());
 
-    $todos->password=$data['password'];
-
-    $validator = $this->validatorReset($request->all());
     if ($validator->fails()){
         echo($validator->messages());
     } else{
-        return response()->json(['message' => 'Success!'], 201);
+        $todos=User::find($id);
+        if (count($todos)>0){
+            echo(bcrypt($data['password']));
+          $todos->password=bcrypt($data['password']);
+          $todos->save();
+          return response()->json(['message' => 'Success!'], 201);
+      } else {
+        return response()->json(['message' => 'User not found!'], 404);
     }
+}
 }
 
 public function changeProfile(){
     $data = $request->all();
-    $name = $data['user_id'];
-    $address = $data['address'];
-    $phone_number = $data['phone_number'];
 
+    $todos=User::find($data['user_id']);
     
-    
-    if(array_key_exists ('name', $data )){
-        $todos=User::find($data['user_id']);
-        $todos->name=$data['name'];
+    if (count($todos)>0){
+        if(array_key_exists ('name', $data )){
+            $todos=User::find($data['user_id']);
+          $todos->name=$data['name'];
+          $todos->save();
     } 
-    else if (array_key_exists('address', $data)){
-        $todos=User::find($data['user_id']);
-        $todos->address=$data['address'];
+        if (array_key_exists('address', $data)){
+            $todos=User::find($data['user_id']);
+          $todos->address=$data['address'];
+          $todos->save();
     }
-    else if (array_key_exists('phone_numer', $data)){
-        $todos=User::find($data['user_id']);
-        $todos->address=$data['phone_number'];
+        if (array_key_exists('phone_number', $data)){
+            $todos=User::find($data['user_id']);
+          $todos->address=$data['phone_number'];
+          $todos->save();
+      }
+      return response()->json(['message' => 'Success!'], 201);
     }
     else {
-        return response()->json(['message' => 'Error'], 404);
+        return response()->json(['message' => 'User not found!'], 404);
 
     }
 }
@@ -179,26 +187,17 @@ public function resetPassword(Request $request){
 protected function validatorReset(array $data)
     {
         return Validator::make($data, [
+            'email' => 'required|email|max:255',
             'password' => 'required|confirmed|max:50'
 //            'password_confirmation' => 'required_with:password|max:50'
         ]);
     }
 
-//    public function postLogin(Request $request)
-//    {
-//
-//        $data = $request->all();
-//        $todo = User::where('email', '=', $data['email']);
-//        if(count($todo) > 0 && Hash::check($data['password'], $todo -> pluck('password'))){
-//            return response()->json(['message' => 'Login complete!'], 201);
-//        } else {
-//            return response()->json(['message' => 'Login failed!'], 403);
-//        }
-//
-//
-//        
-//    }
-
+protected function validatorChangePassword(array $data){
+    return Validator::make($data, [
+        'password' => 'required|confirmed|max:50'
+        ]);
+}
     
 
 }
