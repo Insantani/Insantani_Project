@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -42,10 +43,11 @@ public class FarmerProfileActivity extends Activity {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private String url;
-    public static final String REQUEST_TAG = "HomeFragment";
+    public static final String REQUEST_TAG = "FarmerProfileAcitivty";
     private RequestQueue mQueue;
     private ArrayList<Product> mItems;
     Context context;
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,48 @@ public class FarmerProfileActivity extends Activity {
         photos.add(R.mipmap.col);
         photos.add(R.mipmap.ic_email);
         farmer.setPhoto(photos);
-        farmer.setPhotoProfile(R.drawable.sample_0);
+        final RoundedImageView roundedImageView = new RoundedImageView(this);
+        final ImageView profileP = (ImageView) findViewById(R.id.farmerProfilePicture);
+
+
+        mQueue= CustomVolleyRequestQueue.getInstance(getApplicationContext()).getRequestQueue();
+        url="http://104.155.213.80/insantani/public/api/feed/article/1/picture";
+        Log.d("url", url);
+        final ImageRequest imageRequest= new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        try{
+                            Log.d("bitmap", bitmap.toString());
+
+                            Bitmap photo = roundedImageView.getCroppedBitmap(bitmap, 150);
+
+                            profileP.setImageBitmap(photo);
+
+                        }catch(Exception e){
+                            Log.d("error_picture_article",e.toString());
+
+                        }
+
+                    }
+                },0,0,null,new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error_response_image_article", error.toString());
+            }
+        });
+        imageRequest.setTag(REQUEST_TAG);
+        mQueue.add(imageRequest);
+
+        profileP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, PhotoActivity.class);
+                context.startActivity(intent);
+
+            }
+        });
+
         farmer.setPhotoBackground(R.color.insantaniGreen);
         farmer.setProducts(null);
 
@@ -84,23 +127,7 @@ public class FarmerProfileActivity extends Activity {
         TextView phone = (TextView) findViewById(R.id.farmerPhoneNumber);
         phone.setText(farmer.getPhoneNumber());
 
-        final ImageView profileP = (ImageView) findViewById(R.id.farmerProfilePicture);
-        final int photo = farmer.getPhotoProfile();
-        profileP.setImageResource(photo);
 
-        profileP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context, PhotoActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("image", photo);
-
-                intent.putExtra("photo", bundle);
-                context.startActivity(intent);
-
-            }
-        });
 
         LinearLayout pictureB = (LinearLayout) findViewById(R.id.farmerPictureBackground);
         pictureB.setBackgroundResource(R.mipmap.kentang);
@@ -223,7 +250,7 @@ public class FarmerProfileActivity extends Activity {
 //            return true;
 //        }
 //        //noinspection SimplifiableIfStatement
-
+        onBackPressed();
 
         return super.onOptionsItemSelected(item);
     }

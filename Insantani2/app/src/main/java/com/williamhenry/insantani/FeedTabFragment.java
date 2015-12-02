@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class FeedTabFragment extends Fragment {
@@ -31,6 +32,7 @@ public class FeedTabFragment extends Fragment {
     private RequestQueue mQueue;
 
     private ArrayList<Article> articles;
+    private ArrayList<FarmerActivity> feeds;
 
     public FeedTabFragment() {
         // Required empty public constructor
@@ -52,6 +54,25 @@ public class FeedTabFragment extends Fragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // farmer feed
+        feeds = new ArrayList<FarmerActivity>();
+        FarmerActivity feed = new FarmerActivity();
+        feed.setName("William Henry");
+        feed.setDetail("I want to plant carrot at 5 December");
+        feeds.add(feed);
+
+        feed.setName("Agung Wirayogi");
+        feed.setDetail("Cucumber will be harvested at 3 December");
+        feeds.add(feed);
+
+        feed.setName("William henry");
+        feed.setDetail("I have put fertilezer good quality");
+        feeds.add(feed);
+
+
+
+
 
         // specify an adapter (see also next example)
 

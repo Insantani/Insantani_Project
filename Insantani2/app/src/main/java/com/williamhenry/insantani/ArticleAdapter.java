@@ -26,6 +26,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     public ArticleAdapter(ArrayList<Article> articles, Context context) {
         this.articles = articles;
         this.context = context;
+
     }
 
     // Create new views (invoked by the layout manager)

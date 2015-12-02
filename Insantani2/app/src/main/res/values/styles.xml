@@ -46,6 +46,8 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
         <item name="android:textColorPrimary">@color/insantaniGreen</item>
+        <item name="android:colorPrimary">#8BC34A</item>
+        <item name="android:colorPrimaryDark">#689F38</item>
     </style>
 
     <style name="ActionBarStyle.Transparent" parent="android:Widget.Material.ActionBar">
@@ -53,6 +55,7 @@
         <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
         <item name="displayOptions">showHome|homeAsUp|showTitle</item>
         <item name="android:icon">@android:color/transparent</item>
+
 
         <item name="android:titleTextStyle">@style/ActionBarStyle.Transparent.TitleTextStyle</item>
     </style>

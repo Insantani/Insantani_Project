@@ -1,5 +1,7 @@
 package com.williamhenry.insantani;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +14,7 @@ public class Farmer {
     private String address;
     private String email;
     private ArrayList<Integer> photo;
-    private int photoProfile;
+    private Bitmap photoProfile;
     private int photoBackground;
     private ArrayList<Product> products;
 
@@ -67,13 +69,10 @@ public class Farmer {
     }
 
 
-    public int getPhotoProfile() {
+    public Bitmap getPhotoProfile() {
         return photoProfile;
     }
 
-    public void setPhotoProfile(int photoProfile) {
-        this.photoProfile = photoProfile;
-    }
 
     public int getPhotoBackground() {
         return photoBackground;
@@ -81,5 +80,9 @@ public class Farmer {
 
     public void setPhotoBackground(int photoBackground) {
         this.photoBackground = photoBackground;
+    }
+
+    public void setPhotoProfile(Bitmap photoProfile) {
+        this.photoProfile = photoProfile;
     }
 }
