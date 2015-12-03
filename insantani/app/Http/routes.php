@@ -37,6 +37,9 @@ Route::get('api/products/{id}', array('uses' => 'ProductController@productDetail
 Route::get('api/products/{id}/picture', array('uses' => 'ProductController@showPicture','middleware'=>'products'))->where('id', '[0-9]+');
 Route::get('api/feed',['uses'=>'ArticleController@articles','middleware'=>'articles']);
 Route::get('api/search/product/{query}/{latitude}/{longitude}', array('uses' => 'SearchController@searchProduct','middleware'=>'products'))->where(['query'=> '.+']);
+
+Route::get('api/search/farmer/{query}/{latitude}/{longitude}', array('uses' => 'SearchController@searchFarmer','middleware'=>'products'))->where(['query'=> '.+']);
+
 Route::get('api/search/tag/{query}', array('uses' => 'SearchController@searchTags','middleware'=>'articles'))->where('query', '.+');
 
 Route::get('api/feed/article/{id}', array('uses' => 'ArticleController@articleDetail','middleware'=>'articles'))->where('id', '[0-9]+');

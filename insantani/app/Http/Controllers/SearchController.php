@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ProductModel;
 use App\TagsModel;
+use App\Farmer;
 use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
@@ -47,6 +48,52 @@ class SearchController extends Controller
 //            if (( 6371 * acos( cos( deg2rad($latitude[0]) ) * cos( deg2rad( $queryFarmer['latitude'] ) ) * cos( deg2rad( $queryFarmer['longitude'] ) - deg2rad($longitude[0]) ) + sin( deg2rad($latitude[0]) ) * sin( deg2rad( $queryFarmer['latitude'] ) ) ) )<25){
                 array_push($newResult,$todo);
 //            }
+        }
+        
+        usort($newResult, function($a, $b) { //Sort the array using a user defined function
+            return $a->distance < $b->distance ? -1 : 1; //Compare the scores
+        });
+               
+
+        return [
+                'message'=>'FOUND',
+                'state'=>'search results',
+                'result'=>$newResult 
+            ];
+        }else{
+            return response()->json([
+                "messgae"=>"Invalid Format",
+                "state"=>"search results"
+            ],400);
+        }
+        
+        
+        
+    }
+    public function searchFarmer($query,$latitude,$longitude){
+        
+        $segments = explode('/', $query);
+        $longitude= explode('/',$longitude);
+        $latitude= explode('/',$latitude);
+        if(is_float(floatval($latitude[0]))==true && is_float(floatval($longitude[0]))){
+
+        $todos=Farmer::where('farmer_username','like','%'.$segments[0].'%')->get();
+        
+//        echo($todos);
+        
+//        $todos->distance=8;
+//        print_r($todos->distance);
+        
+        $newResult=array();
+        
+        foreach($todos as $todo){
+            $distance=(6371 * acos(cos(deg2rad($latitude[0])) * cos(deg2rad($todo['latitude'])) * cos(deg2rad($todo['longitude']) - deg2rad($longitude[0])) + sin(deg2rad($latitude[0])) * sin(deg2rad($todo['latitude']))));
+            $todo->distance=$distance;
+        }
+
+        foreach($todos as $todo){
+
+                array_push($newResult,$todo);
         }
         
         usort($newResult, function($a, $b) { //Sort the array using a user defined function
