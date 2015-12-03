@@ -36,7 +36,10 @@ Route::get('api/products',['uses'=>'ProductController@products','middleware'=>'p
 Route::get('api/products/{id}', array('uses' => 'ProductController@productDetail','middleware'=>'products'))->where('id', '[0-9]+');
 Route::get('api/products/{id}/picture', array('uses' => 'ProductController@showPicture','middleware'=>'products'))->where('id', '[0-9]+');
 Route::get('api/feed',['uses'=>'ArticleController@articles','middleware'=>'articles']);
-Route::get('api/search/product/{query}', array('uses' => 'SearchController@searchProduct','middleware'=>'products'))->where('query', '.+');
+Route::get('api/search/product/{query}/{latitude}/{longitude}', array('uses' => 'SearchController@searchProduct','middleware'=>'products'))->where(['query'=> '.+']);
+
+Route::get('api/search/farmer/{query}/{latitude}/{longitude}', array('uses' => 'SearchController@searchFarmer','middleware'=>'products'))->where(['query'=> '.+']);
+
 Route::get('api/search/tag/{query}', array('uses' => 'SearchController@searchTags','middleware'=>'articles'))->where('query', '.+');
 
 Route::get('api/feed/article/{id}', array('uses' => 'ArticleController@articleDetail','middleware'=>'articles'))->where('id', '[0-9]+');
@@ -44,15 +47,35 @@ Route::get('api/feed/article/{id}/picture', array('uses' => 'ArticleController@s
 Route::get('api/farmer/{id}/products',array('uses'=>'ProductController@relatedItems','middleware'=>'products'))->where('id','.+');
 
 Route::get('api/tag/{query}/results',array('uses'=>'TagController@tagResultDetail','middleware'=>'articles'))->where('query','.+');
-Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']);
+Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']); 
+
+
 //Route::post('api/login',['uses'=>'Auth\AuthController@postLogin']);
 Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'oauth']);
-Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'oauth'])->where('id','[0-9]+');
+Route::put('api/checkout/{id}/status',['uses'=>'CheckoutController@changeStatus',"middleware"=>'products'])->where('id','[0-9]+');
 Route::get('api/user',['uses'=>'Auth\AuthController@userInfo','middleware'=>'oauth']);
 Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=>'oauth']);
 Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'oauth']);
 Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'oauth']);
 Route::put('api/cart/update',['uses'=>'ShoppingCartController@update',"middleware"=>'oauth']);
+
+Route::post('api/wish/add',['uses'=>'WishListController@store',"middleware"=>'oauth']);
+Route::get('api/wish',['uses'=>'WishListController@show',"middleware"=>'oauth']);
+Route::delete('api/wish/delete',['uses'=>'WishListController@destroy',"middleware"=>'oauth']);
+
+Route::post('api/wish/general/add',['uses'=>'WishListGeneralController@store',"middleware"=>'oauth']);
+Route::get('api/wish/general',['uses'=>'WishListGeneralController@show',"middleware"=>'oauth']);
+Route::delete('api/wish/general/delete',['uses'=>'WishListGeneralController@destroy',"middleware"=>'oauth']);
+
+Route::post('api/notify',['uses'=>'NotificationController@postNotifyPrice',"middleware"=>'articles']);
+Route::post('api/notify/register',['uses'=>'NotificationController@postToken',"middleware"=>'articles']);
+Route::delete('api/notify/register',['uses'=>'NotificationController@destroy',"middleware"=>'articles']);
+Route::post('api/follow',['uses'=>'FollowController@follow',"middleware"=>'oauth']);
+Route::get('api/follow/following',['uses'=>'FollowController@following',"middleware"=>'oauth']);
+Route::get('api/updates',['uses'=>'UpdatesController@show',"middleware"=>'oauth']);
+//Route::get('api/follow/following',['uses'=>'FollowController@following',"middleware"=>'oauth']);
+
+
 
 Route::post('oauth/token', function()
 {

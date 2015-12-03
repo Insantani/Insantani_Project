@@ -53,6 +53,9 @@ class MandrillHandler extends MailHandler
         $message->setDate(time());
 
         $ch = curl_init();
+//        curl_setopt ($this->ch, CURLOPT_SSL_VERIFYPEER, TRUE); 
+////        echo(public_path());
+//        curl_setopt ($this->ch, CURLOPT_CAINFO, public_path()."\cacert.pem");
 
         curl_setopt($ch, CURLOPT_URL, 'https://mandrillapp.com/api/1.0/messages/send-raw.json');
         curl_setopt($ch, CURLOPT_POST, 1);

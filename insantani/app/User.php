@@ -43,4 +43,17 @@ class User extends Model implements AuthenticatableContract,
     public function shoppingCart(){
         return $this->hasMany('App\ShoppingCartModel','user_id');
     }
+                                        
+    public function wishList(){
+        return $this->hasMany('App\WishListModel','user_id');
+    }
+    public function wishListGeneral(){
+        return $this->hasMany('App\WishListModelGeneral','user_id');
+    }
+                                        
+    public function deviceToken(){
+        
+        
+        return $this->hasMany('App\DeviceTokenModel','user_id');
+    }
 }
