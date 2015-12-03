@@ -1,25 +1,20 @@
 package com.williamhenry.insantani;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TabHost;
-
-import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter mAdapter;
+
+    private FeedTabFragment feedTabFragment;
+    private ShopTabFragment shopTabFragment;
+
+    private TabLayout tabLayout;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -28,12 +23,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getActivity().getActionBar().show();
+        getActivity().getActionBar().setElevation(0);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TabHost tabHost = (TabHost) rootView.findViewById(R.id.tabhost);
@@ -144,40 +141,25 @@ public class HomeFragment extends Fragment {
 
 
 
+=======
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
         // Inflate the layout for this fragment
-        return rootView;
-    }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
+        feedTabFragment = new FeedTabFragment();
+        shopTabFragment = new ShopTabFragment();
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-//    @Override
+        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(feedTabFragment, "Feed");
+        adapter.addFragment(shopTabFragment, "Shop");
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getActivity().getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+        viewPager.setAdapter(adapter);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
 
-
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-            return true
-                    ;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return view;
     }
 
 

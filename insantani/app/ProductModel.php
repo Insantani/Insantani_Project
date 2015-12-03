@@ -14,6 +14,7 @@ class ProductModel extends Model
 {
 
     protected $table="product";
+    protected $hidden=["updated_at","product_filename","product_filepath"];
    
     public function nutritionFacts(){
         

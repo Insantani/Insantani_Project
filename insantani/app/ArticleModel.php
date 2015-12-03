@@ -9,6 +9,7 @@ class ArticleModel extends Model
     //
     protected $table='article';
     protected $primaryKey ="article_id";
+    protected $hidden=['article_filename','article_filepath'];
     
     public function article_tags(){
         

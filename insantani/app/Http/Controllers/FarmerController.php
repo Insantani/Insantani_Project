@@ -9,6 +9,7 @@ use App\Farmer;
 
 
 use App\ProductModel;
+use App\FarmerImageModel;
 
 
 use App\Http\Requests;
@@ -105,6 +106,50 @@ class FarmerController extends Controller
                 'state'=>'farmer background picture'
             ];
         }
+    }
+
+    public function images($username){
+
+        $segments = explode('/', $username);
+        $todos=FarmerImageModel::where('farmer_username','=',$segments)->get();
+        if(count($todos)>0){
+            return [
+            "message"=>'FOUND',
+            'state'=>'farmer images',
+            'data'=>$todos
+
+
+            ];
+        }else{
+            return [
+                'message'=>'NOT FOUND',
+                'state'=>'farmer images'
+            ];
+        }
+
+    }
+
+    public function imagesDetail($username,$id){
+
+        $segments = explode('/', $username);
+        $image_id=explode('/',$id);
+        // print_r($image_id);
+        $todos=FarmerImageModel::where('farmer_username','=',$segments)
+                               ->where('images_id','=',$image_id)
+                               ->get();
+        if(count($todos)>0){
+            $path=$todos->pluck('farmer_images_filepath');
+            $filename=$todos->pluck('farmer_images_filename');
+            ob_end_clean();
+
+            return  response()->download(public_path().$path[0], $filename[0], ['Content-Type'=>'image/png']);
+        }else{
+            return [
+                'message'=>'NOT FOUND',
+                'state'=>'farmer images detail'
+            ];
+        }
+
     }
 
     /**

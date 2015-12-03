@@ -2,6 +2,13 @@ package com.williamhenry.insantani;
 
 import android.app.ActionBar;
 import android.app.Activity;
+<<<<<<< HEAD
+=======
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +21,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+=======
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+//import com.crashlytics.android.Crashlytics;
+//import com.crashlytics.android.ndk.CrashlyticsNdk;
+//import io.fabric.sdk.android.Fabric;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 //import android.app.Fragment;
 //import android.app.FragmentManager;
@@ -27,6 +42,12 @@ public class MainActivity extends FragmentActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private SharedPreferences pref;
+    private Editor editor;
+    private boolean checkToken;
+    private boolean checkRefreshToken;
+    private boolean tokenType;
+    private boolean user_id;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -36,6 +57,14 @@ public class MainActivity extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
+        pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor=pref.edit();
+        checkToken= pref.contains("access_token");
+        checkRefreshToken= pref.contains("refresh_token");
+        tokenType= pref.contains("token_type");
+        user_id=pref.contains("user_id");
+//        Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -60,12 +89,44 @@ public class MainActivity extends FragmentActivity
 //                .commit();
 //        FragmentTransaction ft=fragmentManager.beginTransaction();
         Log.d("position",Integer.toString(position));
-        switch(position) {
-            case 0:
-                fragment = new HomeFragment();
+        if (!checkToken && !checkRefreshToken && !tokenType && !user_id){
+            switch(position) {
+                case 0:
+                    fragment = new HomeFragment();
 //                ft.replace(R.id.container,HomeFragment, SyncStateContract.Constants)
-                break;
+                    break;
 
+                case 1:
+                    fragment= new CartFragment();
+                    break;
+//                case 2:
+//                    fragment= new SettingsFragment();
+//                    break;
+                case 2:
+
+                    fragment = new Login();
+                    break;
+
+            }
+        }else{
+            switch(position) {
+                case 0:
+                    fragment = new HomeFragment();
+//                ft.replace(R.id.container,HomeFragment, SyncStateContract.Constants)
+                    break;
+
+                case 1:
+                    fragment= new CartFragment();
+                    break;
+                case 2:
+                    fragment= new SettingsFragment();
+                    break;
+//                case 2:
+//
+//                    fragment = new Login();
+//                    break;
+
+<<<<<<< HEAD
             case 1:
                 fragment= new CartFragment();
                 break;
@@ -75,8 +136,12 @@ public class MainActivity extends FragmentActivity
             case 3:
                 fragment = new LoginFragment();
                 break;
+=======
+            }
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         }
+
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
@@ -103,6 +168,11 @@ public class MainActivity extends FragmentActivity
                 mTitle = getString(R.string.title_section4);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     public void restoreActionBar() {
@@ -135,7 +205,8 @@ public class MainActivity extends FragmentActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
+            startActivity(new Intent(this, SearchResultActivity.class));
             return true;
         }
 

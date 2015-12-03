@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Hash;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 
 class AuthController extends Controller
 {
@@ -28,9 +31,10 @@ class AuthController extends Controller
      *
      * @return void
      */
+//    protected $redirectTo='/';
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+//        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -44,7 +48,10 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|max:50',
+            'address'=>'required|max:100',
+            'phone_number'=>'required|max:15'
+//            'password_confirmation' => 'required_with:password|max:50'
         ]);
     }
 
@@ -56,10 +63,61 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+//        print ($data);
+        $todo= User::create([
+            'user_id'=>uniqid($data['email'],true),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone_number'=>$data['phone_number'],
+            'address'=>$data['address']
+            
         ]);
+        $todo->save();
+        return $todo;
     }
+    
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            echo($validator->messages());
+        }else{
+
+            $this->create($request->all());
+
+            return response()->json([ 'message' => 'Registration Complete!' ], 201);
+        }
+    }
+    
+    public function userInfo(Request $request){
+        $user_id=$request->input('user_id');
+        $todos=User::find($user_id);
+        if (count($todos)>0){
+            return $todos;
+        }else{
+            return response("Not Found",404);
+        }
+        
+        
+    }
+//    public function postLogin(Request $request)
+//    {
+//
+//        $data = $request->all();
+//        $todo = User::where('email', '=', $data['email']);
+//        if(count($todo) > 0 && Hash::check($data['password'], $todo -> pluck('password'))){
+//            return response()->json(['message' => 'Login complete!'], 201);
+//        } else {
+//            return response()->json(['message' => 'Login failed!'], 403);
+//        }
+//
+//
+//        
+//    }
+
+    
+
 }

@@ -15,12 +15,12 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'sandboxf43f2cb91ed94cc4aa12c9a7551d0252.mailgun.org',
+        'secret' => 'key-4b0cbe2c326d52151ba9e71974a41913',
     ],
 
     'mandrill' => [
-        'secret' => env('MANDRILL_SECRET'),
+        'secret' => '6GsAIiXnxPeLKdzQR-fUfg',
     ],
 
     'ses' => [

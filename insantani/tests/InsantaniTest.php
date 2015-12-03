@@ -21,21 +21,21 @@ class InsantaniTest extends TestCase
     public function test2()
     {
         $this->call('GET','api/feed?page=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test3()
     {
         $this->call('GET','api/feed?limit=1');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test4()
     {
         $this->call('GET','api/feed');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
@@ -49,21 +49,21 @@ class InsantaniTest extends TestCase
     public function test6()
     {
         $this->call('GET','api/products');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test7()
     {
         $this->call('GET','api/products?limit=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test8()
     {
         $this->call('GET','api/products?page=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
@@ -92,14 +92,14 @@ class InsantaniTest extends TestCase
     public function test12()
     {
         $this->call('GET','api/products?a=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
     public function test13()
     {
         $this->call('GET','api/feed?a=0');
-        $this->assertResponseStatus(404);
+        $this->assertResponseStatus(400);
         
         
     }
@@ -174,5 +174,25 @@ class InsantaniTest extends TestCase
     {
         $this->call('GET','api/tag/results');
         $this->assertResponseStatus(404); 
+    }
+    public function test26()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","email"=>"yohana.kanisia@gmail.com","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"password"]);
+        $this->assertResponseStatus(201);
+    }
+    public function test27()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"password"]);
+        $this->assertResponseStatus(200);
+    }
+    public function test28()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","email"=>"yohana.kanisia@gmail.com","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"jo"]);
+        $this->assertResponseStatus(200);
+    }
+    public function test29()
+    {
+        $this->call('POST','api/register',["name"=>"Yohana Kanisia","password"=>"password","email"=>"yohana.kanisia@gmail.com","phone_number"=>"08129530405","address"=>"cibubur","password_confirmation"=>"password"]);
+        $this->assertResponseStatus(500);
     }
 }

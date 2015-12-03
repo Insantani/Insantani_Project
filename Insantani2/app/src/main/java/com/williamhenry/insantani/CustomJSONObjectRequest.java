@@ -1,5 +1,11 @@
 package com.williamhenry.insantani;
 
+<<<<<<< HEAD
+=======
+/**
+ * Created by william on 11/11/2015.
+ */
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -14,9 +20,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+<<<<<<< HEAD
 /**
  * Created by CantyaPS on 12-Nov-15.
  */
+=======
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 public class CustomJSONObjectRequest extends JsonObjectRequest {
 
     public CustomJSONObjectRequest(int method, String url, JSONObject jsonRequest,
@@ -37,4 +46,8 @@ public class CustomJSONObjectRequest extends JsonObjectRequest {
         // here you can write a custom retry policy
         return super.getRetryPolicy();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 }
