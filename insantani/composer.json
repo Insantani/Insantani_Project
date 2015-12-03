@@ -8,7 +8,11 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "bshaffer/oauth2-server-php":"~1.7",
-        "bshaffer/oauth2-server-httpfoundation-bridge":"~1.1"
+        "bshaffer/oauth2-server-httpfoundation-bridge":"~1.1",
+        "davibennun/laravel-push-notification": "dev-laravel5",
+        "vinkla/pusher": "^2.2",
+        "pusher/pusher-php-server":"2.2.1",
+        "guzzlehttp/guzzle": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

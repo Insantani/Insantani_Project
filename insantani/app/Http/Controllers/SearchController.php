@@ -20,22 +20,52 @@ class SearchController extends Controller
         //
     }
     
-    public function searchProduct($query){
+    public function searchProduct($query,$latitude,$longitude){
         
         $segments = explode('/', $query);
+        $longitude= explode('/',$longitude);
+        $latitude= explode('/',$latitude);
+        if(is_float(floatval($latitude[0]))==true && is_float(floatval($longitude[0]))){
+
         $todos=ProductModel::where('product_name','like','%'.$segments[0].'%')->get();
-        if(count($todos)>0){
-            return [
+        
+//        $todos->distance=8;
+//        print_r($todos->distance);
+        
+        $newResult=array();
+        
+        foreach($todos as $todo){
+            $x=$todo->farmer; 
+//            print_r($todo['farmer']);
+            $queryFarmer=$todo['farmer'];
+            $distance=(6371 * acos(cos(deg2rad($latitude[0])) * cos(deg2rad($queryFarmer['latitude'])) * cos(deg2rad($queryFarmer['longitude']) - deg2rad($longitude[0])) + sin(deg2rad($latitude[0])) * sin(deg2rad($queryFarmer['latitude']))));
+            $todo->distance=$distance;
+        }
+
+        foreach($todos as $todo){
+//            $queryFarmer=$todo['farmer'];
+//            if (( 6371 * acos( cos( deg2rad($latitude[0]) ) * cos( deg2rad( $queryFarmer['latitude'] ) ) * cos( deg2rad( $queryFarmer['longitude'] ) - deg2rad($longitude[0]) ) + sin( deg2rad($latitude[0]) ) * sin( deg2rad( $queryFarmer['latitude'] ) ) ) )<25){
+                array_push($newResult,$todo);
+//            }
+        }
+        
+        usort($newResult, function($a, $b) { //Sort the array using a user defined function
+            return $a->distance < $b->distance ? -1 : 1; //Compare the scores
+        });
+               
+
+        return [
                 'message'=>'FOUND',
                 'state'=>'search results',
-                'result'=>$todos 
+                'result'=>$newResult 
             ];
         }else{
-             return [
-                'message'=>'NOT FOUND',
-                'state'=>'search results'
-            ];
+            return response()->json([
+                "messgae"=>"Invalid Format",
+                "state"=>"search results"
+            ],400);
         }
+        
         
         
     }
@@ -55,18 +85,13 @@ class SearchController extends Controller
 //            }
             
         }
-        if (count($todos)>0){
-            return [
-                'message'=>'FOUND',
-                'state'=>'search results',
-                'result'=>$todos
-            ];
-    } else{
-            return [
-                'message'=>'NOT FOUND',
-                'state'=>'search results'
-            ];
-        }
+        
+        return [
+            'message'=>'FOUND',
+            'state'=>'search results',
+            'result'=>$todos
+        ];
+     
         
         
     }
