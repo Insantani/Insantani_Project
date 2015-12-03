@@ -57,6 +57,7 @@ Route::post('api/cart/add',['uses'=>'ShoppingCartController@store',"middleware"=
 Route::get('api/cart',['uses'=>'ShoppingCartController@show',"middleware"=>'oauth']);
 Route::delete('api/cart/delete',['uses'=>'ShoppingCartController@destroy',"middleware"=>'oauth']);
 Route::put('api/cart/update',['uses'=>'ShoppingCartController@update',"middleware"=>'oauth']);
+Route::post('api/review',['uses'=>'RateController@postReview','middleware'=>'products'])
 
 Route::post('oauth/token', function()
 {

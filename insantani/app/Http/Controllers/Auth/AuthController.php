@@ -118,7 +118,7 @@ public function changePassword(Request $request){
           $todos->save();
           return response()->json(['message' => 'Success!'], 201);
       } else {
-        return response()->json(['message' => 'User not found!'], 404);
+        return response()->json(['message' => 'User not found!'], 201);
     }
 }
 }
@@ -147,7 +147,7 @@ public function changeProfile(){
       return response()->json(['message' => 'Success!'], 201);
     }
     else {
-        return response()->json(['message' => 'User not found!'], 404);
+        return response()->json(['message' => 'User not found!'], 201);
 
     }
 }
@@ -170,16 +170,13 @@ public function resetPassword(Request $request){
                 echo($validator->messages());
             }else{
 
-                // $this->create($request->all());
-
-                // return response()->json([ 'message' => 'Registration Complete!' ], 201);
                 $todo=User::where('email', '=', $email)
                            -> update('password', '=', $newpassword );
                 return response()->json(['message' => 'Success!'], 201);
         }
             
         }else{
-            return response()->json(['message' => 'User not found!'], 404);
+            return response()->json(['message' => 'User not found!'], 201);
         }
     }
 
@@ -189,7 +186,6 @@ protected function validatorReset(array $data)
         return Validator::make($data, [
             'email' => 'required|email|max:255',
             'password' => 'required|confirmed|max:50'
-//            'password_confirmation' => 'required_with:password|max:50'
         ]);
     }
 
