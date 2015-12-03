@@ -24,18 +24,18 @@
             <!--android:textColor="@color/insantaniWhite"-->
             <!--android:id="@+id/decrese_button" />-->
 
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="70dp"
+        <!--<TextView-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="70dp"-->
 
 
-            android:textColor="@color/insantaniButtonBlack"
-            android:text="You have successfully purchase items"
-            android:gravity="center"
-            android:textSize="15dp"
-            android:textStyle="normal"
-            android:layout_margin="10dp"
-            android:id="@+id/warn" />
+            <!--android:textColor="@color/insantaniButtonBlack"-->
+            <!--android:text="You have successfully purchase items"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textStyle="normal"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:id="@+id/warn" />-->
 
         <!--<Button-->
             <!--android:layout_width="50dp"-->
@@ -51,4 +51,4 @@
     </LinearLayout>
 
 
-</LinearLayout><!-- From: file:/C:/Users/william/Documents/Insantani_Project-agung/Insantani_Project-agung/Insantani2/app/src/main/res/layout/cart_warn.xml -->
+</LinearLayout>

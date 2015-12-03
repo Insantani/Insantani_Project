@@ -8,6 +8,18 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECIEVE"/>
+    
+    <permission android:name="com.williamhenry.insantani.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.williamhenry.insantani.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
+
 
     <application
         android:allowBackup="true"
@@ -56,15 +68,7 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:parentActivityName=".MainActivity"
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:theme="@style/Login" >
-=======
-            android:theme="@style/Login">
->>>>>>> New changes on the login and register
-=======
-            android:theme="@style/Login" >
->>>>>>> commit all
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.williamhenry.insantani.MainActivity" />
@@ -73,15 +77,34 @@
             android:name=".CheckoutActivity"
             android:theme="@style/CheckoutTheme" >
         </activity>
-<<<<<<< HEAD
-        <activity
-            android:name=".Registration"
-            android:label="@string/title_Register"
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.example.gcm" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.williamhenry.insantani.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.williamhenry.insantani.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
 
-            >
-        </activity>
-=======
->>>>>>> commit all
+        <service
+            android:name="com.williamhenry.insantani.RegistrationIntentService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

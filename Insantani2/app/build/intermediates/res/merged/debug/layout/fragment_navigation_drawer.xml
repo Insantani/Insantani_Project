@@ -4,4 +4,3 @@
     android:divider="@android:color/transparent" android:dividerHeight="0dp"
     android:background="#FFFFFF"
     android:elevation="16dp" tools:context=".NavigationDrawerFragment" />
-<!-- From: file:/C:/Users/william/Documents/Insantani_Project-agung/Insantani_Project-agung/Insantani2/app/src/main/res/layout/fragment_navigation_drawer.xml -->

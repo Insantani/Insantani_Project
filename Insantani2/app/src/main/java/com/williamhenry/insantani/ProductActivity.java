@@ -1,9 +1,5 @@
 package com.williamhenry.insantani;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> commit all
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,44 +14,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> commit all
 import android.text.Editable;
-<<<<<<< HEAD
-=======
 import android.text.InputFilter;
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 import android.text.TextWatcher;
 import android.util.Base64;
-=======
->>>>>>> Cretate a new form for related item in product page
 import android.util.Log;
 import android.view.LayoutInflater;
-<<<<<<< HEAD
-=======
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
->>>>>>> Adding add to shoping cart button in Product Page
-=======
->>>>>>> commit all
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.widget.RelativeLayout;
-=======
->>>>>>> Adding add to shoping cart button in Product Page
-=======
-import android.widget.RelativeLayout;
->>>>>>> commit all
 import android.widget.TextView;
 import android.view.View;
 import android.content.SharedPreferences;
@@ -78,8 +48,6 @@ import java.util.Map;
 
 public class ProductActivity extends ActionBarActivity {
     private Context context;
-<<<<<<< HEAD
-<<<<<<< HEAD
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
@@ -99,22 +67,11 @@ public class ProductActivity extends ActionBarActivity {
     public static final String REQUEST_TAG = "RelatedItems";
 
 
-=======
->>>>>>> Adding add to shoping cart button in Product Page
-=======
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter mAdapter;
->>>>>>> Cretate a new form for related item in product page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_product);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> commit all
         pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         checkToken=pref.contains("access_token");
         checkRefreshToken=pref.contains("refresh_token");
@@ -123,7 +80,6 @@ public class ProductActivity extends ActionBarActivity {
         relativeLayout= (RelativeLayout) findViewById(R.id.relativeLayoutProduct);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-<<<<<<< HEAD
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
         mRecyclerView.setHasFixedSize(true);
@@ -132,29 +88,12 @@ public class ProductActivity extends ActionBarActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-=======
->>>>>>> Adding add to shoping cart button in Product Page
-=======
->>>>>>> commit all
-
-        mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
-        mRecyclerView.setHasFixedSize(true);
-
-        // The number of Columns
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new RelativeItemAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
 
         Bundle extras= getIntent().getExtras();
         final Bundle item=(Bundle)extras.get("nature");
 //        final Context context=getApplicationContext();
         final ArrayList<Product> relatedItems = new ArrayList<Product>();
-<<<<<<< HEAD
-=======
 
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
         mQueue= CustomVolleyRequestQueue.getInstance(getApplicationContext()).getRequestQueue();
         url="http://104.155.213.80/insantani/public/api/farmer/"+item.getString("fname")+"/products";
         Log.d("url_farmer",url);
@@ -193,10 +132,6 @@ public class ProductActivity extends ActionBarActivity {
                                                     product.setPrice(dataDetail.getInt("prod_price"));
                                                     product.setStock(dataDetail.getInt("stock_num"));
                                                     product.setThumbnail(bitmap);
-<<<<<<< HEAD
-                                                    product.setUrl(dataDetail.getString("product_picture_url"));
-                                                    relatedItems.add(product);
-=======
                                                     product.setId(dataDetail.getInt("id"));
                                                     product.setUom(dataDetail.getString("uom"));
                                                     product.setUrl(dataDetail.getString("product_picture_url"));
@@ -204,7 +139,6 @@ public class ProductActivity extends ActionBarActivity {
                                                     Log.d("item_id",Integer.toString(item.getInt("id")));
                                                     if (dataDetail.getInt("id")!= item.getInt("id"))
                                                         relatedItems.add(product);
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
                                                     mAdapter = new RelativeItemAdapter(relatedItems,getApplicationContext());
                                                     mRecyclerView.setAdapter(mAdapter);
@@ -286,20 +220,11 @@ public class ProductActivity extends ActionBarActivity {
         text3.setText("By: " + item.getString("fname"));
 
         TextView text4 = (TextView)findViewById(R.id.price);
-<<<<<<< HEAD
-        text4.setText("Rp " + Integer.toString(item.getInt("price")));
-=======
         text4.setText("Rp " + Integer.toString(item.getInt("price"))+ " / "+item.getString("uom"));
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> commit all
         Button shopping = (Button) findViewById(R.id.shoppingcart_button);
         shopping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,31 +239,6 @@ public class ProductActivity extends ActionBarActivity {
 
                     snackbar.show();
                 } else {
-<<<<<<< HEAD
-
-                    LayoutInflater inflater = getLayoutInflater();
-
-                    AlertDialog alertDialog = new AlertDialog.Builder(ProductActivity.this).create();
-                    alertDialog.setView(inflater.inflate(R.layout.confirmation_add_to_shopping_cart_dialog, null));
-                    alertDialog.setTitle("Quantity");
-
-                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Confirm",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog1, int which) {
-                                    final DialogInterface dialog=dialog1;
-//                                    Intent intent = new Intent(context, CartFragment.class);
-//                                    Bundle bundle = new Bundle();
-                                    EditText text = (EditText) ((Dialog) dialog).findViewById(R.id.confirmation_quantity);
-                                    final int quantity = Integer.parseInt(text.getText().toString());
-
-=======
                     if (item.getInt("stock") > 0) {
                         LayoutInflater inflater = getLayoutInflater();
 
@@ -362,7 +262,6 @@ public class ProductActivity extends ActionBarActivity {
                                         EditText text = (EditText) ((Dialog) dialog).findViewById(R.id.confirmation_quantity);
                                         text.setFilters(new InputFilter[]{ new InputFilterMinMax("1", Integer.toString(item.getInt("stock")))});
                                         final int quantity = Integer.parseInt(text.getText().toString());
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
 
 //                                    bundle.putString("ProductName", item.getString("title"));
@@ -373,19 +272,6 @@ public class ProductActivity extends ActionBarActivity {
 //                                    intent.putExtra("Cart", bundle);
 
 
-<<<<<<< HEAD
-                                    //add to cart starts here
-                                    url="http://104.155.213.80/insantani/public/api/cart/add";
-                                    final StringRequest stringRequestAddCart= new StringRequest(Request.Method.POST,
-                                            url, new Response.Listener<String>(){
-                                        //                    private ArrayList<Article> articles1=new ArrayList<Article>();
-                                        @Override
-                                        public void onResponse(String response){
-                                            Log.d("add_cart", response.toString());
-                                            try {
-                                                Log.d("response_add_cart", response.toString());
-                                                JSONObject jsonObject= new JSONObject(response.toString());
-=======
                                         //add to cart starts here
                                         url = "http://104.155.213.80/insantani/public/api/cart/add";
                                         final StringRequest stringRequestAddCart = new StringRequest(Request.Method.POST,
@@ -397,16 +283,11 @@ public class ProductActivity extends ActionBarActivity {
                                                 try {
                                                     Log.d("response_add_cart", response.toString());
                                                     JSONObject jsonObject = new JSONObject(response.toString());
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 //                                                editor.putString("user_id",jsonObject.getString("user_id"));
 //                            editor.putString("token_type",jsonObject.getString("token_type"));
 //                            editor.putString("refresh_token", jsonObject.getString("refresh_token"));
 //                                                editor.commit();
-<<<<<<< HEAD
-                                                Log.d("message_add_cart", jsonObject.getString("message"));
-=======
                                                     Log.d("message_add_cart", jsonObject.getString("message"));
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 //                            Log.d("token_type",jsonObject.getString("token_type"));
 //                            Log.d("refresh_token",jsonObject.getString("refresh_token"));
 
@@ -422,37 +303,6 @@ public class ProductActivity extends ActionBarActivity {
 //                                                Intent intent = new Intent(getActivity(), MainActivity.class);
 //                                                startActivity(intent);
 
-<<<<<<< HEAD
-                                                dialog.dismiss();
-                                            } catch(Exception e){
-                                                Log.d("JSON_error_add_cart",e.toString());
-                                            }
-                                        }
-                                    },new Response.ErrorListener(){
-                                        @Override
-                                        public void onErrorResponse(VolleyError error){
-
-                                            Log.d("error_response_add_cart",error.toString());
-
-                                            Snackbar snackbar = Snackbar.make(relativeLayout, "You have the same item in cart", Snackbar.LENGTH_LONG);
-                                            snackbar.setActionTextColor(Color.WHITE);
-
-                                            View snackbarView= snackbar.getView();
-                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                            textView.setTextColor(Color.WHITE);
-
-                                            snackbar.show();
-                                        }
-                                    }){
-
-                                        @Override
-                                        public Map<String, String> getHeaders(){
-                                            Map<String, String> headers = new HashMap<String,String>();
-                                            // the POST parameters:
-                                            String auth="Bearer "+pref.getString("access_token",null);
-                                            Log.d("Auth_add_cart",auth);
-                                            headers.put("Authorization",auth);
-=======
                                                     dialog.dismiss();
                                                 } catch (Exception e) {
                                                     Log.d("JSON_error_add_cart", e.toString());
@@ -482,120 +332,12 @@ public class ProductActivity extends ActionBarActivity {
                                                 String auth = "Bearer " + pref.getString("access_token", null);
                                                 Log.d("Auth_add_cart", auth);
                                                 headers.put("Authorization", auth);
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 //                        params.put("email", email.getText().toString());
 //
 //                        params.put("password", password.getText().toString());
 //                        params.put("scope","read");
 //                        params.put("client_id", "testclient");
 //                        params.put("client_secret","testpass");
-<<<<<<< HEAD
-                                            return headers;
-                                        };
-
-                                        protected Map getParams(){
-                                            Map params = new HashMap();
-                                            // the POST parameters:
-
-                                            String user_id= pref.getString("user_id",null);
-                                            params.put("product_id",Integer.toString(item.getInt("id")));
-                                            params.put("user_id", user_id);
-
-                                            params.put("product_quantity",Integer.toString( quantity));
-//                                            params.put("scope","read");
-//                                            params.put("client_id", "testclient");
-//                                            params.put("client_secret","testpass");
-                                            return params;
-                                        };
-
-
-                                    };
-<<<<<<< HEAD
-=======
-
-
-                                    stringRequestAddCart.setTag(REQUEST_TAG);
-                                    mQueue.add(stringRequestAddCart);
-
-
-
-
-
-
->>>>>>> commit all
-
-
-                                    stringRequestAddCart.setTag(REQUEST_TAG);
-                                    mQueue.add(stringRequestAddCart);
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                }
-                            });
-                    alertDialog.show();
-                    Button plus = (Button) alertDialog.findViewById(R.id.increse_button);
-                    Button min = (Button) alertDialog.findViewById(R.id.decrese_button);
-                    EditText qty = (EditText) alertDialog.findViewById(R.id.confirmation_quantity);
-                    final TextView text = (TextView) alertDialog.findViewById(R.id.confirmation_quantity);
-                    counter = Integer.parseInt(text.getText().toString());
-
-                    qty.addTextChangedListener(new TextWatcher() {
-
-                        public void afterTextChanged(Editable s) {
-
-                            // you can call or do what you want with your EditText here
-                            if (!text.getText().toString().equals("")) {
-
-                                counter = Integer.parseInt(text.getText().toString());
-                            }
-
-
-                        }
-
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                        }
-
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                        }
-                    });
-                    plus.setOnClickListener(new View.OnClickListener() {
-                                                public void onClick(View view) {
-                                                    counter += 1;
-                                                    text.setText("" + counter);
-
-                                                }
-                                            }
-
-                    );
-                    min.setOnClickListener(new View.OnClickListener()
-
-                                           {
-
-                                               public void onClick(View view) {
-                                                   if (counter <= 1) {
-                                                       text.setText("1");
-                                                   }
-                                                   if (counter > 1) {
-                                                       counter -= 1;
-                                                       text.setText("" + counter);
-                                                   }
-                                               }
-                                           }
-
-                    );
-=======
                                                 return headers;
                                             }
 
@@ -697,84 +439,6 @@ public class ProductActivity extends ActionBarActivity {
                         snackbar.show();
 
                     }
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
-
-                }
-            }
-        });
-=======
-//        Button add_to_shopping_cart = (Button) findViewById(R.id.shoppingcart_button);
-//        add_to_shopping_cart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),)
-//            }
-//        };
->>>>>>> Adding add to shoping cart button in Product Page
-=======
-
->>>>>>> Cretate a new form for related item in product page
-
-
-
-
-
-
-                                }
-                            });
-                    alertDialog.show();
-                    Button plus = (Button) alertDialog.findViewById(R.id.increse_button);
-                    Button min = (Button) alertDialog.findViewById(R.id.decrese_button);
-                    EditText qty = (EditText) alertDialog.findViewById(R.id.confirmation_quantity);
-                    final TextView text = (TextView) alertDialog.findViewById(R.id.confirmation_quantity);
-                    counter = Integer.parseInt(text.getText().toString());
-
-                    qty.addTextChangedListener(new TextWatcher() {
-
-                        public void afterTextChanged(Editable s) {
-
-                            // you can call or do what you want with your EditText here
-                            if (!text.getText().toString().equals("")) {
-
-                                counter = Integer.parseInt(text.getText().toString());
-                            }
-
-
-                        }
-
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                        }
-
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                        }
-                    });
-                    plus.setOnClickListener(new View.OnClickListener() {
-                                                public void onClick(View view) {
-                                                    counter += 1;
-                                                    text.setText("" + counter);
-
-                                                }
-                                            }
-
-                    );
-                    min.setOnClickListener(new View.OnClickListener()
-
-                                           {
-
-                                               public void onClick(View view) {
-                                                   if (counter <= 1) {
-                                                       text.setText("1");
-                                                   }
-                                                   if (counter > 1) {
-                                                       counter -= 1;
-                                                       text.setText("" + counter);
-                                                   }
-                                               }
-                                           }
-
-                    );
 
                 }
             }

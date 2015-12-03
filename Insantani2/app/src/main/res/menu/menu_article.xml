@@ -4,13 +4,5 @@
     tools:context="com.williamhenry.insantani.ArticleActivity">
 
 
-<<<<<<< HEAD
 
-=======
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
->>>>>>> Adding add to shoping cart button in Product Page
 </menu>

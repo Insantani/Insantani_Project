@@ -7,126 +7,99 @@
 
 
 
-    <ImageView
-
-        android:layout_margin="0dp"
-        android:src="@drawable/insantani"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitCenter"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent">
 
-    <!--<ImageView android:src="@drawable/insantani"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="24dp"-->
-        <!--android:layout_gravity="fill_horizontal"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:adjustViewBounds="true"/>-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp">
 
+            <ImageView
+                android:layout_width="400dp"
+                android:layout_height="300dp"
+                android:src="@drawable/insantani" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="240dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_margin="15dp"
-        >
+                <EditText
+                    android:id="@+id/signIn_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email"
+                    android:textAlignment="center"
+                    android:textSize="14dp"
+                    android:background="@color/insantaniWhite" />
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:text="E-Mail"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="20dp"-->
-        <!--/>-->
-    <EditText
-        android:id="@+id/signIn_email"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/sign_in_text_margin"
-        android:layout_marginRight="@dimen/sign_in_text_margin"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:hint="Email"
-        android:ems="10"
-        />
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:text="Password"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="20dp"-->
-        <!--/>-->
-    <EditText
-        android:id="@+id/signIn_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/sign_in_text_margin"
-        android:layout_marginRight="@dimen/sign_in_text_margin"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:hint="Password"
-        android:ems="10"
-        />
+                <EditText
+                    android:id="@+id/signIn_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:inputType="textPassword"
+                    android:hint="Password"
+                    android:textAlignment="center"
+                    android:textSize="14dp"
+                    android:background="@color/insantaniWhite"
+                    />
 
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp">
 
+                    <Button
+                        android:id="@+id/login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Login"
+                        android:textColor="@color/insantaniWhite"
+                        android:background="@color/isantaniGreen2"
+                        android:textSize="16dp"
+                        />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp">
+                    <Button
+                        android:id="@+id/register_login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:text="Register"
+                        android:textColor="@color/insantaniWhite"
+                        android:background="@color/isantaniGreen2"
+                        android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/register_login_button"
-            android:layout_width="@dimen/sign_in_button_width"
-            android:layout_height="@dimen/sign_in_button_height"
-            android:text="Register"
-            android:textColor="@color/insantaniButtonBlack"
-            android:background="@color/insantaniButtonWhite"
-            android:textSize="@dimen/sign_in_text_margin"
-            android:layout_margin="@dimen/sign_in_button_margin"
-            />
-
-
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="@dimen/sign_in_button_width"
-            android:layout_height="@dimen/sign_in_button_height"
-            android:text="Login"
-            android:textColor="@color/insantaniButtonBlack"
-            android:background="@color/insantaniButtonWhite"
-            android:textSize="@dimen/sign_in_text_margin"
-            android:layout_margin="@dimen/sign_in_button_margin"
-            />
-
-        <!--<TextView-->
-            <!--android:id="@+id/signIn_textView_ForgotPassword"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:text="@string/sign_in_forgot_password"-->
-            <!--android:textAppearance="?android:textAppearanceSmall"-->
-            <!--android:gravity="right"-->
-            <!--android:layout_marginRight="@dimen/sign_in_text_margin"-->
-            <!--/>-->
+                </LinearLayout>
 
             </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
 
 
-    </RelativeLayout>
 
-<!-- From: file:/C:/Users/william/Documents/Insantani_Project-agung/Insantani_Project-agung/Insantani2/app/src/main/res/layout/fragment_login.xml -->
+</RelativeLayout>

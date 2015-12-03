@@ -4,12 +4,7 @@
     android:theme="@style/AppTheme.Tab"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:orientation="vertical"
-    tools:context="com.williamhenry.insantani.HomeFragment">
-=======
     android:orientation="vertical">
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
     <FrameLayout
         android:layout_width="match_parent"

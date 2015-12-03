@@ -6,18 +6,6 @@
     android:layout_height="fill_parent"
     tools:context="com.williamhenry.insantani.CartFragment"
     android:id="@+id/relativeLayoutCart"
-<<<<<<< HEAD
-    android:background="#FAFAFA">
-
-
-    <LinearLayout
-        android:id="@+id/floating"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        >
-=======
     android:background="#FAFAFA"
     android:clipToPadding="false">
 
@@ -28,15 +16,11 @@
         android:layout_height="100dp"
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
             android:paddingTop="5dp"
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
             android:orientation="horizontal">
 
             <LinearLayout
@@ -55,11 +39,7 @@
                     android:id="@+id/totalitem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:text="1"
-=======
                     android:text="0"
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
                     android:padding="10dp"/>
                 <TextView
                     android:id="@+id/item"
@@ -91,14 +71,10 @@
                     android:id="@+id/totalprice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:text="200,00"/>
-=======
                     android:padding="10dp"
                     android:background="#dddddd"
                     android:text="0"
                     android:textColor="#f57f17"/>
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
             </LinearLayout>
 
@@ -108,13 +84,6 @@
 
 
         <Button
-<<<<<<< HEAD
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Next"/>
-=======
             android:layout_width="200dp"
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
@@ -123,7 +92,6 @@
             android:text="Next"
             android:id="@+id/next"
             android:layout_marginTop="10dp"/>
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
     </LinearLayout>
 

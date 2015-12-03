@@ -1,17 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context="com.williamhenry.insantani.Login"
     android:id="@+id/relativeLayoutLogin"
-=======
-    tools:context="com.williamhenry.insantani.LoginFragment"
->>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
     android:background="@color/isantaniGreen">
 
 
 
-<<<<<<< HEAD
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -96,201 +91,10 @@
                         android:textSize="16dp" />
 
                 </LinearLayout>
-=======
-    <ImageView
-
-        android:layout_margin="0dp"
-        android:src="@drawable/insantani"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitCenter"
-        android:layout_alignParentTop="true" />
-
-    <!--<ImageView android:src="@drawable/insantani"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="24dp"-->
-        <!--android:layout_gravity="fill_horizontal"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:adjustViewBounds="true"/>-->
-
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_margin="15dp"
-        >
-<<<<<<< HEAD
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="5dp"
-            android:text="E-Mail"
-            android:gravity="center"
-            android:textSize="20dp"
-            />
-        <EditText
-            android:id="@+id/signIn_email"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/sign_in_text_margin"
-            android:layout_marginRight="@dimen/sign_in_text_margin"
-            android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:background="@color/insantaniWhite"
-=======
->>>>>>> New changes on the login and register
-
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:text="E-Mail"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="20dp"-->
-        <!--/>-->
-    <EditText
-        android:id="@+id/signIn_email"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/sign_in_text_margin"
-        android:layout_marginRight="@dimen/sign_in_text_margin"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:hint="Email"
-        android:ems="10"
-        />
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:text="Password"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="20dp"-->
-        <!--/>-->
-    <EditText
-        android:id="@+id/signIn_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/sign_in_text_margin"
-        android:layout_marginRight="@dimen/sign_in_text_margin"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:hint="Password"
-        android:ems="10"
-        />
-
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp">
-
-        <Button
-            android:id="@+id/register_login_button"
-            android:layout_width="@dimen/sign_in_button_width"
-            android:layout_height="@dimen/sign_in_button_height"
-            android:text="Register"
-            android:textColor="@color/insantaniButtonBlack"
-            android:background="@color/insantaniButtonWhite"
-            android:textSize="@dimen/sign_in_text_margin"
-            android:layout_margin="@dimen/sign_in_button_margin"
-            />
-<<<<<<< HEAD
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="Password"
-            android:gravity="center"
-            android:textSize="20dp"
-            />
-        <EditText
-            android:id="@+id/signIn_password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/sign_in_text_margin"
-            android:layout_marginRight="@dimen/sign_in_text_margin"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            android:background="@color/insantaniWhite"
-            />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/register_login_button"
-                android:layout_width="@dimen/sign_in_button_width"
-                android:layout_height="@dimen/sign_in_button_height"
-                android:text="Register"
-                android:textColor="@color/insantaniWhite"
-                android:background="@color/isantaniGreen"
-                android:textSize="@dimen/sign_in_text_margin"
-                android:layout_margin="@dimen/sign_in_button_margin"
-                />
-
-
-            <Button
-                android:id="@+id/login_button"
-                android:layout_width="@dimen/sign_in_button_width"
-                android:layout_height="@dimen/sign_in_button_height"
-                android:text="Login"
-                android:textColor="@color/insantaniWhite"
-                android:background="@color/isantaniGreen"
-                android:textSize="@dimen/sign_in_text_margin"
-                android:layout_margin="@dimen/sign_in_button_margin"
-                />
-
-            <!--<TextView-->
-=======
-
-
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="@dimen/sign_in_button_width"
-            android:layout_height="@dimen/sign_in_button_height"
-            android:text="Login"
-            android:textColor="@color/insantaniButtonBlack"
-            android:background="@color/insantaniButtonWhite"
-            android:textSize="@dimen/sign_in_text_margin"
-            android:layout_margin="@dimen/sign_in_button_margin"
-            />
-
-        <!--<TextView-->
->>>>>>> New changes on the login and register
-            <!--android:id="@+id/signIn_textView_ForgotPassword"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:text="@string/sign_in_forgot_password"-->
-            <!--android:textAppearance="?android:textAppearanceSmall"-->
-            <!--android:gravity="right"-->
-            <!--android:layout_marginRight="@dimen/sign_in_text_margin"-->
-            <!--/>-->
->>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
 
             </LinearLayout>
 
 
-<<<<<<< HEAD
         </RelativeLayout>
 
     </ScrollView>
@@ -299,11 +103,3 @@
 
 
 </RelativeLayout>
-=======
-        </LinearLayout>
-
-
-
-    </RelativeLayout>
-
->>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3

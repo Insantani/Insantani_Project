@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="82dp"
     android:padding="6dip">
 
     <LinearLayout
@@ -47,6 +47,18 @@
                 android:singleLine="true"
                 android:text="Description"
                 android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/distance_text_view"
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="2 Km"
+                android:textColor="@color/Red"
+                android:textSize="10sp" />
 
         </LinearLayout>
 

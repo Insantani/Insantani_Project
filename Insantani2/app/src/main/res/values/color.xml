@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<<<<<<< HEAD
     <color name="isantaniGreen">#8BC34A</color>
     <color name="insantaniWhite">#fbfcfc</color>
-=======
-    <color name="isantaniGreen">#689F38</color>
-    <color name="insantaniWhite">#fbfcfc</color>
-<<<<<<< HEAD
-    <color name="isantaniGreen2">#27ae60</color>
-=======
->>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
     <color name="isantaniGreen2">#9CCC65</color>
     <color name="insantaniButtonWhite">#E0E0E0</color>
     <color name="insantaniButtonBlack">#212121</color>
     <color name="WhiteBackground">#FAFAFA</color>
-<<<<<<< HEAD
-=======
->>>>>>> commit all
->>>>>>> 84873fb19a053bb263e248294c0f1b23b4be06a3
+    <color name="Red">#F44336</color>
 </resources>

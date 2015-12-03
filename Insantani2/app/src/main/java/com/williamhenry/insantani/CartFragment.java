@@ -32,32 +32,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-<<<<<<< HEAD
-
-
-public class CartFragment extends Fragment {
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter mAdapter;
-
-    private RelativeLayout relativeLayout;
-    private String url;
-    private RequestQueue mQueue;
-    private ArrayList<Cart> cart;
-    public static final String REQUEST_TAG = "ShoppingCart";
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
-    private boolean checkToken;
-    private boolean checkRefreshToken;
-    private boolean tokenType;
-    private boolean userId;
-    private int totalPrice;
-    private TextView totalprice;
-    private TextView totalitem;
-    private CartFragment cartFragment;
-
-
-=======
 
 
 public class CartFragment extends android.support.v4.app.Fragment {
@@ -83,7 +57,6 @@ public class CartFragment extends android.support.v4.app.Fragment {
     private CartFragment cartFragment;
 
 
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
     public CartFragment() {
         // Required empty public constructor
@@ -93,10 +66,6 @@ public class CartFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getActionBar().show();
-<<<<<<< HEAD
-
-=======
->>>>>>> New changes on the login and register
 
 
     }
@@ -127,11 +96,8 @@ public class CartFragment extends android.support.v4.app.Fragment {
         totalitem= (TextView) rootView.findViewById(R.id.totalitem);
         cart = new ArrayList<Cart>();
 
-<<<<<<< HEAD
-=======
         final CartFragment thisObj = this;
 
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
         mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
         url="http://104.155.213.80/insantani/public/api/cart?user_id="+pref.getString("user_id",null);
         final StringRequest stringRequestCart= new StringRequest(Request.Method.GET,
@@ -177,11 +143,7 @@ public class CartFragment extends android.support.v4.app.Fragment {
                                                                     Log.d("bitmap",bitmap.toString());
                                                                     Cart cartItem = new Cart(dataDetailProduct.getString("product_name"),jsonObject.getInt("product_quantity"),
                                                                             dataDetailProduct.getString("farmer_username"), (float)dataDetailProduct.getInt("prod_price"),bitmap,
-<<<<<<< HEAD
-                                                                            dataDetailProduct.getInt("id"));
-=======
                                                                             dataDetailProduct.getInt("id"),dataDetailProduct.getString("uom"), dataDetailProduct.getInt("stock_num"));
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
 
                                                                     totalPrice+=(jsonObject.getInt("product_quantity") * dataDetailProduct.getInt("prod_price"));
@@ -196,35 +158,11 @@ public class CartFragment extends android.support.v4.app.Fragment {
 //
                                                                     cart.add(cartItem);
 
-<<<<<<< HEAD
-                                                                    mAdapter = new CartAdapter(cart,getContext(),mQueue);
-=======
                                                                     mAdapter = new CartAdapter(cart,getContext(),mQueue,getActivity().getSupportFragmentManager(),thisObj);
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
                                                                     mRecyclerView.setAdapter(mAdapter);
 
                                                                     totalprice.setText(Integer.toString(totalPrice));
                                                                     totalitem.setText(Integer.toString(cart.size()));
-<<<<<<< HEAD
-
-                                                                    Button next= (Button) rootView.findViewById(R.id.next);
-                                                                    next.setOnClickListener(new View.OnClickListener() {
-                                                                        @Override
-                                                                        public void onClick(View view) {
-                                                                            Intent intent = new Intent(getContext(), CheckoutActivity.class);
-                                                                            Bundle bundle= new Bundle();
-//                                                                            ListBridge listBridge= new ListBridge(cart);
-//
-                                                                            bundle.putString("totalPrice",Integer.toString(totalPrice));
-                                                                            bundle.putString("totalItem",Integer.toString(mAdapter.getItemCount()));
-                                                                            intent.putExtra("information",bundle);
-//////                                                                            Log.d("cart",cart.);
-//                                                                            intent.putExtra(bundle);
-
-                                                                            getContext().startActivity(intent);
-                                                                        }
-                                                                    });
-=======
                                                                     totalItem=cart.size();
 
 
@@ -251,7 +189,6 @@ public class CartFragment extends android.support.v4.app.Fragment {
                                                                             }
                                                                         });
 
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 
 
 
@@ -411,8 +348,6 @@ public class CartFragment extends android.support.v4.app.Fragment {
 
     }
 
-<<<<<<< HEAD
-=======
     public void refresh() {
         Log.d("apasih", "koklama");
         totalitem.setText(Integer.toString(mAdapter.getItemCount()));
@@ -427,5 +362,4 @@ public class CartFragment extends android.support.v4.app.Fragment {
         totalPrice=newTotal;
         totalItem=mAdapter.getItemCount();
     }
->>>>>>> a80a3f010b43fd581a43c7902a4989abfb6ee117
 }

@@ -106,6 +106,23 @@
                     android:text="Small Text"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
+
+                <TextView
+                    android:id="@+id/RelatedItemSeperator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView"
+                    android:layout_margin="2dp"
+                    android:padding="2dp"
+                    android:textColor="@color/insantaniButtonBlack"
+                    android:text="Related Items"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="220dp"
@@ -137,4 +154,3 @@
 
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/william/Documents/Insantani_Project-agung/Insantani_Project-agung/Insantani2/app/src/main/res/layout/activity_product.xml -->

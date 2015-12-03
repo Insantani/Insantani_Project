@@ -10,4 +10,3 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom"/>
 </menu>
-<!-- From: file:/C:/Users/william/Documents/Insantani_Project-agung/Insantani_Project-agung/Insantani2/app/src/main/res/menu/menu_search_result.xml -->
