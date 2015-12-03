@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,8 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +62,17 @@ public class FarmerProfileActivity extends Activity {
         context = this;
         Bundle extras = getIntent().getExtras();
         final Bundle item = (Bundle) extras.get("farmer");
+
+        //rating
+        float rating = (float) 3.5;
+        RatingBar mRatingBar = (RatingBar) findViewById(R.id.farmerRating);
+        mRatingBar.setRating(rating);
+        LayerDrawable stars = (LayerDrawable) mRatingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+        TextView numberRating = (TextView) findViewById(R.id.farmerNumbeRating);
+        numberRating.setText(String.valueOf(rating));
+
 
         final Farmer farmer = new Farmer();
         farmer.setName(item.getString("name"));
@@ -142,8 +157,6 @@ public class FarmerProfileActivity extends Activity {
 
         mAdapter = new FarmerPhotosAdapter(photos,this);
         mRecyclerView.setAdapter(mAdapter);
-        
-        
 
         mRecyclerView = (RecyclerView) findViewById(R.id.farmerProducts);
         mRecyclerView.setHasFixedSize(true);
@@ -229,6 +242,14 @@ public class FarmerProfileActivity extends Activity {
         jsonRequestProduct.setTag(REQUEST_TAG);
         mQueue.add(jsonRequestProduct);
 
+        // button for subscription
+        Button subscribe = (Button) findViewById(R.id.farmerFollowButton);
+        subscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override

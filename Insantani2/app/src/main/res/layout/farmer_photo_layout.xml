@@ -20,7 +20,7 @@
             android:id="@+id/farmer_photo_relative_layout"
             android:layout_width="165dp"
             android:layout_height="210dp"
-            android:background="@drawable/shadow_background">
+            android:elevation="2dp">
 
             <ImageView
                 android:id="@+id/farmer_photo"
