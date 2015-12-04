@@ -1,5 +1,14 @@
 package com.williamhenry.insantani;
 
+<<<<<<< HEAD
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+=======
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -20,12 +29,16 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+<<<<<<< HEAD
+=======
 import android.widget.RelativeLayout;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.widget.TextView;
 import android.view.View;
 import android.content.SharedPreferences;
@@ -51,6 +64,8 @@ public class ProductActivity extends ActionBarActivity {
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
+<<<<<<< HEAD
+=======
     private String url;
     private RequestQueue mQueue;
     int counter=1;
@@ -67,11 +82,14 @@ public class ProductActivity extends ActionBarActivity {
     public static final String REQUEST_TAG = "RelatedItems";
 
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_product);
+<<<<<<< HEAD
+=======
         pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         checkToken=pref.contains("access_token");
         checkRefreshToken=pref.contains("refresh_token");
@@ -80,6 +98,7 @@ public class ProductActivity extends ActionBarActivity {
         relativeLayout= (RelativeLayout) findViewById(R.id.relativeLayoutProduct);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
         mRecyclerView.setHasFixedSize(true);
@@ -88,6 +107,11 @@ public class ProductActivity extends ActionBarActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+<<<<<<< HEAD
+        mAdapter = new RelativeItemAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+=======
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         Bundle extras= getIntent().getExtras();
         final Bundle item=(Bundle)extras.get("nature");
@@ -445,6 +469,8 @@ public class ProductActivity extends ActionBarActivity {
         });
 
 
+
+
     }
 
     @Override
@@ -467,6 +493,8 @@ public class ProductActivity extends ActionBarActivity {
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
+<<<<<<< HEAD
+=======
         switch (id) {
             case android.R.id.home:
                 // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
@@ -476,6 +504,7 @@ public class ProductActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 //        return super.onOptionsItemSelected(item);
     }

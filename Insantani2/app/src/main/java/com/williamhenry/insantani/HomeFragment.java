@@ -23,7 +23,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
+
+=======
         getActivity().getActionBar().show();
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
         getActivity().getActionBar().setElevation(0);
     }
 

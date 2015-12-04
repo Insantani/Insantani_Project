@@ -1,11 +1,14 @@
 package com.williamhenry.insantani;
 
 import android.graphics.Bitmap;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import com.android.volley.toolbox.ImageRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import java.util.ArrayList;
 
 
@@ -127,6 +131,7 @@ public class FeedTabFragment extends Fragment {
         });
         jsonRequest.setTag(REQUEST_TAG);
         mQueue.add(jsonRequest);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 
         // Inflate the layout for this fragment

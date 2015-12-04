@@ -1,12 +1,18 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
+<<<<<<< HEAD
+import android.net.Uri;
+import android.os.Bundle;
+import android.app.Fragment;
+=======
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,6 +31,7 @@ import com.android.volley.toolbox.ImageRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +40,15 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
 
     private ListView resultListView;
     private SearchListViewAdapter searchListViewAdapter;
+<<<<<<< HEAD
+=======
     private String url;
     private String query="apple";
     private RequestQueue mQueue;
     public static final String REQUEST_TAG = "Search";
 
     private CustomJSONObjectRequest jsonRequestAll;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
     public IngredientsTabFragment() {
         // Required empty public constructor
@@ -45,6 +57,29 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
+        View view = inflater.inflate(R.layout.fragment_ingredients_tab, container, false);
+
+        List<SearchItem> newsList = new ArrayList<>();
+        searchListViewAdapter = new SearchListViewAdapter(getActivity(), newsList);
+        resultListView = (ListView) view.findViewById(R.id.itemList);
+        resultListView.setAdapter(searchListViewAdapter);
+
+        // add items to the list
+        searchListViewAdapter.add(new SearchItem("News 1", "This is the content of news 1", 1));
+        searchListViewAdapter.add(new SearchItem("News 2", "This is the content of news 2", 2));
+        searchListViewAdapter.add(new SearchItem("News 3", "This is the content of news 3", 3));
+
+        // show toast on item click
+        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),
+                        getString(R.string.clicked) + " " + searchListViewAdapter.getItem(position).getTitle().toLowerCase(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+=======
         final View view = inflater.inflate(R.layout.fragment_ingredients_tab, container, false);
 
         final ArrayList<Product>newsList = new ArrayList<>();
@@ -163,11 +198,17 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
 
         // show toast on item click
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         return view;
     }
 
     public void search(String param) {
+<<<<<<< HEAD
+        searchListViewAdapter.getFilter().filter(param);
+    }
+
+=======
 
         this.query=param;
         Log.d("param",param);
@@ -176,4 +217,5 @@ public class IngredientsTabFragment extends android.support.v4.app.Fragment {
     }
 
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 }

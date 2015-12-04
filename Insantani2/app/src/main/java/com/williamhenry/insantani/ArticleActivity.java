@@ -28,7 +28,10 @@ public class ArticleActivity extends Activity {
         setContentView(R.layout.activity_article);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+<<<<<<< HEAD
+=======
 //        getActionBar().setDisplayShowTitleEnabled(true);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         Bundle extras = getIntent().getExtras();
         Bundle item = (Bundle) extras.get("article");

@@ -33,6 +33,8 @@ public class SettingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         getActivity().getActionBar().show();
 
+        getActivity().getActionBar().setElevation(11);
+
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.williamhenry.insantani;
 
+<<<<<<< HEAD
+=======
 import android.graphics.Bitmap;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
@@ -10,6 +13,8 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+<<<<<<< HEAD
+=======
 import android.view.MenuItem;
 
 import com.android.volley.Request;
@@ -24,6 +29,7 @@ import org.json.JSONObject;
 
 //import java.util.ArrayList;
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 public class SearchResultActivity extends AppCompatActivity {
 
@@ -32,11 +38,14 @@ public class SearchResultActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
 
+<<<<<<< HEAD
+=======
     private String url;
     private RequestQueue mQueue;
 //    private ArrayList<Article> articles;
     public static final String REQUEST_TAG = "Search";
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,15 +86,26 @@ public class SearchResultActivity extends AppCompatActivity {
         searchView.setFocusable(true);
         searchView.requestFocusFromTouch();
 
+<<<<<<< HEAD
+        searchView.setIconified(false);
+
+=======
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
         final SearchView.OnQueryTextListener queryTextlistener = new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // Here u can get the value "query" which is entered in the search box.
                 searchView.setQuery(query, false);
+<<<<<<< HEAD
+
+                if (tabLayout.getSelectedTabPosition() == 0) {
+                    ingredientsTabFragment.search(query);
+=======
                 Log.d("onQueryTextSubmit", query);
                 if (tabLayout.getSelectedTabPosition() == 0) {
                     ingredientsTabFragment.search(query);
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
                 }
                 else{
                     farmerTabFragment.search(query);
@@ -97,6 +117,11 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 Log.d("SearchResultActivity", "New text: " + newText);
+<<<<<<< HEAD
+                // This is your adapter that will be filtered.
+                if (tabLayout.getSelectedTabPosition() == 0) {
+                    ingredientsTabFragment.search(newText);
+=======
 //                if (newText.equals(null))
 //                    newText="";
                 // This is your adapter that will be filtered.
@@ -111,6 +136,7 @@ public class SearchResultActivity extends AppCompatActivity {
 //                    fragTransaction.attach(currentFragment);
 //                    fragTransaction.commit();
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
                 }
                 else{
                     farmerTabFragment.search(newText);
@@ -123,8 +149,13 @@ public class SearchResultActivity extends AppCompatActivity {
         searchView.callOnClick();
 
         // To skip the first search
+<<<<<<< HEAD
+        searchView.setQuery("1", true);
+        searchView.setQuery("", true);
+=======
 //        searchView.setQuery("apple", true);
 //        searchView.setQuery("", true);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -145,6 +176,8 @@ public class SearchResultActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+<<<<<<< HEAD
+=======
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -170,5 +203,6 @@ public class SearchResultActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
     }
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 }

@@ -2,10 +2,14 @@ package com.williamhenry.insantani;
 
 import android.app.ActionBar;
 import android.app.Activity;
+<<<<<<< HEAD
+import android.content.Intent;
+=======
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,6 +22,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+
+
+=======
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 //import com.crashlytics.android.Crashlytics;
@@ -29,6 +37,7 @@ import io.fabric.sdk.android.Fabric;
 //import android.app.FragmentTransaction;
 //import android.support.v4.app.FragmentManager;
 //import android.support.v7.app.ActionBarActivity;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -83,6 +92,23 @@ public class MainActivity extends FragmentActivity
 //                .commit();
 //        FragmentTransaction ft=fragmentManager.beginTransaction();
         Log.d("position",Integer.toString(position));
+<<<<<<< HEAD
+        switch(position) {
+            case 0:
+                fragment = new HomeFragment();
+//                ft.replace(R.id.container,FeedTabFragment, SyncStateContract.Constants)
+                break;
+
+            case 1:
+                fragment= new CartFragment();
+                break;
+            case 2:
+                fragment= new SettingsFragment();
+                break;
+            case 3:
+                fragment = new LoginFragment();
+                break;
+=======
         if (!checkToken && !checkRefreshToken && !tokenType && !user_id){
             switch(position) {
                 case 0:
@@ -121,6 +147,7 @@ public class MainActivity extends FragmentActivity
 //                    break;
 
             }
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
         }
 
@@ -131,8 +158,7 @@ public class MainActivity extends FragmentActivity
         fragmentTransaction.commit();
 
 
-        // set the toolbar title
-//        getSupportActionBar().setTitle(mTitle);
+
     }
 
     public void onSectionAttached(int number) {

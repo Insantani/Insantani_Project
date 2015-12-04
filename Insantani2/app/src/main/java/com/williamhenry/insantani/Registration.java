@@ -1,6 +1,11 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
+<<<<<<< HEAD
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+=======
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,11 +35,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import android.widget.Button;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 /**
  * Created by agungwy on 10/29/2015.
  */
 public class Registration extends Activity {
+<<<<<<< HEAD
+=======
     private String url;
     private RequestQueue mQueue;
     private Context context;
@@ -44,10 +52,23 @@ public class Registration extends Activity {
     public static final String REQUEST_TAG = "Registration";
     private TextView email,password, verifyPassword,name,phoneNumber, address;
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_page);
+<<<<<<< HEAD
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle extras = getIntent().getExtras();
+        Bundle item = (Bundle) extras.get("User");
+        TextView email = (TextView) findViewById(R.id.register_email);
+        TextView password = (TextView) findViewById(R.id.register_password);
+        email.setText(item.getString("Email"));
+        password.setText(item.getString("Password"));
+
+=======
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         linearLayout= (LinearLayout) findViewById(R.id.linearLayoutRegistration);
@@ -181,14 +202,18 @@ public class Registration extends Activity {
 //                context.startActivity(intent);
             }
         });
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 
 
     }
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -197,6 +222,13 @@ public class Registration extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+
+        return super.onOptionsItemSelected(item);
+=======
 //        if (id == R.id.) {
 //            return true;
 //        }
@@ -212,5 +244,6 @@ public class Registration extends Activity {
         }
 
 //        return super.onOptionsItemSelected(item);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     }
 }

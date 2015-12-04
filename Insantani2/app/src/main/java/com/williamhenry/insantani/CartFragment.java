@@ -11,8 +11,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
+=======
 import android.util.Log;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -56,7 +61,16 @@ public class CartFragment extends android.support.v4.app.Fragment {
     private TextView totalitem;
     private CartFragment cartFragment;
 
+import java.util.ArrayList;
 
+
+<<<<<<< HEAD
+public class CartFragment extends Fragment {
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.Adapter mAdapter;
+=======
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
     public CartFragment() {
         // Required empty public constructor
@@ -67,6 +81,8 @@ public class CartFragment extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
         getActivity().getActionBar().show();
 
+
+        getActivity().getActionBar().setElevation(11);
 
     }
 
@@ -326,6 +342,39 @@ public class CartFragment extends android.support.v4.app.Fragment {
 
 
 
+//        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+//        mRecyclerView.setHasFixedSize(true);
+//        // use this setting to improve performance if you know that changes
+//        // in content do not change the layout size of the RecyclerView
+//
+//        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//
+//        mAdapter = new GridAdapter(getContext());
+//        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        ArrayList<Cart> cart = new ArrayList<Cart>();
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+        cart.add(new Cart("Baby Tomatoes", 1, "Izhar Almizan", (float) 200, R.mipmap.tomat));
+
+
+        mAdapter = new CartAdapter(cart);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -340,6 +389,22 @@ public class CartFragment extends android.support.v4.app.Fragment {
         super.onDetach();
     }
 
+<<<<<<< HEAD
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getActivity().getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        int id = item.getItemId();
+
+        return super.onOptionsItemSelected(item);
+    }
+
+=======
     @Override
     public void onResume(){
         super.onResume();
@@ -362,4 +427,5 @@ public class CartFragment extends android.support.v4.app.Fragment {
         totalPrice=newTotal;
         totalItem=mAdapter.getItemCount();
     }
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 }

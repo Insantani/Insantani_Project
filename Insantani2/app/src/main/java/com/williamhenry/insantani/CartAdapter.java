@@ -1,5 +1,25 @@
 package com.williamhenry.insantani;
 
+<<<<<<< HEAD
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+    private ArrayList<Cart> carts;
+
+
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public CartAdapter(ArrayList<Cart> carts) {
+        this.carts = carts;
+
+=======
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -59,6 +79,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public Cart getItem(int position) {
         return carts.get(position);
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
     }
 
     // Create new views (invoked by the layout manager)
@@ -69,7 +90,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cart_listview_layout, parent, false);
         // set the view's size, margins, paddings and layout parameter
+<<<<<<< HEAD
+
+=======
         parent2 = parent;
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -87,6 +112,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         productName.setText(carts.get(position).getProductName());
         qty.setText(String.valueOf(carts.get(position).getQty()));
+<<<<<<< HEAD
+        farmer.setText(carts.get(position).getFarmer());
+        price.setText(String.valueOf(carts.get(position).getPrice()));
+
+        imageView.setImageResource(carts.get(position).getImage());
+=======
         counter=carts.get(position).getQty();
         farmer.setText(carts.get(position).getFarmer());
         price.setText("Rp " + String.valueOf((int) carts.get(position).getPrice())+" / "+carts.get(position).getUom());
@@ -362,6 +393,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 //            }
 //        });
 
+>>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
 
 
 
