@@ -49,6 +49,9 @@ Route::get('api/farmer/{id}/products',array('uses'=>'ProductController@relatedIt
 Route::get('api/tag/{query}/results',array('uses'=>'TagController@tagResultDetail','middleware'=>'articles'))->where('query','.+');
 Route::post('api/register',['uses'=>'Auth\AuthController@postRegister']); 
 
+Route::post('api/reset',['uses'=>'Auth\AuthController@resetPassword']);
+Route::put('api/change/password',['uses'=>'Auth\AuthController@changePassword','middleware'=>'oauth']);
+Route::put('api/change/profile',['uses'=>'Auth\AuthController@changeProfile','middleware'=>'oauth']);
 
 //Route::post('api/login',['uses'=>'Auth\AuthController@postLogin']);
 Route::post('api/checkout',['uses'=>'CheckoutController@createCheckOut',"middleware"=>'oauth']);
@@ -73,6 +76,7 @@ Route::delete('api/notify/register',['uses'=>'NotificationController@destroy',"m
 Route::post('api/follow',['uses'=>'FollowController@follow',"middleware"=>'oauth']);
 Route::get('api/follow/following',['uses'=>'FollowController@following',"middleware"=>'oauth']);
 Route::get('api/updates',['uses'=>'UpdatesController@show',"middleware"=>'oauth']);
+Route::post('api/review',['uses'=>'RateController@postReview','middleware'=>'products'])
 //Route::get('api/follow/following',['uses'=>'FollowController@following',"middleware"=>'oauth']);
 
 
