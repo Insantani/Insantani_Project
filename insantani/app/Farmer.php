@@ -12,6 +12,8 @@ class Farmer extends Model
     protected $primaryKey="farmer_username";
     protected $fillable=["rating"];
     protected $appends=['distance'];
+    protected $hidden=["profile_picture_filename", "profile_picture_filepath", 
+    "background_picture_filename", "background_picture_filepath"];
     public function products(){
         
         

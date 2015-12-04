@@ -34,5 +34,6 @@ class Kernel extends HttpKernel
 //        'checkout'=>\App\Http\Middleware\CheckoutMiddleware::class,
 //        'cart'=>\App\Http\Middleware\ShoppingCartMiddleware::class,
         'oauth'=>\App\Http\Middleware\OAuthMiddleware::class,
+        'farmer'=>\App\Http\Middleware\FarmerMiddleware::class
     ];
 }

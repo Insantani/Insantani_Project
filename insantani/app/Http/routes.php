@@ -79,6 +79,16 @@ Route::get('api/updates',['uses'=>'UpdatesController@show',"middleware"=>'oauth'
 Route::post('api/review',['uses'=>'RateController@postReview','middleware'=>'products'])
 //Route::get('api/follow/following',['uses'=>'FollowController@following',"middleware"=>'oauth']);
 
+Route::get('api/farmer/{username}', array('uses' =>'FarmerController@showFarmerDetails','middleware'=>'farmer'))->where('username','.+');
+Route::get('api/products/farmer/{username}', array('uses' =>'FarmerController@showProducts','middleware'=>'farmer'))->where('username','.+');
+Route::get('api/profile/farmer/{username}/picture',array('uses'=>'FarmerController@showProfilePicture','middleware'=>'farmer'))->where('username','.+');
+Route::get('api/background/farmer/{username}/picture',array('uses'=>'FarmerController@showBackgroundPicture','middleware'=>'farmer'))->where('username','.+');
+
+
+Route::get('api/pictures/farmer/{username}',array('uses'=>'FarmerController@images','middleware'=>'farmer'))->where('username','.+');
+Route::get('api/pictures/{username}/{id}/picture',array('uses'=>'FarmerController@imagesDetail','middleware'=>'farmer'))->where(['username'=>'.+','id'=>'[0-9]+']);
+
+
 
 
 Route::post('oauth/token', function()
