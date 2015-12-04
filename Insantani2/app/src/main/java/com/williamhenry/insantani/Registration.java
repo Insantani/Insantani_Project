@@ -138,7 +138,7 @@ public class Registration extends Activity {
                     public void onErrorResponse(VolleyError error){
 
                         Log.d("error_response_register",error.toString());
-                        Snackbar snackbar = Snackbar.make(linearLayout, "Email has been used", Snackbar.LENGTH_LONG);
+                        Snackbar snackbar = Snackbar.make(linearLayout, error.toString(), Snackbar.LENGTH_LONG);
                         snackbar.setActionTextColor(Color.WHITE);
 
                         View snackbarView= snackbar.getView();

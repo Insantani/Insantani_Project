@@ -10,9 +10,11 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'com.google.gms.google-services'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'http://clojars.org/repo' }
 }
 
 
@@ -49,6 +51,8 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
         transitive = true;
     }
+    compile 'com.pusher:pusher-java-client:1.0.0'
+    compile "com.google.android.gms:play-services:8.3.0"
 
 }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use Hash;
+use Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -87,6 +88,15 @@ class AuthController extends Controller
         }else{
 
             $this->create($request->all());
+            $data=$request->all();
+//            echo(public_path().'/cacert.pem');
+//            
+            Mail::send('insantani_register', $data, function($message) use($data)
+            {
+                $message->to($data['email'], $data['name'])
+                        ->subject('Registration Complete!');
+            });
+
 
             return response()->json([ 'message' => 'Registration Complete!' ], 201);
         }
@@ -103,20 +113,6 @@ class AuthController extends Controller
         
         
     }
-//    public function postLogin(Request $request)
-//    {
-//
-//        $data = $request->all();
-//        $todo = User::where('email', '=', $data['email']);
-//        if(count($todo) > 0 && Hash::check($data['password'], $todo -> pluck('password'))){
-//            return response()->json(['message' => 'Login complete!'], 201);
-//        } else {
-//            return response()->json(['message' => 'Login failed!'], 403);
-//        }
-//
-//
-//        
-//    }
 
     
 

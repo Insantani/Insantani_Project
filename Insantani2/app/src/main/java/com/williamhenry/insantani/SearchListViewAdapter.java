@@ -21,10 +21,13 @@ public class SearchListViewAdapter extends ArrayAdapter<Product> {
         TextView titleTextView = (TextView) view.findViewById(R.id.title_text_view);
         TextView contentTextView = (TextView) view.findViewById(R.id.content_text_view);
         ImageView picture = (ImageView) view.findViewById(R.id.icon);
+        TextView distance=(TextView)view.findViewById(R.id.distance_text_view);
 
         titleTextView.setText(getItem(position).getName());
         contentTextView.setText(getItem(position).getFarmerName());
         picture.setImageBitmap(getItem(position).getThumbnail());
+        distance.setText(((Double)getItem(position).getDistance()).toString()+" Km");
+
 
         return view;
     }

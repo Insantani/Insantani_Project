@@ -39,6 +39,9 @@ class ProductController extends Controller
           && is_numeric($limit)==true && is_numeric($page)==true){
 
                 $todos=ProductModel::paginate($limit);
+//                foreach($todos as $todo){
+//                    $todo->distance=0;
+//                }
 
             return [
                 'message'=>'OK',
@@ -69,6 +72,7 @@ class ProductController extends Controller
         if(count($todos)>0){
             foreach ($todos as $todo){
                 $x=$todo->nutritionFacts;
+//                $todo->distance=0;
 
             }
             return [
@@ -91,6 +95,10 @@ class ProductController extends Controller
         
         $segments = explode('/', $id);
         $todos=ProductModel::where('farmer_username','=',$segments)->get();
+//        print_r($todos);
+//        foreach($todos as $todo){
+//            $todo->distance=0;
+//        }
         if(count($todos)>0){
             return [
                 'message'=>'OK',
@@ -109,6 +117,7 @@ class ProductController extends Controller
     public function showPicture($id){
         $segments = explode('/', $id);
         $todos=ProductModel::find($segments);
+//        $todos->distance=0;
 //        echo(public_path().$todos->pluck('product_filepath')[0]);
         if(count($todos)>0){
             $path=$todos->pluck('product_filepath');
