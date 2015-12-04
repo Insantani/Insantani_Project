@@ -54,10 +54,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
+            'host'      => 'linux-1',
             'database'  => 'insantani',
             'username'  => 'root',
-            'password'  => '',
+            'password'  => 'notesadmin',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

@@ -4,30 +4,67 @@ package com.williamhenry.insantani;
  * Created by william on 11/26/2015.
  */
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
 import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    private SharedPreferences pref;
+    private Editor editor;
+    private boolean checkToken;
+    private boolean checkRefreshToken;
+    private boolean tokenType;
+    private boolean user_id;
+    private String url;
+    private RequestQueue mQueue;
+    public static final String REQUEST_TAG = "RegistrationIntentService";
 
     public RegistrationIntentService() {
+
         super(TAG);
+//        this.pref= PreferenceManager.getDefaultSharedPreferences("MyPref",Context.MODE_PRIVATE);
+
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        pref=getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor=pref.edit();
+        checkToken= pref.contains("access_token");
+        checkRefreshToken= pref.contains("refresh_token");
+        tokenType= pref.contains("token_type");
+        user_id=pref.contains("user_id");
 
         try {
             // [START register_for_gcm]
@@ -72,8 +109,83 @@ public class RegistrationIntentService extends IntentService {
      *
      * @param token The new token.
      */
-    private void sendRegistrationToServer(String token) {
+    private void sendRegistrationToServer(final String token) {
+
         // Add custom implementation, as needed.
+        if(checkToken && checkRefreshToken && tokenType && user_id){
+
+            mQueue= CustomVolleyRequestQueue.getInstance(this).getRequestQueue();
+            url="http://104.155.213.80/insantani/public/api/notify/register";
+            final StringRequest stringRequestNotification= new StringRequest(Request.Method.POST,
+                    url, new Response.Listener<String>(){
+                //                    private ArrayList<Article> articles1=new ArrayList<Article>();
+                @Override
+                public void onResponse(String response){
+                    Log.d("notification_registration", response.toString());
+                    try {
+                        Log.d("response_notification_registration", response.toString());
+                        JSONObject jsonObject= new JSONObject(response.toString());
+                        String message= jsonObject.getString("message");
+                        if(message.equals("OK")) {
+                            editor.putString("notification_token", token);
+                            editor.commit();
+                            Log.d("notification_token", token);
+                            Log.d("notification_register_message",message);
+                        }else{
+                            editor.putString("notification_token", token);
+                            editor.commit();
+                            Log.d("notification_token", token);
+                            Log.d("notification_register_message", message);
+                        }
+
+                    } catch(Exception e){
+                        Log.d("JSON_error_notification_register",e.toString());
+                    }
+                }
+            },new Response.ErrorListener(){
+                @Override
+                public void onErrorResponse(VolleyError error){
+
+                    Log.d("error_response_notification_register",error.toString());
+
+                }
+            }){
+                @Override
+                public Map<String,String> getHeaders(){
+                    Map<String,String> headers= new HashMap<String, String>();
+                    String auth="Bearer "+pref.getString("access_token",null);
+                    Log.d("auth_notification_register",auth);
+                    headers.put("Authorization",auth);
+                    return headers;
+                };
+
+
+                protected Map<String, String> getParams(){
+                    Map<String, String> params = new HashMap<String,String>();
+                    // the POST parameters:
+                    params.put("user_id",pref.getString("user_id",null));
+                    params.put("device_token",token);
+                    return params;
+                };
+
+
+            };
+
+
+            stringRequestNotification.setTag(REQUEST_TAG);
+            mQueue.add(stringRequestNotification);
+
+
+
+
+
+
+
+
+
+
+
+        }
     }
 
     /**
