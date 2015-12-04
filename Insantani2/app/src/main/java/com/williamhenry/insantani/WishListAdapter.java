@@ -16,7 +16,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public WishListAdapter(ArrayList<Wish> wish) {
-        this.wishes = wish;
+        wishes = wish;
 
     }
 

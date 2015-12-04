@@ -5,16 +5,21 @@ package com.williamhenry.insantani;
  */
 
 
+import android.graphics.Bitmap;
+
 /**
  * Created by william on 10/17/2015.
  */
 public class Product {
     private String mName;
-    private int mThumbnail;
+    private Bitmap mThumbnail;
     private String desc;
     private String fname;
     private int price;
     private int stock;
+    private int id;
+    private String url;
+    private String uom;
 
     public String getName() {
         return mName;
@@ -24,11 +29,11 @@ public class Product {
         this.mName = name;
     }
 
-    public int getThumbnail() {
+    public Bitmap getThumbnail() {
         return mThumbnail;
     }
 
-    public void setThumbnail(int thumbnail) {
+    public void setThumbnail(Bitmap thumbnail) {
         this.mThumbnail = thumbnail;
     }
 
@@ -62,6 +67,30 @@ public class Product {
 
     public int getStock(){
         return stock;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setUrl(String url){
+        this.url = url;
+    }
+
+    public String getUrl(){
+        return url;
+    }
+
+    public void setUom(String uom){
+        this.uom = uom;
+    }
+
+    public String getUom(){
+        return uom;
     }
 }
 

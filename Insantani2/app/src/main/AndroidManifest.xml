@@ -32,10 +32,6 @@
         </activity>
         <activity
             android:name=".ArticleActivity"
-<<<<<<< HEAD
-            android:parentActivityName=".MainActivity"
-            android:label="@string/title_activity_article" >
-=======
             android:label="@string/title_activity_article"
             android:parentActivityName=".MainActivity" >
         </activity>
@@ -70,7 +66,6 @@
         <activity
             android:name=".CheckoutActivity"
             android:theme="@style/CheckoutTheme" >
->>>>>>> 8a2c14d732c9dacf480fd864f1bf563afa6876ef
         </activity>
         <activity
             android:name=".Registration"
