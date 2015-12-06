@@ -45,6 +45,17 @@ public class WishListFragment extends Fragment {
 
         ArrayList<Wish> wishes = new ArrayList<Wish>();
         wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+        wishes.add(new Wish("Baby Tomatoes", "Izhar Almizan", (float) 5000200, R.mipmap.tomat));
+
 
         mAdapter = new WishListAdapter(wishes);
 
