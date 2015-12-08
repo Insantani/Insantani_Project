@@ -96,7 +96,7 @@ public class ShopTabFragment extends Fragment {
 //
                                                     mItems.add(product);
 
-                                                    mAdapter = new GridAdapter(mItems,getContext());
+                                                    mAdapter = new ProductAdapter(mItems,getContext());
                                                     mRecyclerView.setAdapter(mAdapter);
 
 

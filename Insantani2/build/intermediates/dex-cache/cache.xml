@@ -2,39 +2,116 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\answers\1.3.4\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a8fad819414b57d881e5748f4157051ba0481a77">
-        <dex dex="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-cea8524887f8d8f52f2250b7833eeac0da1e5bc6.jar" />
-    </item>
-    <item
-        jar="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\io.fabric.sdk.android\fabric\1.3.8\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="2fc97f9f17a0a0c5372fbfd2eab091601db69249">
-        <dex dex="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-a964f542073a2a030a3aac6e06ebbcefe0f244ff.jar" />
-    </item>
-    <item
-        jar="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\beta\1.1.4\jars\classes.jar"
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\beta\1.1.4\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="ad5bb101ced4d3939225c9b57e5a3d81547c1fbb">
-        <dex dex="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-809911be8d49976d7e66dc280167f58c9aac3104.jar" />
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-1f5b57502e52384932468a8eb9aa3e586c755564.jar" />
     </item>
     <item
-        jar="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.6\jars\classes.jar"
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\io.fabric.sdk.android\fabric\1.3.8\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="a318b9031a1d83f568495b239504a808d56bdbc1">
-        <dex dex="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-5726625547289044575ad1093d65ca543fde2f08.jar" />
+        sha1="2fc97f9f17a0a0c5372fbfd2eab091601db69249">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-49b63b2f22545a5bd955925d4e96608c0f9b69ea.jar" />
     </item>
     <item
-        jar="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics\2.5.3\jars\classes.jar"
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\Insantani2\Volley\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2949a314bb368ca091b32773e0e86b154704aa68">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-bc70d2b425d30adfe8f5251305f7a502dbdf9c23.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics\2.5.3\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="52b8cd0d00fe37e94344e1f5de0449475f306a69">
-        <dex dex="C:\Users\william\Documents\Insantani_Project-agung\Insantani_Project-agung\Insantani2\app\build\intermediates\pre-dexed\debug\classes-748ecae83828fb42cdb0617fb0d7557661e26249.jar" />
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-77b2976bff1ded21408448a2b618764fea086a20.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-bd52feb2cbf47dd12194c683e1678f9200dc8b04.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-14efdf1aec2cb06e22d663281db2eb1ca544e34b.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-d31962bf0791a29df003c60a708b3e23f80708d4.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-cd0fe0605ffae43268c625a685cd3e0852ae536b.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.6\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a318b9031a1d83f568495b239504a808d56bdbc1">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-e775893f637118e63108b495b6ef2edcdf0eb08a.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a0c456a59e1edab84702b48a626705aa1d830ccc">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-7b6aca6490055b195062eee0cc7da10fa56d40f7.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\libs\org.apache.http.legacy.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5320fd78dd7f154e586970d4f02befc9b58432aa">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\org.apache.http.legacy-e535ca46792da7531a24b67048514ebeea2bb59c.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-aac7be753369931f1f741850d7a932c1108bd746.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-8a985de601cf3a183100e82e4eacdf947284f56a.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8c046c952177602c858ed41c8fc492c939bde9aa">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-3cbddecb2b64bcc335ac4a93d6aff47b5ed18659.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\answers\1.3.4\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a8fad819414b57d881e5748f4157051ba0481a77">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-82a4f8f2ec89341b0cbf63594cc07f43255f2741.jar" />
+    </item>
+    <item
+        jar="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\agungwy\Documents\GitHub\Insantani_Project\Insantani2\app\build\intermediates\pre-dexed\debug\classes-c6179ac4f8e7938d72cb6548455c8ecb9b992b79.jar" />
     </item>
 
 </items>

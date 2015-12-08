@@ -65,6 +65,17 @@
             android:name=".CheckoutActivity"
             android:theme="@style/CheckoutTheme" >
         </activity>
+        <activity
+            android:name=".FarmerProfileActivity"
+            android:theme="@style/TransparentTheme"
+             >
+        </activity>
+        <activity
+            android:name=".PhotoActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+
+        >
+        </activity>
     </application>
 
 </manifest>

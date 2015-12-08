@@ -202,7 +202,7 @@
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:text="Submit"
-                android:background="@color/isantaniGreen"
+                android:background="@color/insantaniGreen"
                 android:textColor="@color/insantaniWhite"
                 android:textSize="16dp"
                 android:id="@+id/register_button"
