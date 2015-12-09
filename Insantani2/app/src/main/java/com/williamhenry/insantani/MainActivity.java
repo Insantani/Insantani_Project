@@ -70,9 +70,12 @@ public class MainActivity extends FragmentActivity
                 fragment= new WishListFragment();
                 break;
             case 3:
-                fragment = new SettingsFragment();
+                fragment = new SubscriptionsFragment();
                 break;
             case 4:
+                fragment = new SettingsFragment();
+                break;
+            case 5:
                 fragment = new LoginFragment();
                 break;
 
@@ -99,9 +102,12 @@ public class MainActivity extends FragmentActivity
                 mTitle = "Wishlist";
                 break;
             case 4:
-                mTitle = getString(R.string.title_section3);
+                mTitle = "Following";
                 break;
             case 5:
+                mTitle = getString(R.string.title_section3);
+                break;
+            case 6:
                 mTitle = getString(R.string.title_section4);
                 break;
         }
