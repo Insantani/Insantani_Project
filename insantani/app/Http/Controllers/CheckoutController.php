@@ -113,6 +113,7 @@ class CheckoutController extends Controller
         $failed=array();
         for ($i=0; $i<count($order);$i++) {
             $todos=CheckoutModel::find($order[$i]['checkingout_id']);
+            $product=ProductModel::find($todos->product_id);
             if(count($todos)>0){
                 $user=User::find($todos->user_id);
                 
@@ -121,10 +122,10 @@ class CheckoutController extends Controller
                     $data['user_id']=$todos->user_id;
                     $todos->status='arrived';
                     $todos->save();
-                    $product=ProductModel::find($todos->product_id);
-                    $order[$i]['productQty']=$todos->productQty;
-                    $order[$i]['product_name']=$product->product_name;
-                    $order[$i]['prod_price']=$product->prod_price;
+                   
+                    $data['order'][$i]['productQty']=$todos->productQty;
+                    $data['order'][$i]['product_name']=$product->product_name;
+                    $data['order'][$i]['prod_price']=$product->prod_price;
                     $data['name']=$user->name;
                     $data['email']=$user->email;
                     $data['farmer_username']=$product->farmer_username;
