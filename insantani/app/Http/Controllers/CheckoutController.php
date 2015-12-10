@@ -104,6 +104,59 @@ class CheckoutController extends Controller
 //            
     }
 
+    public function arrived(Request $req)
+    {
+        //
+        $data=$req->all();
+    
+        $order=$data['order'];
+        $failed=array();
+        for ($i=0; $i<count($order);$i++) {
+            $todos=CheckoutModel::find($order[$i]['checkingout_id']);
+            if(count($todos)>0){
+                $user=User::find($todos->user_id);
+                
+                if(count($user)>0){
+                    $data['address']=$todos->address;
+                    $data['user_id']=$todos->user_id;
+                    $todos->status='arrived';
+                    $todos->save();
+                    $product=ProductModel::find($todos->product_id);
+                    $order[$i]['productQty']=$todos->productQty;
+                    $order[$i]['product_name']=$product->product_name;
+                    $order[$i]['prod_price']=$product->prod_price;
+                    $data['name']=$user->name;
+                    $data['email']=$user->email;
+                    $data['farmer_username']=$product->farmer_username;
+                  
+
+                }else{
+                    array_push($failed, $order[$i]);
+                }
+            }else{
+                array_push($failed, $order[$i]);
+            }
+        }
+        print_r($data);
+
+        if(count($failed)==0){
+
+            // $user=User::find($todos->user_id);
+
+             // Mail::send('insantaniArrived', $data, function($message) use ($data)
+             //        {
+             //            $message->to($data->email, $data->name)
+             //                    ->subject('status report!');
+             //        });
+            return response()->json(['message'=>'success','state'=>'arrived'],201);
+        }else{
+            return response()->json(['message'=>'Failed','state'=>'arrived'],400);
+        }
+
+
+//            
+    }
+
     /**
      * Show the form for creating a new resource.
      *

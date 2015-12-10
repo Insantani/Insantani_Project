@@ -63,6 +63,8 @@ Route::get('api/background/farmer/{username}/picture',array('uses'=>'FarmerContr
 Route::get('api/pictures/farmer/{username}',array('uses'=>'FarmerController@images','middleware'=>'farmer'))->where('username','.+');
 Route::get('api/pictures/{username}/{id}/picture',array('uses'=>'FarmerController@imagesDetail','middleware'=>'farmer'))->where(['username'=>'.+','id'=>'[0-9]+']);
 
+Route::put('api/arrived',['uses'=>'CheckoutController@arrived','middleware'=>'products']);
+
 
 Route::post('oauth/token', function()
 {
