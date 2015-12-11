@@ -13,6 +13,7 @@ public class HomeFragment extends Fragment {
 
     private FeedTabFragment feedTabFragment;
     private ShopTabFragment shopTabFragment;
+    private FarmerActivityTabFragment farmerActivityTabfragment;
 
     private TabLayout tabLayout;
 
@@ -35,10 +36,13 @@ public class HomeFragment extends Fragment {
 
         feedTabFragment = new FeedTabFragment();
         shopTabFragment = new ShopTabFragment();
+        farmerActivityTabfragment = new FarmerActivityTabFragment();
+
 
         TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager());
         adapter.addFragment(feedTabFragment, "Feed");
         adapter.addFragment(shopTabFragment, "Shop");
+        adapter.addFragment(farmerActivityTabfragment, "Activity");
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);

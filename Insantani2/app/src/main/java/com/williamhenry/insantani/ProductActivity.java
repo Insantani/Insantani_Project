@@ -44,6 +44,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ProductActivity extends ActionBarActivity {
@@ -220,10 +221,26 @@ public class ProductActivity extends ActionBarActivity {
         text3.setText("By: " + item.getString("fname"));
 
         TextView text4 = (TextView)findViewById(R.id.price);
-        text4.setText("Rp " + Integer.toString(item.getInt("price"))+ " / "+item.getString("uom"));
+        text4.setText("Rp " + Integer.toString(item.getInt("price")) + " / " + item.getString("uom"));
 
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
+
+        //farmer link
+        context = this;
+        TextView farmerName = (TextView) findViewById(R.id.farmername);
+        farmerName.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  Intent intent= new Intent(context,FarmerProfileActivity.class);
+                  Bundle bundle=new Bundle();
+                  bundle.putString("name", item.getString("fname"));
+                  intent.putExtra("farmer", bundle);
+                  context.startActivity(intent);
+
+              }
+        });
+
 
         Button shopping = (Button) findViewById(R.id.shoppingcart_button);
         shopping.setOnClickListener(new View.OnClickListener() {

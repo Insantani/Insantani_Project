@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context="com.williamhenry.insantani.Login"
     android:id="@+id/relativeLayoutLogin"
-    android:background="@color/isantaniGreen">
+    android:background="@color/insantaniGreen">
 
 
 
@@ -74,7 +74,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Login"
                         android:textColor="@color/insantaniWhite"
-                        android:background="@color/isantaniGreen2"
+                        android:background="@color/insantaniGreen2"
                         android:textSize="16dp"
                         />
 
@@ -87,7 +87,7 @@
                         android:layout_marginTop="2dp"
                         android:text="Register"
                         android:textColor="@color/insantaniWhite"
-                        android:background="@color/isantaniGreen2"
+                        android:background="@color/insantaniGreen2"
                         android:textSize="16dp" />
 
                 </LinearLayout>
