@@ -1,6 +1,7 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,7 +35,7 @@ import android.widget.Button;
 /**
  * Created by agungwy on 10/29/2015.
  */
-public class Registration extends Activity {
+public class Registration extends AppCompatActivity {
     private String url;
     private RequestQueue mQueue;
     private Context context;
@@ -43,12 +44,13 @@ public class Registration extends Activity {
 //    private ArrayList<Product> mItems;
     public static final String REQUEST_TAG = "Registration";
     private TextView email,password, verifyPassword,name,phoneNumber, address;
+    private ProgressDialog ringProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_page);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         linearLayout= (LinearLayout) findViewById(R.id.linearLayoutRegistration);
         Bundle extras = getIntent().getExtras();
@@ -69,6 +71,9 @@ public class Registration extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringProgressDialog=ProgressDialog.show(context, "Please Wait ...", "Loading", true);
+//                ringProgressDialog.setCancelable(true);
+
                 Log.d("email", email.getText().toString());
                 Log.d("password", password.getText().toString());
                 Log.d("verify_password", verifyPassword.getText().toString());
@@ -86,6 +91,7 @@ public class Registration extends Activity {
                                 try {
                                     Log.d("response_register", response.toString());
                                     JSONObject jsonObject= new JSONObject(response.toString());
+                                    ringProgressDialog.dismiss();
                                     if(jsonObject.has("message")) {
                                         String message = jsonObject.getString("message");
                                         Log.d("JSON_response_register", jsonObject.getString("message"));
@@ -102,35 +108,115 @@ public class Registration extends Activity {
                                             snackbar.show();
                                         }
 
-                                    }else if(jsonObject.has("password") &&!jsonObject.has("name") &&
-                                            !jsonObject.has("password_confirmation") && !jsonObject.has("address") &&
-                                            !jsonObject.has("phone_number") &&!jsonObject.has("email")) {
-                                        JSONArray password = jsonObject.getJSONArray("password");
-                                        Log.d("JSON_response_register_password", password.get(0).toString());
-//                                      String message=response.getString("message");
-//
-
-                                        Snackbar snackbar = Snackbar.make(linearLayout, password.get(0).toString(), Snackbar.LENGTH_LONG);
-                                        snackbar.setActionTextColor(Color.WHITE);
-
-                                        View snackbarView = snackbar.getView();
-                                        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        textView.setTextColor(Color.WHITE);
-
-                                        snackbar.show();
-                                    }else{
-                                        Snackbar snackbar = Snackbar.make(linearLayout, "Please enter the missing field", Snackbar.LENGTH_LONG);
-                                        snackbar.setActionTextColor(Color.WHITE);
-
-                                        View snackbarView = snackbar.getView();
-                                        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        textView.setTextColor(Color.WHITE);
-
-                                        snackbar.show();
                                     }
+                                    if(jsonObject.has("password")) {
+                                        JSONArray passwords = jsonObject.getJSONArray("password");
+                                        Log.d("JSON_response_register_password", passwords.get(0).toString());
+//                                      String message=response.getString("message");
+                                        for (int p=0;p<passwords.length();p++) {
+                                            Log.d("JSON_response_register_password", passwords.get(p).toString());
+                                            password.setError((String)passwords.get(p));
+//                                            Snackbar snackbar = Snackbar.make(linearLayout, password.get(p).toString(), Snackbar.LENGTH_LONG);
+//                                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                                            View snackbarView = snackbar.getView();
+//                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                            textView.setTextColor(Color.WHITE);
+//
+//                                            snackbar.show();
+
+                                        }
+                                    }
+                                    if(jsonObject.has("name")) {
+                                        JSONArray names = jsonObject.getJSONArray("name");
+                                        Log.d("JSON_response_register_name", names.get(0).toString());
+//                                      String message=response.getString("message");
+                                        for (int p=0;p<names.length();p++) {
+                                            Log.d("JSON_response_register_name", names.get(p).toString());
+                                            name.setError((String)names.get(p));
+
+//                                            Snackbar snackbar = Snackbar.make(linearLayout, password.get(p).toString(), Snackbar.LENGTH_LONG);
+//                                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                                            View snackbarView = snackbar.getView();
+//                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                            textView.setTextColor(Color.WHITE);
+//
+//                                            snackbar.show();
+                                        }
+                                    }
+
+                                    if(jsonObject.has("address")) {
+                                        JSONArray addresses = jsonObject.getJSONArray("address");
+                                        Log.d("JSON_response_register_address", addresses.get(0).toString());
+//                                      String message=response.getString("message");
+                                        for (int p=0;p<addresses.length();p++) {
+                                            Log.d("JSON_response_register_address", addresses.get(p).toString());
+                                            address.setError((String)addresses.get(p));
+
+//                                            Snackbar snackbar = Snackbar.make(linearLayout, password.get(p).toString(), Snackbar.LENGTH_LONG);
+//                                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                                            View snackbarView = snackbar.getView();
+//                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                            textView.setTextColor(Color.WHITE);
+//
+//                                            snackbar.show();
+                                        }
+                                    }
+
+                                    if(jsonObject.has("phone_number")) {
+                                        JSONArray number = jsonObject.getJSONArray("phone_number");
+                                        Log.d("JSON_response_register_phone_number", number.get(0).toString());
+//                                      String message=response.getString("message");
+                                        for (int p=0;p<number.length();p++) {
+                                            Log.d("JSON_response_register_phone_number", number.get(p).toString());
+                                            phoneNumber.setError((String)number.get(p));
+
+//                                            Snackbar snackbar = Snackbar.make(linearLayout, password.get(p).toString(), Snackbar.LENGTH_LONG);
+//                                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                                            View snackbarView = snackbar.getView();
+//                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                            textView.setTextColor(Color.WHITE);
+//
+//                                            snackbar.show();
+                                        }
+                                    }
+
+                                    if(jsonObject.has("email")) {
+                                        JSONArray emails = jsonObject.getJSONArray("email");
+                                        Log.d("JSON_response_register_email", emails.get(0).toString());
+//                                      String message=response.getString("message");
+                                        for (int p=0;p<emails.length();p++) {
+                                            Log.d("JSON_response_register_email", emails.get(p).toString());
+                                            email.setError((String)emails.get(p));
+
+//                                            Snackbar snackbar = Snackbar.make(linearLayout, password.get(p).toString(), Snackbar.LENGTH_LONG);
+//                                            snackbar.setActionTextColor(Color.WHITE);
+//
+//                                            View snackbarView = snackbar.getView();
+//                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                            textView.setTextColor(Color.WHITE);
+//
+//                                            snackbar.show();
+                                        }
+                                    }
+
+//                                    else{
+//                                        Snackbar snackbar = Snackbar.make(linearLayout, "Please enter the missing field", Snackbar.LENGTH_LONG);
+//                                        snackbar.setActionTextColor(Color.WHITE);
+//
+//                                        View snackbarView = snackbar.getView();
+//                                        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                        textView.setTextColor(Color.WHITE);
+//
+//                                        snackbar.show();
+//                                    }
 
                                 } catch(Exception e){
                                     Log.d("JSON_error_register",e.toString());
+                                    ringProgressDialog.dismiss();
                                 }
                             }
                         },new Response.ErrorListener(){
@@ -138,12 +224,13 @@ public class Registration extends Activity {
                     public void onErrorResponse(VolleyError error){
 
                         Log.d("error_response_register",error.toString());
-                        Snackbar snackbar = Snackbar.make(linearLayout, "Email has been used", Snackbar.LENGTH_LONG);
+                        Snackbar snackbar = Snackbar.make(linearLayout, error.toString(), Snackbar.LENGTH_LONG);
                         snackbar.setActionTextColor(Color.WHITE);
 
                         View snackbarView= snackbar.getView();
                         TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                         textView.setTextColor(Color.WHITE);
+                        ringProgressDialog.dismiss();
 
                         snackbar.show();
                     }
@@ -182,8 +269,15 @@ public class Registration extends Activity {
             }
         });
 
+        TextView privacy= (TextView) findViewById(R.id.privacy);
+        privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(),PrivacyPolicyActivity.class);
+                startActivity(intent);
 
-
+            }
+        });
     }
 
 

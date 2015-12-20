@@ -12,6 +12,37 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_name"
+                android:id="@+id/locationsymbol"/>
+            <EditText
+                android:id="@+id/receiverInfo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name of receiver (optional)"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="10dp"
+                android:inputType=""
+                android:ems="10"
+                android:textColor="@color/insantaniButtonBlack"
+                android:textSize="14dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -30,15 +61,13 @@
                     android:layout_height="20dp"
                     android:src="@mipmap/ic_address"
                     android:id="@+id/locationsymbol"/>
-                <EditText
+                <TextView
                     android:id="@+id/location"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Shipping Location"
                     android:layout_marginLeft="5dp"
                     android:paddingLeft="10dp"
-                    android:inputType=""
-                    android:ems="10"
                     android:textColor="@color/insantaniButtonBlack"
                     android:textSize="14dp"/>
 
@@ -54,27 +83,39 @@
                 android:padding="5dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+
                 >
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/ic_email"
-                    android:id="@+id/postcodesymbol"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="20dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:src="@drawable/ic"-->
+                    <!--android:id="@+id/postcode"/>-->
+
                 <EditText
                     android:id="@+id/postcode"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Post Code"
+                    android:hint="Location Details"
                     android:layout_marginLeft="5dp"
                     android:paddingLeft="10dp"
-                    android:inputType=""
+                    android:inputType="textMultiLine"
                     android:ems="10"
                     android:textColor="@color/insantaniButtonBlack"
                     android:textSize="14dp"/>
 
 
+
+
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="20dp"
+                android:text="View maps"
+                android:id="@+id/viewMaps"/>
 
             <LinearLayout
                 android:layout_width="fill_parent"
