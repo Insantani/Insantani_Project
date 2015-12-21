@@ -7,14 +7,16 @@ public class SearchItem {
     private String title;
     private String content;
     private Bitmap picture;
+    private int distance;
 
     public SearchItem() {
     }
 
-    public SearchItem(String title, String content, Bitmap picture) {
+    public SearchItem(String title, String content, Bitmap picture, int distance) {
         this.title = title;
         this.content = content;
         this.picture = picture;
+        this.distance=distance;
     }
 
     public String getTitle() {
@@ -35,6 +37,14 @@ public class SearchItem {
 
     public Bitmap getPicture(){
         return picture;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public int getDistance(){
+        return distance;
     }
 
     public void setPicture(Bitmap picture) {

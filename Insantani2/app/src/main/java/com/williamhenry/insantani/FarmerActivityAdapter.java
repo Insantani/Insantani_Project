@@ -20,10 +20,10 @@ import java.util.ArrayList;
  * Created by agungwy on 10/20/2015.
  */
 public class FarmerActivityAdapter extends RecyclerView.Adapter<FarmerActivityAdapter.ViewHolder> {
-    
+
     private Context context;
     private  ArrayList<FarmerActivity> feeds;
-    
+
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public FarmerActivityAdapter(ArrayList<FarmerActivity> feeds, Context context) {
@@ -36,7 +36,7 @@ public class FarmerActivityAdapter extends RecyclerView.Adapter<FarmerActivityAd
     // Create new views (invoked by the layout manager)
     @Override
     public FarmerActivityAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                        int viewType) {
+                                                               int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.farmer_activity, parent, false);

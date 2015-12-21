@@ -1,12 +1,16 @@
 package com.williamhenry.insantani;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 
 public class HomeFragment extends Fragment {
@@ -17,6 +21,13 @@ public class HomeFragment extends Fragment {
 
     private TabLayout tabLayout;
 
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private boolean checkToken;
+    private boolean checkRefreshToken;
+    private boolean tokenType;
+    private boolean user_id;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -24,6 +35,15 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pref= this.getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor= pref.edit();
+        checkToken=pref.contains("access_token");
+        checkRefreshToken=pref.contains("refresh_token");
+        tokenType=pref.contains("token_type");
+        user_id=pref.contains("user_id");
+//        getActivity().getActionBar().hide();
+        // Read in the flag indicating whether or not the user has demonstrated awareness of the
+        // drawer. See PREF_USER_LEARNED_DRAWER for details.
         getActivity().getActionBar().show();
         getActivity().getActionBar().setElevation(0);
     }
@@ -38,11 +58,20 @@ public class HomeFragment extends Fragment {
         shopTabFragment = new ShopTabFragment();
         farmerActivityTabfragment = new FarmerActivityTabFragment();
 
-
         TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(feedTabFragment, "Feed");
-        adapter.addFragment(shopTabFragment, "Shop");
-        adapter.addFragment(farmerActivityTabfragment, "Activity");
+        if(checkToken==false && checkRefreshToken==false && tokenType==false && user_id==false){
+            adapter.addFragment(feedTabFragment, "Feed");
+            adapter.addFragment(shopTabFragment, "Shop");
+        }else{
+            adapter.addFragment(feedTabFragment, "Feed");
+            adapter.addFragment(shopTabFragment, "Shop");
+            adapter.addFragment(farmerActivityTabfragment, "Activity");
+        }
+//        adapter.addFragment(feedTabFragment, "Feed");
+//            adapter.addFragment(shopTabFragment, "Shop");
+//            adapter.addFragment(farmerActivityTabfragment, "Activity");
+
+
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);

@@ -140,6 +140,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     public void onErrorResponse(VolleyError error) {
 
                         Log.d("error_response_delete", error.toString());
+                        if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                            RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+                            refreshToken.login();
+                        }
 //                        Snackbar snackbar = Snackbar.make(linearLayout, "Email has been used", Snackbar.LENGTH_LONG);
 //                        snackbar.setActionTextColor(Color.WHITE);
 //
@@ -253,6 +257,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                                     public void onErrorResponse(VolleyError error){
 
                                         Log.d("error_response_edit",error.toString());
+                                        if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                                            RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+                                            refreshToken.login();
+                                        }
 
                                     }
                                 }){

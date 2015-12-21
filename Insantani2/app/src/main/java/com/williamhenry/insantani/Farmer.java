@@ -15,7 +15,12 @@ public class Farmer {
     private String email;
     private ArrayList<Integer> photo;
     private Bitmap photoProfile;
-    private int photoBackground;
+    private Bitmap photoBackground;
+    private float rating;
+    private String profilePictureUrl;
+    private double distance;
+    private String fullName;
+//    private String backgroundPictureUrl;
     private ArrayList<Product> products;
 
 
@@ -74,15 +79,48 @@ public class Farmer {
     }
 
 
-    public int getPhotoBackground() {
+    public Bitmap getPhotoBackground() {
         return photoBackground;
     }
 
-    public void setPhotoBackground(int photoBackground) {
+    public void setPhotoBackground(Bitmap photoBackground) {
         this.photoBackground = photoBackground;
     }
 
     public void setPhotoProfile(Bitmap photoProfile) {
         this.photoProfile = photoProfile;
     }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
 }

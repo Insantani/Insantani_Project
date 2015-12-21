@@ -17,10 +17,10 @@ import java.util.ArrayList;
  */
 public class FarmerPhotosAdapter extends RecyclerView.Adapter<FarmerPhotosAdapter.ViewHolder> {
 
-    ArrayList<Integer> mItems;
+    ArrayList<Photo> mItems;
     private Context context;
     //    private int id;
-    public FarmerPhotosAdapter(ArrayList<Integer>mItems,Context context) {
+    public FarmerPhotosAdapter(ArrayList<Photo>mItems,Context context) {
         super();
         this.context=context;
         this.mItems=mItems;
@@ -42,9 +42,9 @@ public class FarmerPhotosAdapter extends RecyclerView.Adapter<FarmerPhotosAdapte
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
 
-        final int nature = mItems.get(i);
+        final Photo nature = mItems.get(i);
 //        if(id!=mItems.get(i).getId()) {
-        viewHolder.imgThumbnail.setImageResource(nature);
+        viewHolder.imgThumbnail.setImageBitmap(nature.getImage());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +52,9 @@ public class FarmerPhotosAdapter extends RecyclerView.Adapter<FarmerPhotosAdapte
 
                 Intent intent = new Intent(context, PhotoActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("image", nature);
+                bundle.putString("image", nature.getUrl());
 
-                intent.putExtra("photo", bundle);
+                intent.putExtra("photo1", bundle);
                 context.startActivity(intent);
 
             }

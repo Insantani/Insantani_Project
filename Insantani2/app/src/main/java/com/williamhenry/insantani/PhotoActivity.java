@@ -34,14 +34,13 @@ public class PhotoActivity extends Activity {
         setContentView(R.layout.photo_activity);
         final ImageView photo = (ImageView) findViewById(R.id.photo);
         Bundle extras = getIntent().getExtras();
+//        final Bundle item = (Bundle) extras.get("farmer");
 
-        if (extras != null){
-            final Bundle item = (Bundle) extras.get("photo");
-            photo.setImageResource(item.getInt("image"));
-        }
-        else{
+        if ((Bundle)extras.get("photo1") != null){
+            final Bundle item = (Bundle) extras.get("photo1");
+//            photo.setImageResource(item.getInt("image"));
             mQueue= CustomVolleyRequestQueue.getInstance(getApplicationContext()).getRequestQueue();
-            url="http://104.155.213.80/insantani/public/api/feed/article/1/picture";
+            url="http://104.155.213.80/insantani/public/"+item.getString("image");
             Log.d("url", url);
             final ImageRequest imageRequest= new ImageRequest(url,
                     new Response.Listener<Bitmap>() {
@@ -52,14 +51,41 @@ public class PhotoActivity extends Activity {
                                 photo.setImageBitmap(bitmap);
 
                             }catch(Exception e){
-                                Log.d("error_picture_article",e.toString());
+                                Log.d("error_images_farmer",e.toString());
 
                             }
 
                         }
                     },0,0,null,new Response.ErrorListener() {
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("error_response_image_article", error.toString());
+                    Log.d("error_response_images_farmer", error.toString());
+                }
+            });
+            imageRequest.setTag(REQUEST_TAG);
+            mQueue.add(imageRequest);
+        }
+        else{
+            final Bundle item=(Bundle) extras.get("photo");
+            mQueue= CustomVolleyRequestQueue.getInstance(getApplicationContext()).getRequestQueue();
+            url="http://104.155.213.80/insantani/public/"+item.getString("profile_picture_url");
+            Log.d("url", url);
+            final ImageRequest imageRequest= new ImageRequest(url,
+                    new Response.Listener<Bitmap>() {
+                        @Override
+                        public void onResponse(Bitmap bitmap) {
+                            try{
+                                Log.d("bitmap",bitmap.toString());
+                                photo.setImageBitmap(bitmap);
+
+                            }catch(Exception e){
+                                Log.d("error_picture_farmer_profile",e.toString());
+
+                            }
+
+                        }
+                    },0,0,null,new Response.ErrorListener() {
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("error_response_image_farmer_profile", error.toString());
                 }
             });
             imageRequest.setTag(REQUEST_TAG);

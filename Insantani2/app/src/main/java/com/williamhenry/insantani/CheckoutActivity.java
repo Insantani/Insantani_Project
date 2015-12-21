@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +37,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -81,6 +84,8 @@ public class CheckoutActivity extends AppCompatActivity {
         totalPriceInput=(TextView)findViewById(R.id.totalPriceInput);
         totalInput= (TextView) findViewById(R.id.totalInput);
 
+
+
 //        Bundle extras= getIntent().getExtras();
 //        final Bundle item=(Bundle)extras.get("nature");
         Bundle extras=getIntent().getExtras();
@@ -121,6 +126,23 @@ public class CheckoutActivity extends AppCompatActivity {
                                 ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 
 
+
+                                    try {
+                                        Geocoder geocoder = new Geocoder(getApplicationContext());
+                                        List<Address> addresses;
+                                        addresses = geocoder.getFromLocationName(address.getText().toString()+" ,"+zipcode.getText().toString(), 1);
+                                        if (addresses.size() > 0) {
+                                            double latitude = addresses.get(0).getLatitude();
+                                            double longitude = addresses.get(0).getLongitude();
+                                            Log.d("latitude", Double.toString(latitude));
+                                            Log.d("longitude", Double.toString(longitude));
+
+
+
+
+
+
+
                                 for (int i = 0; i < carts.size(); i++) {
                                     try {
                                         JSONObject sendObject = new JSONObject();
@@ -129,6 +151,8 @@ public class CheckoutActivity extends AppCompatActivity {
                                         sendObject.put("user_id", pref.getString("user_id", null));
                                         sendObject.put("address", address.getText().toString());
                                         sendObject.put("zipcode", zipcode.getText().toString());
+                                        sendObject.put("latitude",latitude);
+                                        sendObject.put("longitude",longitude);
                                         array.add(sendObject);
                                     } catch (Exception e) {
                                         Log.d("translation_error", e.toString());
@@ -136,6 +160,7 @@ public class CheckoutActivity extends AppCompatActivity {
                                     //            temp.add(sendObject);
 
                                 }
+
                                 JSONArray jsonArrayItems = new JSONArray(array);
                                 JSONObject params = new JSONObject();
                                 // the POST parameters:
@@ -215,6 +240,39 @@ public class CheckoutActivity extends AppCompatActivity {
                                                         });
                                                 alertDialog.show();
 
+                                            }else if(message.equals("too far from the farmer")){
+                                                JSONArray itemOut= response.getJSONArray("data");
+                                                int sizeItemOut= itemOut.length();
+                                                int leftOver= Integer.valueOf(item.getString("totalItem"))-sizeItemOut;
+                                                LayoutInflater inflater = getLayoutInflater();
+
+                                                AlertDialog alertDialog = new AlertDialog.Builder(CheckoutActivity.this).create();
+                                                alertDialog.setView(inflater.inflate(R.layout.cart_warn_limited, null));
+                                                alertDialog.setTitle("Warning");
+
+//                                                TextView warn= (TextView) alertDialog.findViewById(R.id.warn);
+//                                                warn.setText("Can only process "+Integer.toString(leftOver)+" items due to limited stock");
+                                                alertDialog.setMessage("Can only process "+Integer.toString(leftOver)+" items due to too far from farmer");
+
+                                                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                                                        new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                                dialog.dismiss();
+                                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
+                                                alertDialog.show();
+                                            }else{
+                                                Snackbar snackbar = Snackbar.make(linearLayout, message, Snackbar.LENGTH_LONG);
+                                                snackbar.setActionTextColor(Color.WHITE);
+
+                                                View snackbarView = snackbar.getView();
+                                                TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                                textView.setTextColor(Color.WHITE);
+                                                snackbar.show();
+
                                             }
 
 
@@ -227,14 +285,19 @@ public class CheckoutActivity extends AppCompatActivity {
                                     public void onErrorResponse(VolleyError error) {
 
                                         Log.d("error_response_checkout", error.toString());
-                                        Snackbar snackbar = Snackbar.make(linearLayout, "Something wrong", Snackbar.LENGTH_LONG);
-                                        snackbar.setActionTextColor(Color.WHITE);
+                                        if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                                            RefreshTokenManager refreshToken = new RefreshTokenManager(getApplicationContext());
+                                            refreshToken.login();
+                                        }else {
+                                            Snackbar snackbar = Snackbar.make(linearLayout, "Something wrong", Snackbar.LENGTH_LONG);
+                                            snackbar.setActionTextColor(Color.WHITE);
 
-                                        View snackbarView = snackbar.getView();
-                                        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        textView.setTextColor(Color.WHITE);
+                                            View snackbarView = snackbar.getView();
+                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                            textView.setTextColor(Color.WHITE);
 
-                                        snackbar.show();
+                                            snackbar.show();
+                                        }
                                     }
                                 }) {
 
@@ -247,15 +310,27 @@ public class CheckoutActivity extends AppCompatActivity {
                                         headers.put("Authorization", auth);
 
                                         return headers;
-                                    }
-
-                                    ;
+                                    };
 
                                 };
 
 
                                 jsonRequestCheckout.setTag(REQUEST_TAG);
                                 mQueue.add(jsonRequestCheckout);
+
+                                        }else{
+                                            Snackbar snackbar = Snackbar.make(linearLayout, "Location not found", Snackbar.LENGTH_LONG);
+                                            snackbar.setActionTextColor(Color.WHITE);
+
+                                            View snackbarView = snackbar.getView();
+                                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                            textView.setTextColor(Color.WHITE);
+
+                                            snackbar.show();
+                                        }
+                                    }catch(Exception e){
+                                        Log.d("error_geocoder",e.toString());
+                                    }
 
 
                             }else{
@@ -294,15 +369,20 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error){
 
                 Log.d("error_response_checkout_item",error.toString());
+                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                    RefreshTokenManager refreshToken = new RefreshTokenManager(getApplicationContext());
+                    refreshToken.login();
+                }else {
 
-                Snackbar snackbar = Snackbar.make(linearLayout, "Something wrong", Snackbar.LENGTH_LONG);
-                snackbar.setActionTextColor(Color.WHITE);
+                    Snackbar snackbar = Snackbar.make(linearLayout, "Something wrong", Snackbar.LENGTH_LONG);
+                    snackbar.setActionTextColor(Color.WHITE);
 
-                View snackbarView= snackbar.getView();
-                TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
+                    View snackbarView = snackbar.getView();
+                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
 
-                snackbar.show();
+                    snackbar.show();
+                }
             }
         }){
 
@@ -325,6 +405,18 @@ public class CheckoutActivity extends AppCompatActivity {
 
         stringRequestCart.setTag(REQUEST_TAG);
         mQueue.add(stringRequestCart);
+
+        TextView map=(TextView)findViewById(R.id.viewMaps);
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
 
     }

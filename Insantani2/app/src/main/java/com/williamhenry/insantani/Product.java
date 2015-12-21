@@ -20,6 +20,16 @@ public class Product {
     private int id;
     private String url;
     private String uom;
+    private double distance;
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
 
     public String getName() {
         return mName;
@@ -93,3 +103,4 @@ public class Product {
         return uom;
     }
 }
+

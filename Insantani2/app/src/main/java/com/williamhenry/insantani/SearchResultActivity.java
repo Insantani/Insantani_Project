@@ -85,10 +85,12 @@ public class SearchResultActivity extends AppCompatActivity {
                 Log.d("onQueryTextSubmit", query);
                 if (tabLayout.getSelectedTabPosition() == 0) {
                     ingredientsTabFragment.search(query);
+                    getSupportFragmentManager().beginTransaction().detach(ingredientsTabFragment).attach(ingredientsTabFragment).commit();
 
                 }
                 else{
                     farmerTabFragment.search(query);
+                    getSupportFragmentManager().beginTransaction().detach(farmerTabFragment).attach(farmerTabFragment).commit();
                 }
 
                 return true;
@@ -114,6 +116,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 }
                 else{
                     farmerTabFragment.search(newText);
+                    getSupportFragmentManager().beginTransaction().detach(farmerTabFragment).attach(farmerTabFragment).commit();
                 }
                 return false;
             }
@@ -126,21 +129,25 @@ public class SearchResultActivity extends AppCompatActivity {
 //        searchView.setQuery("apple", true);
 //        searchView.setQuery("", true);
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                queryTextlistener.onQueryTextSubmit(searchView.getQuery().toString());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                queryTextlistener.onQueryTextSubmit(searchView.getQuery().toString());
-            }
-        });
+//        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                queryTextlistener.onQueryTextSubmit(searchView.getQuery().toString());
+//
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//                queryTextlistener.onQueryTextSubmit(searchView.getQuery().toString());
+//
+//            }
+//        });
 
         return super.onCreateOptionsMenu(menu);
     }
