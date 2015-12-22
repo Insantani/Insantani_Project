@@ -265,15 +265,20 @@ public class CartFragment extends android.support.v4.app.Fragment {
             public void onErrorResponse(VolleyError error){
 
                 Log.d("error_response_cart",error.toString());
+                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
+                    refreshToken.login();
+                }else {
 
-                Snackbar snackbar = Snackbar.make(relativeLayout, "Something wrong", Snackbar.LENGTH_LONG);
-                snackbar.setActionTextColor(Color.WHITE);
+                    Snackbar snackbar = Snackbar.make(relativeLayout, "Something wrong", Snackbar.LENGTH_LONG);
+                    snackbar.setActionTextColor(Color.WHITE);
 
-                View snackbarView= snackbar.getView();
-                TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
+                    View snackbarView = snackbar.getView();
+                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
 
-                snackbar.show();
+                    snackbar.show();
+                }
             }
         }){
 

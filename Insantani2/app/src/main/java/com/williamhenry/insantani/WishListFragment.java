@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -57,8 +56,8 @@ public class WishListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setElevation(11);
-        pref=((AppCompatActivity)getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        getActivity().getActionBar().setElevation(11);
+        pref=getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         editor=pref.edit();
 
     }
@@ -185,10 +184,10 @@ public class WishListFragment extends Fragment {
             public void onErrorResponse(VolleyError error){
 
                 Log.d("error_response_wish",error.toString());
-//                if(error.toString().equals("com.android.volley.AuthFailureError")) {
-//                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
-//                    refreshToken.login();
-//                }else {
+                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
+                    refreshToken.login();
+                }else {
 
                     Snackbar snackbar = Snackbar.make(relativeLayout, "Something wrong", Snackbar.LENGTH_LONG);
                     snackbar.setActionTextColor(Color.WHITE);
@@ -198,7 +197,7 @@ public class WishListFragment extends Fragment {
                     textView.setTextColor(Color.WHITE);
 
                     snackbar.show();
-//                }
+                }
             }
         }){
 
@@ -241,7 +240,7 @@ public class WishListFragment extends Fragment {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        ((AppCompatActivity)getActivity()).getMenuInflater().inflate(R.menu.main, menu);
+        getActivity().getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 

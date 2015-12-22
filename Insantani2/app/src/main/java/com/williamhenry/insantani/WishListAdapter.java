@@ -135,10 +135,10 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
                         public void onErrorResponse(VolleyError error){
 
                             Log.d("error_response_delete_wish",error.toString());
-//                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
-//                                RefreshTokenManager refreshToken = new RefreshTokenManager(context);
-//                                refreshToken.login();
-//                            }else {
+                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                                RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+                                refreshToken.login();
+                            }else {
 
                                 Snackbar snackbar = Snackbar.make(relativeLayout, error.toString(), Snackbar.LENGTH_LONG);
                                 snackbar.setActionTextColor(Color.WHITE);
@@ -148,7 +148,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
                                 textView.setTextColor(Color.WHITE);
 
                                 snackbar.show();
-//                            }
+                            }
                         }
                     }){
                         @Override

@@ -78,6 +78,7 @@ public class NavigationDrawerFragment extends Fragment {
         checkRefreshToken=pref.contains("refresh_token");
         tokenType=pref.contains("token_type");
         user_id=pref.contains("user_id");
+//        getActivity().getActionBar().hide();
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -118,7 +119,6 @@ public class NavigationDrawerFragment extends Fragment {
                     android.R.id.text1,
                     new String[]{
                             getString(R.string.title_section1),
-                            getString(R.string.title_section2),
                             getString(R.string.title_section4),
                     }));
         }else{
@@ -129,7 +129,10 @@ public class NavigationDrawerFragment extends Fragment {
                     new String[]{
                             getString(R.string.title_section1),
                             getString(R.string.title_section2),
-                            getString(R.string.title_section3),
+                            getString(R.string.title_section5),
+                            getString(R.string.title_section6),
+                            getString(R.string.title_section3)
+
                     }));
         }
 

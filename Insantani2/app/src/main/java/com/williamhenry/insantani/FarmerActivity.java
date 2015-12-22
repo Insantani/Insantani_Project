@@ -1,5 +1,8 @@
 package com.williamhenry.insantani;
 
+/**
+ * Created by william on 12/4/2015.
+ */
 import android.graphics.Bitmap;
 
 import java.security.Timestamp;
@@ -47,3 +50,4 @@ public class FarmerActivity {
         this.photo = photo;
     }
 }
+

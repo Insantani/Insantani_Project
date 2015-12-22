@@ -10,10 +10,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -31,6 +36,7 @@ import android.view.View;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -44,10 +50,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ProductActivity extends ActionBarActivity {
+public class ProductActivity extends AppCompatActivity {
     private Context context;
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
@@ -61,7 +66,7 @@ public class ProductActivity extends ActionBarActivity {
     private boolean checkRefreshToken;
     private boolean tokenType;
     private boolean user_id;
-    private RelativeLayout relativeLayout;
+    private CoordinatorLayout relativeLayout;
 
 //    private ArrayList<Article> articles;
 //    private ArrayList<Product> mItems;
@@ -78,9 +83,7 @@ public class ProductActivity extends ActionBarActivity {
         checkRefreshToken=pref.contains("refresh_token");
         tokenType=pref.contains("token_type");
         user_id=pref.contains("user_id");
-        relativeLayout= (RelativeLayout) findViewById(R.id.relativeLayoutProduct);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        relativeLayout= (CoordinatorLayout) findViewById(R.id.relativeLayoutProduct);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
         mRecyclerView.setHasFixedSize(true);
@@ -92,6 +95,17 @@ public class ProductActivity extends ActionBarActivity {
 
         Bundle extras= getIntent().getExtras();
         final Bundle item=(Bundle)extras.get("nature");
+
+        // collapsing bar
+        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout_product), "EXTRA_IMAGE");
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_product);
+        collapsingToolbarLayout.setTitle(item.getString("title"));
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_product);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        final Context context=getApplicationContext();
         final ArrayList<Product> relatedItems = new ArrayList<Product>();
 
@@ -218,10 +232,10 @@ public class ProductActivity extends ActionBarActivity {
         text2.setText(item.getString("description"));
 
         TextView text3 = (TextView)findViewById(R.id.farmername);
-        text3.setText("By: " + item.getString("fname"));
+        text3.setText(item.getString("fname"));
 
         TextView text4 = (TextView)findViewById(R.id.price);
-        text4.setText("Rp " + Integer.toString(item.getInt("price")) + " / " + item.getString("uom"));
+        text4.setText("Rp " + Integer.toString(item.getInt("price"))+ " / "+item.getString("uom"));
 
         TextView text5 = (TextView)findViewById(R.id.stock);
         text5.setText("Stock: " + Integer.toString(item.getInt("stock")));
@@ -230,17 +244,16 @@ public class ProductActivity extends ActionBarActivity {
         context = this;
         TextView farmerName = (TextView) findViewById(R.id.farmername);
         farmerName.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intent= new Intent(context,FarmerProfileActivity.class);
-                  Bundle bundle=new Bundle();
-                  bundle.putString("name", item.getString("fname"));
-                  intent.putExtra("farmer", bundle);
-                  context.startActivity(intent);
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, FarmerProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", item.getString("fname"));
+                intent.putExtra("farmer", bundle);
+                context.startActivity(intent);
 
-              }
+            }
         });
-
 
         Button shopping = (Button) findViewById(R.id.shoppingcart_button);
         shopping.setOnClickListener(new View.OnClickListener() {
@@ -331,14 +344,20 @@ public class ProductActivity extends ActionBarActivity {
 
                                                 Log.d("error_response_add_cart", error.toString());
 
-                                                Snackbar snackbar = Snackbar.make(relativeLayout, "You have the same item in cart", Snackbar.LENGTH_LONG);
-                                                snackbar.setActionTextColor(Color.WHITE);
+                                                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                                                    RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+                                                    refreshToken.login();
+                                                }else {
 
-                                                View snackbarView = snackbar.getView();
-                                                TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                textView.setTextColor(Color.WHITE);
+                                                    Snackbar snackbar = Snackbar.make(relativeLayout, "You have the same item in cart", Snackbar.LENGTH_LONG);
+                                                    snackbar.setActionTextColor(Color.WHITE);
 
-                                                snackbar.show();
+                                                    View snackbarView = snackbar.getView();
+                                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                                    textView.setTextColor(Color.WHITE);
+
+                                                    snackbar.show();
+                                                }
                                             }
                                         }) {
 
@@ -461,16 +480,117 @@ public class ProductActivity extends ActionBarActivity {
             }
         });
 
+        Button wishList = (Button) findViewById(R.id.wishlist_button);
+        wishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkToken && !checkRefreshToken && !tokenType && !user_id) {
+                    Snackbar snackbar = Snackbar.make(relativeLayout, "Login First", Snackbar.LENGTH_LONG);
+                    snackbar.setActionTextColor(Color.WHITE);
 
-    }
+                    View snackbarView = snackbar.getView();
+                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_product, menu);
-        TextView title = (TextView) findViewById(R.id.productname);
-        setTitle(title.getText());
-        return true;
+                    snackbar.show();
+                } else {
+
+
+
+                                        //add to cart starts here
+                                        url = "http://104.155.213.80/insantani/public/api/wish/add";
+                                        final StringRequest stringRequestAddWishList = new StringRequest(Request.Method.POST,
+                                                url, new Response.Listener<String>() {
+                                            //                    private ArrayList<Article> articles1=new ArrayList<Article>();
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Log.d("add_wish_list", response.toString());
+                                                try {
+                                                    Log.d("response_add_wish_list", response.toString());
+                                                    JSONObject jsonObject = new JSONObject(response.toString());
+
+                                                    Log.d("message_add_wish_list", jsonObject.getString("message"));
+                                                    Snackbar snackbar = Snackbar.make(relativeLayout, jsonObject.getString("message"), Snackbar.LENGTH_LONG);
+                                                    snackbar.setActionTextColor(Color.WHITE);
+
+                                                    View snackbarView = snackbar.getView();
+                                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                                    textView.setTextColor(Color.WHITE);
+
+                                                    snackbar.show();
+
+
+//                                                    dialog.dismiss();
+                                                } catch (Exception e) {
+                                                    Log.d("JSON_error_add_wish_list", e.toString());
+                                                }
+                                            }
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+
+                                                Log.d("error_response_add_wish_list", error.toString());
+
+                                                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+                                                    RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+                                                    refreshToken.login();
+                                                }else {
+
+                                                    Snackbar snackbar = Snackbar.make(relativeLayout, "You have a similar item in your wish list", Snackbar.LENGTH_LONG);
+                                                    snackbar.setActionTextColor(Color.WHITE);
+
+                                                    View snackbarView = snackbar.getView();
+                                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                                    textView.setTextColor(Color.WHITE);
+
+                                                    snackbar.show();
+                                                }
+                                            }
+                                        }) {
+
+                                            @Override
+                                            public Map<String, String> getHeaders() {
+                                                Map<String, String> headers = new HashMap<String, String>();
+                                                // the POST parameters:
+                                                String auth = "Bearer " + pref.getString("access_token", null);
+                                                Log.d("Auth_add_wish_list", auth);
+                                                headers.put("Authorization", auth);
+
+                                                return headers;
+                                            };
+
+                                            protected Map getParams() {
+                                                Map params = new HashMap();
+                                                // the POST parameters:
+
+                                                String user_id = pref.getString("user_id", null);
+                                                params.put("product_id", Integer.toString(item.getInt("id")));
+                                                params.put("user_id", user_id);
+
+//                                                params.put("product_quantity", Integer.toString(quantity));
+//                                            params.put("scope","read");
+//                                            params.put("client_id", "testclient");
+//                                            params.put("client_secret","testpass");
+                                                return params;
+                                            };
+
+
+                                        };
+
+
+                                        stringRequestAddWishList.setTag(REQUEST_TAG);
+                                        mQueue.add(stringRequestAddWishList);
+
+
+                                    }
+//                                });
+
+
+                }
+            });
+
+
+
     }
 
     @Override
@@ -478,22 +598,10 @@ public class ProductActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        onBackPressed();
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-        switch (id) {
-            case android.R.id.home:
-                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
-                // if this doesn't work as desired, another possibility is to call `finish()` here.
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-//        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -5,6 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.app.ActionBarActivity;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -17,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 
-public class ArticleActivity extends Activity {
+public class ArticleActivity extends AppCompatActivity{
     private String url;
     private RequestQueue mQueue;
     public static final String REQUEST_TAG = "ArticleActivity";
@@ -27,7 +33,7 @@ public class ArticleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 //        getActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
@@ -35,6 +41,20 @@ public class ArticleActivity extends Activity {
         Log.d("article", item.getString("title"));
         Log.d("author", item.getString("author"));
         Log.d("desc", item.getString("desc"));
+
+        String titleText = item.getString("title");
+
+        // collapsing bar
+        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout_article), "EXTRA_IMAGE");
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_article);
+        collapsingToolbarLayout.setTitle(titleText);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_article);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //        Log.d("image", item.getString("image"));
 //        getActionBar().setTitle(item.getString("article"));
         final ImageView image = (ImageView) findViewById(R.id.imageViewArticle);
@@ -80,36 +100,24 @@ public class ArticleActivity extends Activity {
 
 
 
-        title.setText(item.getString("title"));
+        title.setText(titleText);
         author.setText(item.getString("author"));
         desc.setText(item.getString("desc"));
 
 
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_article, menu);
-        TextView title = (TextView) findViewById(R.id.titleArticle);
-        setTitle(title.getText());
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        onBackPressed();
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
 }

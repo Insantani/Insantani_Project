@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -81,19 +82,19 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
                             try {
                                 JSONArray result = response.getJSONArray("result");
                                 Log.d("result_seach", result.toString());
-                                if(result.length()>0){
+//
 //
 //                            JSONArray data=result.getJSONArray("data");
 //                            Log.d("response1", data.get(0).toString());
-                                for (int i = 0; i < result.length(); i++) {
-                                    final JSONObject dataDetail = (JSONObject) result.get(i);
-                                    url = "http://104.155.213.80/insantani/public/" + dataDetail.getString("profile_picture_url");
-                                    Log.d("url", url);
-                                    final ImageRequest imageRequest = new ImageRequest(url,
+                                for (int i=0;i<result.length();i++){
+                                    final JSONObject dataDetail=(JSONObject)result.get(i);
+                                    url="http://104.155.213.80/insantani/public/"+dataDetail.getString("profile_picture_url");
+                                    Log.d("url",url);
+                                    final ImageRequest imageRequest= new ImageRequest(url,
                                             new Response.Listener<Bitmap>() {
                                                 @Override
                                                 public void onResponse(Bitmap bitmap) {
-                                                    try {
+                                                    try{
                                                         Log.d("bitmap", bitmap.toString());
                                                         Farmer searchItem = new Farmer();
                                                         searchItem.setName(dataDetail.getString("farmer_username"));
@@ -101,7 +102,7 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
                                                         searchItem.setRating((float) dataDetail.getDouble("rating"));
                                                         searchItem.setAddress(dataDetail.getString("address"));
                                                         searchItem.setProfilePictureUrl(dataDetail.getString("profile_picture_url"));
-                                                        Bitmap photo = roundedImageView.getCroppedBitmap(bitmap, 75);
+                                                        Bitmap photo= roundedImageView.getCroppedBitmap(bitmap, 75);
                                                         searchItem.setPhotoProfile(photo);
                                                         searchItem.setPhoto(null);
                                                         searchItem.setFullName(dataDetail.getString("farmer_name"));
@@ -115,6 +116,7 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
                                                         newsList.add(searchItem);
 
 
+
                                                         searchListViewFarmerAdapter = new SearchListViewFarmerAdapter(getActivity(), newsList);
                                                         System.out.println(searchListViewFarmerAdapter.toString());
 //                                                        System.out.println(resultListView.toString());
@@ -124,9 +126,9 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
                                                         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                             @Override
                                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                                Bundle bundle = new Bundle();
-                                                                Intent intent = new Intent(getContext(), FarmerProfileActivity.class);
-                                                                bundle.putString("name", searchListViewFarmerAdapter.getItem(position).getName());
+                                                                Bundle bundle= new Bundle();
+                                                                Intent intent= new Intent(getContext(),FarmerProfileActivity.class);
+                                                                bundle.putString("name",searchListViewFarmerAdapter.getItem(position).getName());
 //                                                                bundle.putString("description",searchListViewAdapter.getItem(position).getDescription());
 //                                                                bundle.putString("fname",searchListViewAdapter.getItem(position).getFarmerName());
 //                                                                bundle.putString("url",searchListViewAdapter.getItem(position).getUrl());
@@ -143,30 +145,19 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
                                                             }
                                                         });
 //
-                                                    } catch (Exception e) {
-                                                        Log.d("error_picture", e.toString());
+                                                    }catch(Exception e){
+                                                        Log.d("error_picture",e.toString());
 
                                                     }
 
                                                 }
-                                            }, 0, 0, null, new Response.ErrorListener() {
+                                            },0,0,null,new Response.ErrorListener() {
                                         public void onErrorResponse(VolleyError error) {
                                             Log.d("error_response", error.toString());
                                         }
                                     });
                                     imageRequest.setTag(REQUEST_TAG);
                                     mQueue.add(imageRequest);
-
-                                    }
-                                }else if(result.length()==0 && !query.equals("null")){
-
-                                    Farmer empty= new Farmer();
-                                    empty.setName("Not Found");
-                                    empty.setPhotoProfile(null);
-                                    newsList.add(empty);
-                                    searchListViewFarmerAdapter = new SearchListViewFarmerAdapter(getActivity(), newsList);
-                                    resultListView = (ListView) view.findViewById(R.id.itemList1);
-                                    resultListView.setAdapter(searchListViewFarmerAdapter);
 
                                 }
                             } catch (Exception e) {
@@ -213,8 +204,13 @@ public class FarmerTabFragment extends android.support.v4.app.Fragment {
         this.query=param;
         Log.d("param", param);
 
-//        if(searchListViewFarmerAdapter!=null)
-            searchListViewFarmerAdapter.getFilter().filter(param);
+
+        searchListViewFarmerAdapter.getFilter().filter(param);
+        if(searchListViewFarmerAdapter==null) {
+            TextView search = (TextView) getView().findViewById(R.id.farmer_search_result);
+            search.setText("Item not found");
+        }
+
 
 //        searchListViewFarmerAdapter.getFilter().filter(param);
     }

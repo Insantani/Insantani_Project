@@ -6,8 +6,7 @@
     android:layout_height="fill_parent"
     tools:context="com.williamhenry.insantani.CartFragment"
     android:clipToPadding="false"
-    android:id="@+id/relativeLayoutWish"
-    android:paddingTop="?attr/actionBarSize">
+    android:id="@+id/relativeLayoutWish">
 
 
     <android.support.v7.widget.RecyclerView

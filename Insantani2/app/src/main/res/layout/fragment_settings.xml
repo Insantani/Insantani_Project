@@ -8,14 +8,41 @@
     tools:context="com.williamhenry.insantani.SettignsFragment"
     android:background="@color/WhiteBackground">
 
-    <Button
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginTop="30px"
-        android:text="Logout"
-        android:id="@+id/logoutButton"
-        android:background="@color/insantaniButtonWhite"/>
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="30px"
+            android:text="Edit Profile"
+            android:id="@+id/editProfile"
+            android:background="@color/insantaniButtonWhite"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="30px"
+            android:text="Change Password"
+            android:id="@+id/changePassword"
+            android:background="@color/insantaniButtonWhite"/>
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="30px"
+            android:text="Logout"
+            android:id="@+id/logoutButton"
+            android:background="@color/insantaniButtonWhite"/>
+
+    </LinearLayout>
+
 
 
     <!--<TextView-->

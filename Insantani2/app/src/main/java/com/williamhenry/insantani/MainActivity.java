@@ -2,11 +2,15 @@ package com.williamhenry.insantani;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -18,9 +22,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.pusher.client.Pusher;
+import com.pusher.client.channel.Channel;
+import com.pusher.client.channel.SubscriptionEventListener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
+//import java.nio.channels.Channel;
+import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 //import com.crashlytics.android.Crashlytics;
 //import com.crashlytics.android.ndk.CrashlyticsNdk;
 //import io.fabric.sdk.android.Fabric;
@@ -44,22 +58,56 @@ public class MainActivity extends FragmentActivity
     private boolean tokenType;
     private boolean user_id;
 
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "MainActivity";
+
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+
+
+
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-
         pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         editor=pref.edit();
         checkToken= pref.contains("access_token");
         checkRefreshToken= pref.contains("refresh_token");
         tokenType= pref.contains("token_type");
         user_id=pref.contains("user_id");
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(context);
+                boolean sentToken = sharedPreferences
+                        .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
+                if (sentToken) {
+//                    mInformationTextView.setText(getString(R.string.gcm_send_message));
+                    Toast.makeText(getApplicationContext(),"sending message",Toast.LENGTH_SHORT).show();
+                } else {
+//                    mInformationTextView.setText(getString(R.string.token_error_message));
+                    Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
+        }
+
+
+
 //        Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
         setContentView(R.layout.activity_main);
 
@@ -71,7 +119,51 @@ public class MainActivity extends FragmentActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+//        Pusher pusher = new Pusher("772cc2a8096e294b4636");
+//        Channel channel= pusher.subscribe("test_channel");
+//
+//        channel.bind("test_event", new SubscriptionEventListener() {
+//            @Override
+//            public void onEvent(String channelName, String eventName, final String data) {
+//                Log.d("push", data);
+//                Log.d("test_push","lala");
+//            }
+//        });
+//
+//        pusher.connect();
+        try {
+            Geocoder geocoder = new Geocoder(getApplicationContext());
+            List<Address> addresses;
+            addresses = geocoder.getFromLocationName("yang tersakiti", 1);
+            if (addresses.size() > 0) {
+                double latitude = addresses.get(0).getLatitude();
+                double longitude = addresses.get(0).getLongitude();
+                Log.d("latitude", Double.toString(latitude));
+                Log.d("longitude", Double.toString(longitude));
 
+            }
+        }catch(Exception e){
+            Log.d("error_geocoder",e.toString());
+        }
+
+
+
+    }
+
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -92,13 +184,13 @@ public class MainActivity extends FragmentActivity
 //                ft.replace(R.id.container,HomeFragment, SyncStateContract.Constants)
                     break;
 
-                case 1:
-                    fragment= new CartFragment();
-                    break;
+//                case 1:
+//                    fragment= new CartFragment();
+//                    break;
 //                case 2:
 //                    fragment= new SettingsFragment();
 //                    break;
-                case 2:
+                case 1:
 
                     fragment = new Login();
                     break;
@@ -115,8 +207,16 @@ public class MainActivity extends FragmentActivity
                     fragment= new CartFragment();
                     break;
                 case 2:
+                    fragment= new WishListFragment();
+                    break;
+                case 3:
+                    fragment= new SubscriptionsFragment();
+                    break;
+                case 4:
                     fragment= new SettingsFragment();
                     break;
+
+
 //                case 2:
 //
 //                    fragment = new Login();
