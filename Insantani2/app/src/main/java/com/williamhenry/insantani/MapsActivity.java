@@ -1,11 +1,14 @@
 package com.williamhenry.insantani;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,10 +28,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class MapsActivity extends FragmentActivity implements
+public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback{
 
     private GoogleMap mMap;
@@ -53,21 +57,55 @@ public class MapsActivity extends FragmentActivity implements
     private TextView Address;
     private ImageView imageView;
     private GoogleApiClient mGoogleApiClient;
+    private LinearLayout linearLayout;
+    private LatLng Pos;
+    private String totalPrice;
+    private String totalItem;
+    public static MapsActivity ma;
+    private ArrayList<ProductFarmer> dataFarmer;
+    private String addressShip;
+    private LatLng coordinatesShip;
+    private String receiverInfo;
+    private String zipcode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        markerText=(TextView) findViewById(R.id.locationMarkertext);
-        Address=(TextView) findViewById(R.id.addressText);
-        markerLayout=(LinearLayout)findViewById(R.id.locationMarker);
-        imageView= (ImageView) findViewById(R.id.imageViewMarker);
+        markerText = (TextView) findViewById(R.id.locationMarkertext);
+        Address = (TextView) findViewById(R.id.addressText);
+        markerLayout = (LinearLayout) findViewById(R.id.locationMarker);
+        imageView = (ImageView) findViewById(R.id.imageViewMarker);
         imageView.setImageResource(R.mipmap.add_marker);
+        linearLayout = (LinearLayout) findViewById(R.id.linearLayoutSearchLocation);
+        Bundle extras = getIntent().getExtras();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Bundle item1= (Bundle) extras.get("information");
+        totalItem= item1.getString("totalItem");
+        totalPrice=item1.getString("totalPrice");
+        dataFarmer= (ArrayList<ProductFarmer>)item1.getSerializable("data");
+        zipcode=item1.getString("zipcode");
+        receiverInfo=item1.getString("receiverInfo");
+        ma=this;
 
 
-        gps= new GPSTracker(getApplicationContext());
+        if ((Bundle) extras.get("locationSearch") != null) {
+            Bundle item = (Bundle) extras.get("locationSearch");
+            Double lat = item.getDouble("lat");
+            Double lng = item.getDouble("lng");
+            Pos = new LatLng(lat, lng);
+        } else {
+            Pos = null;
+
+        }
+
+
+
+        gps= new GPSTracker(this);
         if(!gps.canGetLocation()){
             gps.showSettingsAlert();
+            MyPos=new LatLng(-6.2087634,106.84559899999999);
         }else {
             double latitude = gps.getLatitude();
             double longitude = gps.getLongitude();
@@ -96,20 +134,31 @@ public class MapsActivity extends FragmentActivity implements
         LatLng latLong;
         mMap = googleMap;
         googleMap.setMyLocationEnabled(true);
+        CameraPosition camPosition=null;
+        for (int i=0;i<dataFarmer.size();i++){
+            Log.d("markers",dataFarmer.get(i).getFarmerUsername());
+            LatLng farmer = new LatLng(dataFarmer.get(i).getLat(), dataFarmer.get(i).getLng());
+            mMap.addMarker(new MarkerOptions().position(farmer).title(dataFarmer.get(i).getFarmerUsername()));
+        }
+        if(Pos!=null) {
 
-        CameraPosition camPosition= new CameraPosition.Builder()
-                .target(MyPos).zoom(19f).build();
+            camPosition = new CameraPosition.Builder()
+                    .target(Pos).zoom(19f).build();
+        }else{
+            camPosition = new CameraPosition.Builder()
+                    .target(MyPos).zoom(19f).build();
+        }
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPosition));
-        mMap.clear();
+//        mMap.clear();
         mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
             @Override
             public void onCameraChange(CameraPosition cameraPosition) {
                 center = mMap.getCameraPosition().target;
                 markerText.setText("Set your Position");
-                mMap.clear();
+//                mMap.clear();
                 markerLayout.setVisibility(View.VISIBLE);
                 try {
-                    new GetLocationAsync(center.latitude,center.longitude).execute();
+                    new GetLocationAsync(center.latitude, center.longitude).execute();
 
                 } catch (Exception e) {
 
@@ -117,6 +166,22 @@ public class MapsActivity extends FragmentActivity implements
             }
         });
 
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchLocation.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("totalPrice", totalPrice);
+                bundle.putString("totalItem", totalItem);
+                bundle.putSerializable("data", dataFarmer);
+                bundle.putString("zipcode", zipcode);
+                bundle.putString("receiverInfo",receiverInfo);
+                intent.putExtra("information", bundle);
+//                finish();
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -130,8 +195,25 @@ public class MapsActivity extends FragmentActivity implements
                                                                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.add_marker)));
                     m.setDraggable(true);
 //                    m.setInfoWindowAnchor();
+                    Intent intent=new Intent(getApplicationContext(), CheckoutActivity.class);
+                    CheckoutActivity.ca.finish();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("totalItem", totalItem);
+                    Log.d("totalItem", totalItem);
+                    bundle.putString("totalPrice", totalPrice);
+                    bundle.putSerializable("data", dataFarmer);
+
+                    bundle.putDouble("lat", coordinatesShip.latitude);
+                    bundle.putDouble("lng", coordinatesShip.longitude);
+                    bundle.putString("address", addressShip);
+                    bundle.putString("receiverInfo", receiverInfo);
+                    bundle.putString("zipcode",zipcode);
+                    intent.putExtra("information", bundle);
+                    startActivity(intent);
                     markerLayout.setVisibility(View.GONE);
+//                    markerLayout.setVisibility(View.VISIBLE);
 //                    markerText.setVisibility(View.VISIBLE);
+
 
 
                 }catch(Exception e){
@@ -143,7 +225,7 @@ public class MapsActivity extends FragmentActivity implements
         });
 
 
-//        // Add a marker in Sydney and move the camera
+        // Add a marker in Sydney and move the camera
 //        MarkerOptions myPos=new MarkerOptions().position(MyPos).draggable(true);
 //        MyPos=myPos.getPosition();
 //        Log.d("MyPos",MyPos.toString());
@@ -156,8 +238,8 @@ public class MapsActivity extends FragmentActivity implements
 //                myPos.title(addresses.get(0).getAddressLine(0));
 //            }
 //            mMap.addMarker(myPos);
-//            LatLng sydney = new LatLng(-6.364537099999999, 106.82866779999995);
-//            mMap.addMarker(new MarkerOptions().position(sydney).title("Location 2"));
+
+
 //
 //            mMap.moveCamera(CameraUpdateFactory.newLatLng(MyPos));
 //        }catch(Exception e){
@@ -227,6 +309,8 @@ public class MapsActivity extends FragmentActivity implements
             try {
                 geocoder = new Geocoder(getApplicationContext());
                 addresses = geocoder.getFromLocation(x, y, 1);
+                coordinatesShip= new LatLng(x,y);
+
                 str = new StringBuilder();
                 if (geocoder.isPresent()) {
                     Address returnAddress = addresses.get(0);
@@ -254,6 +338,9 @@ public class MapsActivity extends FragmentActivity implements
             try {
                 Address.setText(addresses.get(0).getAddressLine(0)
                         + addresses.get(0).getAddressLine(1) + " ");
+
+                addressShip=addresses.get(0).getAddressLine(0)
+                        + addresses.get(0).getAddressLine(1) + " ";
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -263,5 +350,21 @@ public class MapsActivity extends FragmentActivity implements
         protected void onProgressUpdate(Void... values) {
 
         }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//        if (id == R.id.action_search) {
+//            return true;
+//        }
+//        //noinspection SimplifiableIfStatement
+        onBackPressed();
+
+        return super.onOptionsItemSelected(item);
     }
 }

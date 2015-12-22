@@ -42,6 +42,8 @@ public class FarmerActivityAdapter extends RecyclerView.Adapter<FarmerActivityAd
                 .inflate(R.layout.farmer_activity, parent, false);
         // set the view's size, margins, paddings and layout parameter
 
+
+
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -54,6 +56,8 @@ public class FarmerActivityAdapter extends RecyclerView.Adapter<FarmerActivityAd
         TextView name = (TextView) holder.view.findViewById(R.id.farmerActivityName);
         TextView detail = (TextView) holder.view.findViewById(R.id.farmerActivityDetail);
         ImageView imageView = (ImageView) holder.view.findViewById(R.id.farmerActivityPicture);
+
+
 
         name.setText(feeds.get(position).getName());
         detail.setText(feeds.get(position).getDetail());

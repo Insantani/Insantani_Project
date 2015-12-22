@@ -1,6 +1,7 @@
 package com.williamhenry.insantani;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +45,8 @@ public class Login extends Fragment {
     private TextView email;
     private TextView password;
     private String accessToken;
+    private MainActivity ma;
+    private ProgressDialog ringProgressDialog;
 
 
     public Login() {
@@ -52,7 +56,7 @@ public class Login extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().hide();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
 
 
@@ -65,7 +69,7 @@ public class Login extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_login, container, false);
         relativeLayout= (RelativeLayout) rootView.findViewById(R.id.relativeLayoutLogin);
         context = getContext();
-        pref= this.getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref= ((AppCompatActivity)getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         editor= pref.edit();
 
         Button registration = (Button) rootView.findViewById(R.id.register_login_button);
@@ -86,6 +90,7 @@ public class Login extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringProgressDialog=ProgressDialog.show(context, "Please Wait ...", "Loading", true);
 
                 mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
                 url="http://104.155.213.80/insantani/public/oauth/token";
@@ -147,12 +152,61 @@ public class Login extends Fragment {
 //
 //                            snackbar.show();
 
-                                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                                        startActivity(intent);
+                                        url="http://104.155.213.80/insantani/public/api/user?user_id="
+                                                +jsonObject.getString("user_id");
+                                        final StringRequest stringRequestUser= new StringRequest(Request.Method.GET,
+                                                url, new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response){
+                                                try{
+                                                    JSONObject jsonUser= new JSONObject(response.toString());
+                                                    Log.d("name",jsonUser.getString("name"));
+                                                    Log.d("email",jsonUser.getString("email"));
+                                                    editor.putString("name_user", jsonUser.getString("name"));
+                                                    editor.putString("email_user",jsonUser.getString("email"));
+                                                    editor.commit();
+                                                    ringProgressDialog.dismiss();
+                                                    Intent intent = new Intent(((AppCompatActivity) getActivity()), MainActivity.class);
+                                                    startActivity(intent);
+                                                }catch(Exception e){
+                                                    Log.d("json_err_user",e.toString());
+                                                    ringProgressDialog.dismiss();
+                                                }
+
+                                            }
+
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Log.d("response_user_error",error.toString());
+                                                ringProgressDialog.dismiss();
+
+
+                                            }
+                                        }){
+
+                                            @Override
+                                            public Map<String, String> getHeaders(){
+                                                Map<String, String> headers = new HashMap<String,String>();
+                                                // the POST parameters:
+                                                String auth="Bearer "+accessToken;
+                                                Log.d("Auth_user",auth);
+                                                headers.put("Authorization",auth);
+                                                return headers;
+                                            };
+
+                                        };
+
+                                        stringRequestUser.setTag(REQUEST_TAG);
+                                        mQueue.add(stringRequestUser);
+
+
+
 
 
                                     } catch(Exception e){
                                         Log.d("JSON_error_private",e.toString());
+                                        ringProgressDialog.dismiss();
                                     }
                                 }
                             },new Response.ErrorListener(){
@@ -166,7 +220,7 @@ public class Login extends Fragment {
                                     View snackbarView= snackbar.getView();
                                     TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                                     textView.setTextColor(Color.WHITE);
-
+                                    ringProgressDialog.dismiss();
                                     snackbar.show();
                                 }
                             }){
@@ -199,6 +253,7 @@ public class Login extends Fragment {
 
                         } catch(Exception e){
                             Log.d("JSON_error_login",e.toString());
+                            ringProgressDialog.dismiss();
                         }
                     }
                 },new Response.ErrorListener(){
@@ -212,7 +267,7 @@ public class Login extends Fragment {
                         View snackbarView= snackbar.getView();
                         TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                         textView.setTextColor(Color.WHITE);
-
+                        ringProgressDialog.dismiss();
                         snackbar.show();
                     }
                 }){
@@ -223,7 +278,6 @@ public class Login extends Fragment {
                         // the POST parameters:
                         params.put("grant_type","password");
                         params.put("email", email.getText().toString());
-
                         params.put("password", password.getText().toString());
                         params.put("scope","read");
                         params.put("client_id", "testclient");
@@ -246,9 +300,23 @@ public class Login extends Fragment {
 
 
 
+
+
+
 //                Intent intent= new Intent(context, MainActivity.class);
 //
 //                context.startActivity(intent);
+            }
+        });
+
+        TextView forgotPassword= (TextView) rootView.findViewById(R.id.forgotPasswordTextView);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent= new Intent(((AppCompatActivity)getActivity()),ForgotPasswordActivity.class);
+                startActivity(intent);
+
             }
         });
 

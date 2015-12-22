@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -65,7 +66,7 @@ public class CartFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().show();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
 
     }
@@ -74,7 +75,7 @@ public class CartFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_cart, container, false);
-        pref=getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref=((AppCompatActivity)getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         editor=pref.edit();
 
         checkToken= pref.contains("access_token");
@@ -158,7 +159,7 @@ public class CartFragment extends android.support.v4.app.Fragment {
 //
                                                                     cart.add(cartItem);
 
-                                                                    mAdapter = new CartAdapter(cart,getContext(),mQueue,getActivity().getSupportFragmentManager(),thisObj);
+                                                                    mAdapter = new CartAdapter(cart,getContext(),mQueue,((AppCompatActivity)getActivity()).getSupportFragmentManager(),thisObj);
                                                                     mRecyclerView.setAdapter(mAdapter);
 
                                                                     totalprice.setText(Integer.toString(totalPrice));
@@ -265,10 +266,10 @@ public class CartFragment extends android.support.v4.app.Fragment {
             public void onErrorResponse(VolleyError error){
 
                 Log.d("error_response_cart",error.toString());
-                if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
-                    refreshToken.login();
-                }else {
+//                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+//                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
+//                    refreshToken.login();
+//                }else {
 
                     Snackbar snackbar = Snackbar.make(relativeLayout, "Something wrong", Snackbar.LENGTH_LONG);
                     snackbar.setActionTextColor(Color.WHITE);
@@ -278,7 +279,7 @@ public class CartFragment extends android.support.v4.app.Fragment {
                     textView.setTextColor(Color.WHITE);
 
                     snackbar.show();
-                }
+//                }
             }
         }){
 

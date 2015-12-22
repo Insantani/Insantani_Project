@@ -35,7 +35,7 @@ import android.widget.Button;
 /**
  * Created by agungwy on 10/29/2015.
  */
-public class ChangePasswordActivity extends Activity {
+public class ChangePasswordActivity extends AppCompatActivity {
     private String url;
     private RequestQueue mQueue;
     private Context context;
@@ -55,7 +55,7 @@ public class ChangePasswordActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_password);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         linearLayout= (LinearLayout) findViewById(R.id.linearLayoutChangePassword);
         password = (TextView)findViewById(R.id.enterpasswordchange);
@@ -121,14 +121,18 @@ public class ChangePasswordActivity extends Activity {
                                     }
                                 }else if(jsonObject.has("password")){
                                     JSONArray passwordMessage = jsonObject.getJSONArray("password");
-                                    Snackbar snackbar = Snackbar.make(linearLayout, passwordMessage.get(0).toString(), Snackbar.LENGTH_LONG);
-                                    snackbar.setActionTextColor(Color.WHITE);
-
-                                    View snackbarView = snackbar.getView();
-                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                    textView.setTextColor(Color.WHITE);
-
-                                    snackbar.show();
+                                    for (int p=0;p<passwordMessage.length();p++) {
+                                        Log.d("JSON_response_change_password", passwordMessage.get(p).toString());
+                                        password.setError((String) passwordMessage.get(p));
+                                    }
+//                                    Snackbar snackbar = Snackbar.make(linearLayout, passwordMessage.get(0).toString(), Snackbar.LENGTH_LONG);
+//                                    snackbar.setActionTextColor(Color.WHITE);
+//
+//                                    View snackbarView = snackbar.getView();
+//                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                                    textView.setTextColor(Color.WHITE);
+//
+//                                    snackbar.show();
                                 }
 
                             } catch (Exception e) {
@@ -140,10 +144,10 @@ public class ChangePasswordActivity extends Activity {
                         public void onErrorResponse(VolleyError error) {
 
                             Log.d("error_response_password", error.toString());
-                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                                RefreshTokenManager refreshToken = new RefreshTokenManager(getApplicationContext());
-                                refreshToken.login();
-                            }else {
+//                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
+//                                RefreshTokenManager refreshToken = new RefreshTokenManager(getApplicationContext());
+//                                refreshToken.login();
+//                            }else {
                                 Snackbar snackbar = Snackbar.make(linearLayout, error.toString(), Snackbar.LENGTH_LONG);
                                 snackbar.setActionTextColor(Color.WHITE);
 
@@ -152,7 +156,7 @@ public class ChangePasswordActivity extends Activity {
                                 textView.setTextColor(Color.WHITE);
 
                                 snackbar.show();
-                            }
+//                            }
                         }
                     }) {
 
@@ -231,4 +235,6 @@ public class ChangePasswordActivity extends Activity {
 
 //        return super.onOptionsItemSelected(item);
     }
+
+
 }

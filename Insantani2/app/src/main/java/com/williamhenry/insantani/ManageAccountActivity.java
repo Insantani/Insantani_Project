@@ -35,7 +35,7 @@ import android.widget.Button;
 /**
  * Created by agungwy on 10/29/2015.
  */
-public class ManageAccountActivity extends Activity {
+public class ManageAccountActivity extends AppCompatActivity {
     private String url;
     private RequestQueue mQueue;
     private Context context;
@@ -55,23 +55,84 @@ public class ManageAccountActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_account);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        linearLayout= (LinearLayout) findViewById(R.id.manageAccount);
-        name = (TextView)findViewById(R.id.fullnamemanage);
+        linearLayout = (LinearLayout) findViewById(R.id.manageAccount);
+        name = (TextView) findViewById(R.id.fullnamemanage);
         phoneNumber = (TextView) findViewById(R.id.enterphonenumbermanage);
         address = (TextView) findViewById(R.id.enteraddressmanage);
-        pref= getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        editor=pref.edit();
-        checkToken=pref.contains("access_token");
-        tokenType=pref.contains("token_type");
-        user_id=pref.contains("user_id");
-        checkRefreshToken=pref.contains("refresh_token");
+        pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor = pref.edit();
+        checkToken = pref.contains("access_token");
+        tokenType = pref.contains("token_type");
+        user_id = pref.contains("user_id");
+        checkRefreshToken = pref.contains("refresh_token");
 
 
-
-        context=this;
+        context = this;
         Button save = (Button) findViewById(R.id.saveButton);
+        if (checkToken && checkRefreshToken && user_id && tokenType) {
+
+            mQueue = CustomVolleyRequestQueue.getInstance(getApplicationContext()).getRequestQueue();
+            url = "http://104.155.213.80/insantani/public/api/user?user_id="
+                    + pref.getString("user_id", null);
+            final StringRequest stringRequestUser = new StringRequest(Request.Method.GET,
+                    url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonUser = new JSONObject(response.toString());
+                        name.setText(jsonUser.getString("name"));
+                        address.setText(jsonUser.getString("address"));
+                        phoneNumber.setText(jsonUser.getString("phone_number"));
+
+
+                    } catch (Exception e) {
+                        Log.d("json_err_user", e.toString());
+                    }
+
+                }
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("response_user_error", error.toString());
+//                    if (error.toString().equals("com.android.volley.AuthFailureError")) {
+//                        RefreshTokenManager refreshToken = new RefreshTokenManager(getApplicationContext());
+//                        refreshToken.login();
+//                    } else {
+                        Snackbar snackbar = Snackbar.make(linearLayout, error.toString(), Snackbar.LENGTH_LONG);
+                        snackbar.setActionTextColor(Color.WHITE);
+
+                        View snackbarView = snackbar.getView();
+                        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                        textView.setTextColor(Color.WHITE);
+
+                        snackbar.show();
+//                    }
+
+
+                }
+            }) {
+
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> headers = new HashMap<String, String>();
+                    // the POST parameters:
+                    String auth = "Bearer " + pref.getString("access_token", null);
+                    Log.d("Auth_user", auth);
+                    headers.put("Authorization", auth);
+                    return headers;
+                }
+
+                ;
+
+            };
+
+            stringRequestUser.setTag(REQUEST_TAG);
+            mQueue.add(stringRequestUser);
+
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +140,10 @@ public class ManageAccountActivity extends Activity {
                 Log.d("phone_number", phoneNumber.getText().toString());
                 Log.d("address1", address.getText().toString());
                 Log.d("name", name.getText().toString());
-                if (checkToken && checkRefreshToken && tokenType && user_id && (!name.getText().toString().equals("")||
+                if (checkToken && checkRefreshToken && tokenType && user_id && (!name.getText().toString().equals("") ||
                         !address.getText().toString().equals("") || !phoneNumber.getText().toString().equals(""))) {
 
 
-                    mQueue = CustomVolleyRequestQueue.getInstance(getApplicationContext()).getRequestQueue();
                     url = "http://104.155.213.80/insantani/public/api/change/profile";
                     final StringRequest stringRequestEditProfile = new StringRequest(Request.Method.PUT,
                             url, new Response.Listener<String>() {
@@ -108,6 +168,10 @@ public class ManageAccountActivity extends Activity {
                                         textView.setTextColor(Color.WHITE);
 
                                         snackbar.show();
+                                        if (!name.getText().toString().equals("")) {
+                                            editor.putString("name_user", name.getText().toString());
+                                            editor.commit();
+                                        }
 
 
                                     } else {
@@ -121,6 +185,23 @@ public class ManageAccountActivity extends Activity {
                                         snackbar.show();
                                     }
                                 }
+                                if(jsonObject.has("phone_number")){
+                                    JSONArray errorArray= jsonObject.getJSONArray("phone_number");
+                                    String errorPhoneNumber= (String)errorArray.get(0);
+                                    phoneNumber.setError(errorPhoneNumber);
+                                }
+
+                                if(jsonObject.has("address")){
+                                    JSONArray errorArray=jsonObject.getJSONArray("address");
+                                    String errorAddress= (String) errorArray.get(0);
+                                    address.setError(errorAddress);
+                                }
+                                if(jsonObject.has("name")){
+                                    JSONArray errorArray=jsonObject.getJSONArray("name");
+                                    String errorName= (String)errorArray.get(0);
+                                    name.setError(errorName);
+
+                                }
 
                             } catch (Exception e) {
                                 Log.d("JSON_error_edit_profile", e.toString());
@@ -131,19 +212,16 @@ public class ManageAccountActivity extends Activity {
                         public void onErrorResponse(VolleyError error) {
 
                             Log.d("error_response_edit_profile", error.toString());
-                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                                RefreshTokenManager refreshToken = new RefreshTokenManager(getApplicationContext());
-                                refreshToken.login();
-                            }else {
-                                Snackbar snackbar = Snackbar.make(linearLayout, error.toString(), Snackbar.LENGTH_LONG);
-                                snackbar.setActionTextColor(Color.WHITE);
 
-                                View snackbarView = snackbar.getView();
-                                TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                textView.setTextColor(Color.WHITE);
+                            Snackbar snackbar = Snackbar.make(linearLayout, error.toString(), Snackbar.LENGTH_LONG);
+                            snackbar.setActionTextColor(Color.WHITE);
 
-                                snackbar.show();
-                            }
+                            View snackbarView = snackbar.getView();
+                            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                            textView.setTextColor(Color.WHITE);
+
+                            snackbar.show();
+
                         }
                     }) {
 
@@ -165,19 +243,22 @@ public class ManageAccountActivity extends Activity {
                             Map<String, String> params = new HashMap<String, String>();
                             // the POST parameters:
                             params.put("user_id", pref.getString("user_id", null));
-                            if(!name.getText().toString().equals("")) {
+                            if (!name.getText().toString().equals("")) {
                                 params.put("name", name.getText().toString());
+
                             }
 
-                            if(!address.getText().toString().equals("")) {
+                            if (!address.getText().toString().equals("")) {
                                 params.put("address", address.getText().toString());
                             }
-                            if(!phoneNumber.getText().toString().equals("")) {
+                            if (!phoneNumber.getText().toString().equals("")) {
                                 params.put("phone_number", phoneNumber.getText().toString());
                             }
 
                             return params;
-                        };
+                        }
+
+                        ;
 
 
                     };
@@ -187,6 +268,7 @@ public class ManageAccountActivity extends Activity {
             }
 
         });
+    }
 
 
 
@@ -232,5 +314,11 @@ public class ManageAccountActivity extends Activity {
         }
 
 //        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.mainActivity.onResume();
     }
 }

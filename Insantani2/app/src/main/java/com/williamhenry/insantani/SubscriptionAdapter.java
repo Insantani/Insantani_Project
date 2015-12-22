@@ -158,10 +158,10 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
                         public void onErrorResponse(VolleyError error){
 
                             Log.d("error_response_follow",error.toString());
-                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                                RefreshTokenManager refreshToken = new RefreshTokenManager(context);
-                                refreshToken.login();
-                            }else {
+//                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
+//                                RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+//                                refreshToken.login();
+//                            }else {
 
                                 Snackbar snackbar = Snackbar.make(relativeLayout, error.toString(), Snackbar.LENGTH_LONG);
                                 snackbar.setActionTextColor(Color.WHITE);
@@ -171,7 +171,7 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
                                 textView.setTextColor(Color.WHITE);
 
                                 snackbar.show();
-                            }
+//                            }
                         }
                     }){
                         @Override

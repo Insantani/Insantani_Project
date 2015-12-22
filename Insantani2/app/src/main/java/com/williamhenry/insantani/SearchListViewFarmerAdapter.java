@@ -23,10 +23,17 @@ public class SearchListViewFarmerAdapter extends ArrayAdapter<Farmer> {
         ImageView picture = (ImageView) view.findViewById(R.id.icon);
         TextView distance=(TextView)view.findViewById(R.id.distance_text_view);
 
-        titleTextView.setText(getItem(position).getName());
-        contentTextView.setText(getItem(position).getFullName());
-        picture.setImageBitmap(getItem(position).getPhotoProfile());
-        distance.setText(((Double)getItem(position).getDistance()).toString()+" Km");
+        if(!getItem(position).getName().equals("Not Found")) {
+            titleTextView.setText(getItem(position).getName());
+            contentTextView.setText(getItem(position).getFullName());
+            picture.setImageBitmap(getItem(position).getPhotoProfile());
+            distance.setText(((Double) getItem(position).getDistance()).toString() + " Km");
+        }else{
+            titleTextView.setText(getItem(position).getName());
+            contentTextView.setText("");
+            picture.setImageBitmap(getItem(position).getPhotoProfile());
+            distance.setText("");
+        }
 
 
         return view;

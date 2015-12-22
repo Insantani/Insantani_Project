@@ -44,7 +44,8 @@ public class SubscriptionsFragment extends Fragment {
     private SharedPreferences.Editor editor;
     public static final String REQUEST_TAG = "SubscriptionFragment";
     private RelativeLayout relativeLayout;
-    private ArrayList<Subscription> subscriptions;
+//    private ArrayList<String> names;
+//    private ArrayList<String> namesTemp;
 
     public SubscriptionsFragment() {
         // Required empty public constructor
@@ -54,8 +55,8 @@ public class SubscriptionsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActivity().getActionBar().setElevation(11);
-        pref=getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        ((MainActivity)getActivity()).getSupportActionBar().setElevation(11);
+        pref=((MainActivity)getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         editor=pref.edit();
 
     }
@@ -74,7 +75,10 @@ public class SubscriptionsFragment extends Fragment {
 
         relativeLayout= (RelativeLayout) rootView.findViewById(R.id.relativeLayoutSubscription);
         final RoundedImageView roundedImageView = new RoundedImageView(getContext());
-        subscriptions = new ArrayList<Subscription>();
+
+        final ArrayList<Subscription> subscriptions = new ArrayList<Subscription>();
+//        names= new ArrayList<String>();
+//        namesTemp= new ArrayList<String>();
 //        subscriptions.add(new Subscription("Izhar Almizan", R.mipmap.ic_name, false));
 //        subscriptions.add(new Subscription("Izhar Almizan", R.mipmap.ic_name, true));
 //        subscriptions.add(new Subscription("Izhar Almizan", R.mipmap.ic_name, true));
@@ -127,6 +131,8 @@ public class SubscriptionsFragment extends Fragment {
                                                                     Subscription sub = new Subscription(dataDetailFarmer.getString("farmer_username"),photo,true);
 
                                                                     subscriptions.add(sub);
+
+//                                                                    namesTemp.add(dataDetailFarmer.getString("farmer_username"));
                                                                     mAdapter = new SubscriptionAdapter(subscriptions,getContext());
 
                                                                     mRecyclerView.setAdapter(mAdapter);
@@ -170,10 +176,10 @@ public class SubscriptionsFragment extends Fragment {
             public void onErrorResponse(VolleyError error){
 
                 Log.d("error_response_follow",error.toString());
-                if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
-                    refreshToken.login();
-                }else {
+//                if(error.toString().equals("com.android.volley.AuthFailureError")) {
+//                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
+//                    refreshToken.login();
+//                }else {
 
                     Snackbar snackbar = Snackbar.make(relativeLayout, "Something wrong", Snackbar.LENGTH_LONG);
                     snackbar.setActionTextColor(Color.WHITE);
@@ -183,7 +189,7 @@ public class SubscriptionsFragment extends Fragment {
                     textView.setTextColor(Color.WHITE);
 
                     snackbar.show();
-                }
+//                }
             }
         }){
 
@@ -225,7 +231,7 @@ public class SubscriptionsFragment extends Fragment {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getActivity().getMenuInflater().inflate(R.menu.main, menu);
+        ((MainActivity)getActivity()).getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -237,7 +243,7 @@ public class SubscriptionsFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
-
+//    @Override
 //    public void onResume() {
 //        super.onResume();
 //
@@ -251,17 +257,24 @@ public class SubscriptionsFragment extends Fragment {
 //                Log.d("following", response.toString());
 //                try {
 //                    Log.d("response_following", response.toString());
-//                    JSONObject jsonObject1= new JSONObject(response.toString());
-//                    JSONArray jsonArray= jsonObject1.getJSONArray("data");
-//                    for (int i=0;i<subscriptions.size();i++){
-//                        for(int j=0;j<jsonArray.length();j++){
-//                            if(((JSONObject)jsonArray.get(j)).getString("farmer_username").equals(subscriptions.get(i).getFarmerName()))
+//                    JSONObject jsonObject= new JSONObject(response.toString());
+//                    JSONArray  jsonArray= jsonObject.getJSONArray("data");
+//                    for (int i=0;i<jsonArray.length();i++){
+//                        JSONObject data= (JSONObject)jsonArray.get(i);
+//                        names.add(data.getString("farmer_username"));
+//                    }
 //
-//
+//                    for (int p=0;p<namesTemp.size();p++){
+//                        if(!names.contains(namesTemp.get(p))){
+//                            String name= namesTemp.get(p);
+//                            for (int j=0;j<subscriptions.size();j++){
+//                                Subscription subs=subscriptions.get(j);
+//                                subs.setFollowing(false);
+//                            }
 //                        }
 //
-//
 //                    }
+//
 //
 //
 //                } catch(Exception e){

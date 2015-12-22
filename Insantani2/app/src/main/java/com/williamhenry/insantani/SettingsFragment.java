@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().show();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
     }
 
@@ -55,7 +56,7 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        pref= this.getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref= ((AppCompatActivity)getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         final boolean checkToken= pref.contains("access_token");
         final boolean checkRefreshToken= pref.contains("refresh_token");
         final boolean tokenType= pref.contains("token_type");
@@ -84,7 +85,7 @@ public class SettingsFragment extends Fragment {
                     editor=pref.edit();
 
                     mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
-//                    Log.d("notification_registration",pref.getString("notification_token",null));
+                    Log.d("notification_registration",pref.getString("notification_token",null));
                     url="http://104.155.213.80/insantani/public/api/notify/register?user_id="+pref.getString("user_id",null)
                             +"&device_token="+pref.getString("notification_token",null);
                     final StringRequest stringRequestDeleteNotification= new StringRequest(Request.Method.DELETE,
@@ -100,7 +101,7 @@ public class SettingsFragment extends Fragment {
                                 if(message.equals("Delete Success")) {
                                     editor.clear();
                                     editor.commit();
-                                    Intent intent= new Intent (getActivity(),MainActivity.class);
+                                    Intent intent= new Intent (((AppCompatActivity)getActivity()),MainActivity.class);
                                     startActivity(intent);
 
                                     Log.d("delete_notification_register_message",message);
@@ -115,10 +116,10 @@ public class SettingsFragment extends Fragment {
                         public void onErrorResponse(VolleyError error){
 
                             Log.d("error_response_delete_notification_register",error.toString());
-                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                                RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
-                                refreshToken.login();
-                            }
+//                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
+//                                RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
+//                                refreshToken.login();
+//                            }
 
                         }
                     }){
@@ -170,7 +171,7 @@ public class SettingsFragment extends Fragment {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent (getActivity(),ManageAccountActivity.class);
+                Intent intent= new Intent (((MainActivity)getActivity()),ManageAccountActivity.class);
                 startActivity(intent);
 
             }
@@ -179,7 +180,7 @@ public class SettingsFragment extends Fragment {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                Intent intent = new Intent(((MainActivity)getActivity()), ChangePasswordActivity.class);
                 startActivity(intent);
 
             }

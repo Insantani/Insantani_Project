@@ -49,7 +49,7 @@ public class FarmerActivityTabFragment extends Fragment {
     private boolean user_id;
     private RelativeLayout relativeLayout;
 
-    private ArrayList<FarmerActivity> feeds;
+//    private ArrayList<FarmerActivity> feeds;
 
     public FarmerActivityTabFragment() {
         // Required empty public constructor
@@ -82,123 +82,123 @@ public class FarmerActivityTabFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // farmer feed
-        feeds = new ArrayList<FarmerActivity>();
+        final ArrayList<FarmerActivity> feeds = new ArrayList<FarmerActivity>();
 
         final RoundedImageView roundedImageView = new RoundedImageView(getContext());
 
         mQueue= CustomVolleyRequestQueue.getInstance(getContext()).getRequestQueue();
 
-        url="http://104.155.213.80/insantani/public/api/updates?user_id="+pref.getString("user_id",null);
-        final StringRequest jsonRequestUpdates= new StringRequest(Request.Method.GET,
-                url,new Response.Listener<String>() {
+                                                                    url="http://104.155.213.80/insantani/public/api/updates?user_id="+pref.getString("user_id",null);
+                                                                    final StringRequest jsonRequestUpdates= new StringRequest(Request.Method.GET,
+                                                                            url,new Response.Listener<String>() {
 
-            @Override
-            public void onResponse(String response1){
+                                                                        @Override
+                                                                        public void onResponse(String response1){
 
-                try{
+                                                                            try{
 //                                                                            Log.d("bitmap", bitmap.toString());
-                    JSONObject response= new JSONObject(response1.toString());
-                    JSONArray dataUpdates= response.getJSONArray("data");
-                    for(int i=0;i<dataUpdates.length();i++){
-                        final JSONObject update= (JSONObject)dataUpdates.get(i);
-                        url="http://104.155.213.80/insantani/public/api/farmer/"+
-                                ((JSONObject)dataUpdates.get(i)).getString("farmer_username");
-                        final CustomJSONObjectRequest jsonRequestFarmerDetail= new CustomJSONObjectRequest(Request.Method.GET,
-                                url,new JSONObject(),
-                                new Response.Listener<JSONObject>(){
-                                    @Override
-                                    public void onResponse(JSONObject response){
-                                        try {
-                                            JSONArray resultFarmerDetail=response.getJSONArray("result");
+                                                                                JSONObject response= new JSONObject(response1.toString());
+                                                                                JSONArray dataUpdates= response.getJSONArray("data");
+                                                                                for(int i=0;i<dataUpdates.length();i++){
+                                                                                    final JSONObject update= (JSONObject)dataUpdates.get(i);
+                                                                                    url="http://104.155.213.80/insantani/public/api/farmer/"+
+                                                                                            ((JSONObject)dataUpdates.get(i)).getString("farmer_username");
+                                                                                    final CustomJSONObjectRequest jsonRequestFarmerDetail= new CustomJSONObjectRequest(Request.Method.GET,
+                                                                                            url,new JSONObject(),
+                                                                                            new Response.Listener<JSONObject>(){
+                                                                                                @Override
+                                                                                                public void onResponse(JSONObject response){
+                                                                                                    try {
+                                                                                                        JSONArray resultFarmerDetail=response.getJSONArray("result");
 
-                                            Log.d("response_farmer_detail", resultFarmerDetail.get(0).toString());
-                                            for (int x=0;x<resultFarmerDetail.length();x++){
-                                                final JSONObject dataFarmerDetail=(JSONObject)resultFarmerDetail.get(x);
-                                                url="http://104.155.213.80/insantani/public/"+dataFarmerDetail.getString("profile_picture_url");
-//                                Log.d("url_product",url);
-                                                final ImageRequest imageRequest= new ImageRequest(url,
-                                                        new Response.Listener<Bitmap>() {
-                                                            @Override
-                                                            public void onResponse(final Bitmap bitmap) {
-                                                                try{
-                                                                    Log.d("bitmap",bitmap.toString());
+                                                                                                        Log.d("response_farmer_detail", resultFarmerDetail.get(0).toString());
+                                                                                                        for (int x=0;x<resultFarmerDetail.length();x++){
+                                                                                                            final JSONObject dataFarmerDetail=(JSONObject)resultFarmerDetail.get(x);
+                                                                                                            url="http://104.155.213.80/insantani/public/"+dataFarmerDetail.getString("profile_picture_url");
+                                                            //                                Log.d("url_product",url);
+                                                                                                            final ImageRequest imageRequest= new ImageRequest(url,
+                                                                                                                    new Response.Listener<Bitmap>() {
+                                                                                                                        @Override
+                                                                                                                        public void onResponse(final Bitmap bitmap) {
+                                                                                                                            try{
+                                                                                                                                Log.d("bitmap",bitmap.toString());
 
 //                                                                                                                                JSONObject update=(JSONObject) dataUpdates.get(i);
 
-                                                                    FarmerActivity feed = new FarmerActivity();
-                                                                    feed.setName(dataFarmerDetail.getString("farmer_username"));
-                                                                    feed.setDetail(update.getString("updates"));
-                                                                    Bitmap photo= roundedImageView.getCroppedBitmap(bitmap,75);
+                                                                                                                                FarmerActivity feed = new FarmerActivity();
+                                                                                                                                feed.setName(dataFarmerDetail.getString("farmer_username"));
+                                                                                                                                feed.setDetail(update.getString("updates"));
+                                                                                                                                Bitmap photo= roundedImageView.getCroppedBitmap(bitmap,75);
 
-                                                                    feed.setPhoto(photo);
-                                                                    feeds.add(feed);
-                                                                    mAdapter = new FarmerActivityAdapter(feeds, getContext());
-                                                                    mRecyclerView.setAdapter(mAdapter);
+                                                                                                                                feed.setPhoto(photo);
+                                                                                                                                feeds.add(feed);
+                                                                                                                                mAdapter = new FarmerActivityAdapter(feeds, getContext());
+                                                                                                                                mRecyclerView.setAdapter(mAdapter);
+                                                                                                                                mRecyclerView.set
+                                                                                                                            }catch(Exception e){
+                                                                                                                                    Log.d("error_farmer_profile_picture",e.toString());
+                                                                //
+                                                                                                                                }
 
-                                                                }catch(Exception e){
-                                                                        Log.d("error_farmer_profile_picture",e.toString());
-    //
-                                                                    }
+                                                                                                                            }
+                                                                                                                        },0,0,null,new Response.ErrorListener() {
+                                                                                                                    public void onErrorResponse(VolleyError error) {
+                                                                                                                        Log.d("error_response_farmer_profile_picture", error.toString());
+                                                                                                                    }
+                                                                                                                });
+                                                                                                                imageRequest.setTag(REQUEST_TAG);
+                                                                                                                mQueue.add(imageRequest);
 
-                                                                }
-                                                            },0,0,null,new Response.ErrorListener() {
-                                                        public void onErrorResponse(VolleyError error) {
-                                                            Log.d("error_response_farmer_profile_picture", error.toString());
-                                                        }
-                                                    });
-                                                    imageRequest.setTag(REQUEST_TAG);
-                                                    mQueue.add(imageRequest);
+                                                                                                            }
 
-                                                }
-
-                                            } catch(Exception e){
-                                                Log.d("JSON_err_farmer",e.toString());
-                                            }
-                                        }
-                                    },new Response.ErrorListener(){
-                                @Override
-                                public void onErrorResponse(VolleyError error){
-                                    Log.d("error_response_farmer_detail",error.toString());
-                                }
-                            });
-                            jsonRequestFarmerDetail.setTag(REQUEST_TAG);
-                            mQueue.add(jsonRequestFarmerDetail);
-                    }
-
-
-                }catch(Exception e){
-
-                    Log.d("json_error_updates",e.toString());
+                                                                                                        } catch(Exception e){
+                                                                                                            Log.d("JSON_err_farmer",e.toString());
+                                                                                                        }
+                                                                                                    }
+                                                                                                },new Response.ErrorListener(){
+                                                                                            @Override
+                                                                                            public void onErrorResponse(VolleyError error){
+                                                                                                Log.d("error_response_farmer_detail",error.toString());
+                                                                                            }
+                                                                                        });
+                                                                                        jsonRequestFarmerDetail.setTag(REQUEST_TAG);
+                                                                                        mQueue.add(jsonRequestFarmerDetail);
+                                                                                }
 
 
-                }
+                                                                            }catch(Exception e){
 
-            }
+                                                                                Log.d("json_error_updates",e.toString());
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("response_error_updates",error.toString());
-                if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                    RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
-                    refreshToken.login();
-                }
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<String, String>();
-                // the POST parameters:
-                String auth = "Bearer " + pref.getString("access_token", null);
-                Log.d("Auth", auth);
-                headers.put("Authorization", auth);
-                return headers;
-            }
 
-        };
+                                                                            }
 
-        jsonRequestUpdates.setTag(REQUEST_TAG);
-        mQueue.add(jsonRequestUpdates);
+                                                                        }
+
+                                                                    }, new Response.ErrorListener() {
+                                                                        @Override
+                                                                        public void onErrorResponse(VolleyError error) {
+                                                                            Log.d("response_error_updates",error.toString());
+//                                                                            if(error.toString().equals("com.android.volley.AuthFailureError")) {
+//                                                                                RefreshTokenManager refreshToken = new RefreshTokenManager(getContext());
+//                                                                                refreshToken.login();
+//                                                                            }
+                                                                        }
+                                                                    }){
+                                                                        @Override
+                                                                        public Map<String, String> getHeaders() {
+                                                                            Map<String, String> headers = new HashMap<String, String>();
+                                                                            // the POST parameters:
+                                                                            String auth = "Bearer " + pref.getString("access_token", null);
+                                                                            Log.d("Auth", auth);
+                                                                            headers.put("Authorization", auth);
+                                                                            return headers;
+                                                                        }
+
+                                                                    };
+
+                                                                    jsonRequestUpdates.setTag(REQUEST_TAG);
+                                                                    mQueue.add(jsonRequestUpdates);
 
 
 

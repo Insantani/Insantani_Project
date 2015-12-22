@@ -1,7 +1,10 @@
 package com.williamhenry.insantani;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.IBinder;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,12 +23,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
  * Created by william on 12/7/2015.
  */
-public class RefreshTokenManager {
+public class RefreshTokenManager extends Service {
 
     private Context context;
     public static final String REQUEST_TAG = "RefreshTokenManager";
@@ -37,15 +42,71 @@ public class RefreshTokenManager {
     private boolean tokenType;
     private boolean checkRefreshToken;
     private boolean user_id;
-    public RefreshTokenManager(Context context){
-        this.context=context;
-        this.pref= this.context.getSharedPreferences("MyPref",Context.MODE_PRIVATE);
-        this.editor= this.pref.edit();
-        this.checkToken= this.pref.contains("access_token");
-        this.checkRefreshToken= this.pref.contains("refresh_token");
-        this.tokenType= this.pref.contains("token_type");
-        this.user_id=this.pref.contains("user_id");
+
+//    private Timer timer= new Timer();
+
+    public RefreshTokenManager(){
+//        this.context=context;
+//        this.pref= this.context.getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+//        this.editor= this.pref.edit();
+//        this.checkToken= this.pref.contains("access_token");
+//        this.checkRefreshToken= this.pref.contains("refresh_token");
+//        this.tokenType= this.pref.contains("token_type");
+//        this.user_id=this.pref.contains("user_id");
     }
+
+    @Override
+    public IBinder onBind(Intent intent)
+    {
+        return null;
+    }
+
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+        Log.d("status","accepted");
+        pref=getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+        editor=pref.edit();
+        checkToken=pref.contains("access_token");
+        checkRefreshToken=pref.contains("refresh_token");
+        tokenType=pref.contains("token_type");
+        user_id=pref.contains("user_id");
+        context=this;
+        login();
+//        timer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//
+//                login();   //Your code here
+//            }
+//        }, 0, 40 * 60 * 1000);//5 Minutes
+
+
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+//        handleCommand(intent);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+//        handleCommand(intent);
+        // We want this service to continue running until it is explicitly
+        // stopped, so return sticky.
+        return START_REDELIVER_INTENT;
+    }
+
+//    @Override
+//    public void onDestroy()
+//    {
+//        super.onDestroy();
+//    }
+
+
+
+
 
     public void login(){
 
@@ -98,7 +159,7 @@ public class RefreshTokenManager {
                         // the POST parameters:
                         params.put("grant_type", "refresh_token");
 //                        params.put("email", email.getText().toString());
-                        Log.d("refresh_token", pref.getString("refresh_token",null));
+                        Log.d("refresh_token_input", pref.getString("refresh_token",null));
                         params.put("refresh_token", pref.getString("refresh_token",null));
                         params.put("scope","read");
                         params.put("client_id", "testclient");

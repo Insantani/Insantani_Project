@@ -14,11 +14,10 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -36,7 +35,6 @@ import android.view.View;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -52,7 +50,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends ActionBarActivity {
     private Context context;
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
@@ -85,6 +83,7 @@ public class ProductActivity extends AppCompatActivity {
         user_id=pref.contains("user_id");
         relativeLayout= (CoordinatorLayout) findViewById(R.id.relativeLayoutProduct);
 
+
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view_relative_item);
         mRecyclerView.setHasFixedSize(true);
 
@@ -96,16 +95,20 @@ public class ProductActivity extends AppCompatActivity {
         Bundle extras= getIntent().getExtras();
         final Bundle item=(Bundle)extras.get("nature");
 
-        // collapsing bar
         ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout_product), "EXTRA_IMAGE");
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_product);
         collapsingToolbarLayout.setTitle(item.getString("title"));
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_product);
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_product);
         setSupportActionBar(toolbar);
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NestedScrollView scrollView= (NestedScrollView) findViewById(R.id.scrollProduct);
+        scrollView.scrollTo(0,0);
+
 //        final Context context=getApplicationContext();
         final ArrayList<Product> relatedItems = new ArrayList<Product>();
 
@@ -345,8 +348,8 @@ public class ProductActivity extends AppCompatActivity {
                                                 Log.d("error_response_add_cart", error.toString());
 
                                                 if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                                                    RefreshTokenManager refreshToken = new RefreshTokenManager(context);
-                                                    refreshToken.login();
+//                                                    RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+//                                                    refreshToken.login();
                                                 }else {
 
                                                     Snackbar snackbar = Snackbar.make(relativeLayout, "You have the same item in cart", Snackbar.LENGTH_LONG);
@@ -532,8 +535,8 @@ public class ProductActivity extends AppCompatActivity {
                                                 Log.d("error_response_add_wish_list", error.toString());
 
                                                 if(error.toString().equals("com.android.volley.AuthFailureError")) {
-                                                    RefreshTokenManager refreshToken = new RefreshTokenManager(context);
-                                                    refreshToken.login();
+//                                                    RefreshTokenManager refreshToken = new RefreshTokenManager(context);
+//                                                    refreshToken.login();
                                                 }else {
 
                                                     Snackbar snackbar = Snackbar.make(relativeLayout, "You have a similar item in your wish list", Snackbar.LENGTH_LONG);
@@ -593,15 +596,36 @@ public class ProductActivity extends AppCompatActivity {
 
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_product, menu);
+//        TextView title = (TextView) findViewById(R.id.productname);
+//        setTitle(title.getText());
+//        return true;
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        onBackPressed();
+        int id = item.getItemId();
 
-        return super.onOptionsItemSelected(item);
+        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+        switch (id) {
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+//        return super.onOptionsItemSelected(item);
     }
-
-
 }
