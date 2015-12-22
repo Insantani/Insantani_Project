@@ -42,6 +42,7 @@
                 android:layout_marginBottom="8dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="2dp"
+                android:paddingBottom="5dp"
                 android:text="Test"
                 android:textColor="@color/insantaniButtonBlack"
                 android:textAlignment="center"
@@ -49,7 +50,7 @@
             <TextView
                 android:id="@+id/product_price_relative_item"
                 android:layout_width="fill_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -58,11 +59,12 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:paddingLeft="5dp"
                 android:paddingRight="2dp"
-                android:textColor="#757575"
+                android:textColor="#f57f17"
                 android:text="Test"
+                android:textStyle="normal"
+                android:paddingBottom="5dp"
                 android:textAlignment="center"
-                android:textSize="10dp"
-                android:layout_marginTop="10dp" />
+                android:textSize="15dp" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

@@ -7,7 +7,9 @@
     <color name="insantaniButtonWhite">#E0E0E0</color>
     <color name="insantaniButtonBlack">#212121</color>
     <color name="insantaniButtonBlue">#2196F3</color>
-    <color name= "insantaniButtonSilver">#3d566e</color>
     <color name="WhiteBackground">#FAFAFA</color>
     <color name="Red">#F44336</color>
+    <color name="pureWhite">#ffffff</color>
+    <color name="orange">#f57f17</color>
+    <color name= "insantaniButtonSilver">#3d566e</color>
 </resources>

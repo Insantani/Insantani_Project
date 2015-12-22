@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/homeFragment" android:icon="@drawable/home"
+            android:title="Home"
+            android:visible="true"/>
+        <item android:id="@+id/shoppingCartFragment" android:icon="@drawable/shopping_cart"
+            android:title="Shopping Cart"
+            android:visible="false"/>
+        <item android:id="@+id/wishListFragment" android:icon="@drawable/wishlist"
+            android:title="Wish List"
+            android:visible="false"/>
+
+        <item android:id="@+id/followingFragment" android:icon="@drawable/following"
+            android:title="Following"
+            android:visible="false"
+            />
+
+
+    </group>
+
+
+
+    <item android:title="Advanced">
+        <menu>
+            <item android:id="@+id/loginFragment" android:icon="@drawable/login"
+                android:title="Login"
+                android:visible="true"/>
+            <item android:id="@+id/settingsFragment" android:icon="@drawable/settings"
+                android:title="Settings"
+                android:visible="true"/>
+        </menu>
+    </item>
+
+</menu>

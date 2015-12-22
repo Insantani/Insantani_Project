@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/manageAccount">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,18 +33,6 @@
                 android:textSize="20dp"
                 android:textColor="#7ED321"/>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Leave it blank if nothing changes"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:padding="2dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:textSize="15dp"
-                android:textColor="#757575"/>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -70,7 +60,8 @@
                     android:inputType="text"
                     android:ems="10"
                     android:text=""
-                    android:textSize="14dp"/>
+                    android:textSize="14dp"
+                    android:textColor="@color/insantaniButtonBlack"/>
 
             </LinearLayout>
 
@@ -102,7 +93,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:text=""
-                    android:textSize="14dp"/>
+                    android:textSize="14dp"
+                    android:textColor="@color/insantaniButtonBlack"/>
             </LinearLayout>
 
             <LinearLayout
@@ -131,7 +123,8 @@
                     android:inputType="text"
                     android:ems="10"
                     android:text=""
-                    android:textSize="14dp"/>
+                    android:textSize="14dp"
+                    android:textColor="@color/insantaniButtonBlack"/>
             </LinearLayout>
 
             <Button
@@ -151,5 +144,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -41,9 +41,11 @@
         completions."
     </string>
     <string name="title_activity_manage_account">Edit Profile</string>
-    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="title_activity_forgot_password">Forgot Password</string>
     <string name="title_activity_change_password">Change Password</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_search_location">Search Location</string>
+    <string name="title_activity_privacy_policy">Privacy Policy</string>
 
 
 </resources>

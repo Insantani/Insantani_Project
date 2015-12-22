@@ -6,40 +6,55 @@
     android:orientation="vertical"
     android:id="@+id/LogoutLayout"
     tools:context="com.williamhenry.insantani.SettignsFragment"
-    android:background="@color/WhiteBackground">
+    android:background="@color/WhiteBackground"
+    android:paddingTop="?attr/actionBarSize">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="30px">
+
+
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="30px"
             android:text="Edit Profile"
             android:id="@+id/editProfile"
-            android:background="@color/insantaniButtonWhite"/>
+            android:drawableLeft="@drawable/dark_profile_edit"
+            android:gravity="left|center"
+            android:background="@color/pureWhite"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#c0c0c0"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="30px"
             android:text="Change Password"
             android:id="@+id/changePassword"
-            android:background="@color/insantaniButtonWhite"/>
+            android:gravity="left|center"
+            android:drawableLeft="@drawable/dark_change_password"
+            android:background="@color/pureWhite"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#c0c0c0"/>
 
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="30px"
             android:text="Logout"
+            android:drawableLeft="@drawable/dark_login"
+            android:gravity="left|center"
             android:id="@+id/logoutButton"
-            android:background="@color/insantaniButtonWhite"/>
+            android:background="@color/pureWhite"/>
 
     </LinearLayout>
 

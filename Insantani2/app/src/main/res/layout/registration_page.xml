@@ -49,7 +49,8 @@
                         android:ems="10"
                         android:hint="Email"
                         android:textSize="14dp"
-                        android:id="@+id/register_email" />
+                        android:id="@+id/register_email"
+                        android:textColor="@color/insantaniButtonBlack"/>
 
                 </LinearLayout>
 
@@ -76,7 +77,8 @@
                         android:hint="Name"
                         android:textSize="14dp"
                         android:ems="10"
-                        android:id="@+id/register_name" />
+                        android:id="@+id/register_name"
+                        android:textColor="@color/insantaniButtonBlack"/>
 
                 </LinearLayout>
 
@@ -104,7 +106,8 @@
                         android:textSize="14dp"
                         android:ems="10"
                         android:id="@+id/register_password"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColor="@color/insantaniButtonBlack"/>
 
                 </LinearLayout>
 
@@ -128,11 +131,11 @@
                         android:inputType="textPassword"
                         android:layout_marginLeft="5dp"
                         android:paddingLeft="10dp"
-                        android:hint="Verivy Password"
+                        android:hint="Verify Password"
                         android:textSize="14dp"
                         android:ems="10"
                         android:id="@+id/register_verifyPassword"
-                        />
+                        android:textColor="@color/insantaniButtonBlack"/>
 
                 </LinearLayout>
 
@@ -160,7 +163,8 @@
                         android:hint="Phone Number"
                         android:textSize="14dp"
                         android:ems="10"
-                        android:id="@+id/register_phoneNumber" />
+                        android:id="@+id/register_phoneNumber"
+                        android:textColor="@color/insantaniButtonBlack"/>android:textColor="@color/insantaniButtonBlack"/>
 
                 </LinearLayout>
 
@@ -190,11 +194,26 @@
                         android:textSize="14dp"
                         android:ems="10"
                         android:id="@+id/register_address"
-                        />
+                        android:textColor="@color/insantaniButtonBlack"/>
+
 
                 </LinearLayout>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:gravity="top"
+                android:hint="By submitting this form, you agree to the privacy policy"
+                android:textSize="14dp"
+                android:id="@+id/privacy"
+                android:textColor="@color/insantaniButtonBlack"/>
+
 
             <Button
                 android:layout_width="fill_parent"

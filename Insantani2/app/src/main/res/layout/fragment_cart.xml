@@ -7,7 +7,8 @@
     tools:context="com.williamhenry.insantani.CartFragment"
     android:id="@+id/relativeLayoutCart"
     android:background="#FAFAFA"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:paddingTop="?attr/actionBarSize">
 
     <!--untuk floating layout nya gak scrollable-->
     <LinearLayout

@@ -4,7 +4,9 @@
     android:theme="@style/AppTheme.Tab"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:paddingTop="?attr/actionBarSize"
+    android:orientation="vertical"
+    >
 
     <FrameLayout
         android:layout_width="match_parent"

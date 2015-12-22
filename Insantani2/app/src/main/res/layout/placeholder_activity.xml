@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="You haven't follow any farmer"
+        android:text="No updates yet"
         android:textColor="#777777"
         android:textSize="18sp"/>
 
