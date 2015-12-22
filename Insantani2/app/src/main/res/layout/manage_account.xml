@@ -40,6 +40,12 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
+                <ImageView
+                    android:id="@+id/register_name_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_name"/>
+
                 <EditText
                     android:id="@+id/fullname"
                     android:layout_width="fill_parent"
@@ -62,6 +68,12 @@
                 android:padding="5dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/register_email_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_email"/>
 
                 <EditText
                     android:id="@+id/enteremail"
@@ -88,6 +100,12 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_phone"
+                    android:id="@+id/register_phoneNumber_icon"/>
+
                 <EditText
                     android:id="@+id/enterphonenumber"
                     android:layout_width="fill_parent"
@@ -110,6 +128,12 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_address"
+                    android:id="@+id/locationsymbol"/>
+
                 <EditText
                     android:id="@+id/enteraddress"
                     android:layout_width="fill_parent"
@@ -122,8 +146,21 @@
                     android:textSize="14dp"/>
             </LinearLayout>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="SAVE"
+                android:textSize="16dp"
+                android:textColor="#ffffff"
+                android:id="@+id/saveButton"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:background="#7ED321"/>
+
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>t>
+</LinearLayout>
